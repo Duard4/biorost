@@ -8,7 +8,7 @@
         </div>
         <div class="bg-img-wrapper">
             <p class="about-age-label"><span class="large">9</span><br> років<br> досвіду</p>
-            <img src="../../assets/bg-images/about.jpg" alt="sprouts" class="about-bg-img">
+            <img src="../assets/bg-images/about.jpg" alt="sprouts" class="about-bg-img">
         </div>
 
         <!-- Modal Component -->

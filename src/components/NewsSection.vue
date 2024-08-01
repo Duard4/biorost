@@ -2,7 +2,7 @@
     <section class="articles section" id="articles">
         <h1 class="art-title title">Новини і досягнення</h1>
         <div class="container">
-            <img src="../../assets/bg-images/news.jpg" alt="" class="art-bg-img">
+            <img src="../assets/bg-images/news.jpg" alt="" class="art-bg-img">
             <ul class="articles-list">
                 <li v-for="article in articleList" :key="article.href" class="article-item">
                     <a :href="article.href" class="nav-link">
