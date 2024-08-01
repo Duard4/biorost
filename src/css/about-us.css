@@ -1,0 +1,47 @@
+.about { display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.text-wrapper {
+    max-width: 572px;
+}
+.about.section {
+    padding: 80px 0;
+}
+.about-title {
+}
+.title {
+}
+.abuot-text {
+}
+.text {
+}
+.bg-img-wrapper {
+    position: relative;
+    display: flex;
+    align-items: baseline;
+}
+.about-age-label {
+    display: inline-block;
+    text-align: center;
+    min-width: 178px;
+    padding: 24px;
+    border-radius: 10px;
+    background-color: rgba(85, 57, 4, 1);
+    color: var(--white);
+    font-size: 28px;
+    transform: translate(50%, -25%);
+}
+.large {
+    font-size: 80px;
+}
+.about-bg-img {
+    border-top-left-radius: 100px;
+    max-height: 600px;
+}
+.certificates-btn {
+    margin-top: 24px;
+    font-size: 18px;
+    min-width: 200px;
+}
