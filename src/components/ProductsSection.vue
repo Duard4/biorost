@@ -35,7 +35,7 @@
 <script>
 import { ref, onMounted, watch } from 'vue';
 import { items, types } from '../js/data';
-import { useSlider } from '../js/useSlider';
+import { useSlider } from '../js/slider';
 import { useFilter } from '../js/useFilter';
 
 export default {

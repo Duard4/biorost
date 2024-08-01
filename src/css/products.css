@@ -55,22 +55,20 @@
 .slide {
     object-fit: cover;
 }
-.product-item-text {
-    display: none;
-}
+
 .text-wrapper {
     padding: 4px 12px;
 }
 .pil-title, .pil-text {
     transition: transform var(--animation);
 }
-.slide:hover .pil-title,
+/* .slide:hover .pil-title,
 .slide:hover .pil-text,
 .slide:focus .pil-title,
 .slide:focus .pil-text {
     background-color: var(--white);
     transform: translate(0, -100px);
-}
+} */
 .slider {
     position: relative;
     overflow: hidden;
@@ -102,6 +100,10 @@
     height: 100%;
     object-fit: cover;
     aspect-ratio: 2/5;
+}
+
+.pil-title, .pil-text {
+    transition: transform var(--animation);
 }
 .slider-button-prev,
 .slider-button-next {

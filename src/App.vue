@@ -12,12 +12,12 @@
 
 <script>
 import Layout from './components/Layout.vue';
-import HeroSection from './components/sections/HeroSection.vue';
-import AboutSection from './components/sections/AboutSection.vue';
-import ProductsSection from './components/sections/ProductsSection.vue';
-import MapsSection from './components/sections/MapsSection.vue';
-import NewsSection from './components/sections/NewsSection.vue';
-import ContactSection from './components/sections/ContactSection.vue';
+import HeroSection from './components/HeroSection.vue';
+import AboutSection from './components/AboutSection.vue';
+import ProductsSection from './components/ProductsSection.vue';
+import MapsSection from './components/MapsSection.vue';
+import NewsSection from './components/NewsSection.vue';
+import ContactSection from './components/ContactSection.vue';
 
 export default {
   name: 'App',
