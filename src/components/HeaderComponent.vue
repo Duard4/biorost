@@ -4,7 +4,7 @@
         <address class="address">
             <a class="address-link" href="http://">
                 <svg class="icon " width="24" height="24">
-                    <use href="../img/icons.svg#icon-location"></use>
+                    <use href="../assets/icons.svg#icon-location"></use>
                 </svg>
                 вул. Сталеварів 17, Запоріжжя</a>
         </address>
@@ -25,7 +25,6 @@ export default {
 </script>
 
 <style scoped>
-/* ваш CSS для header */
 .header {
     font-family: "Open Sans", sans-serif;
     font-size: 16px;
