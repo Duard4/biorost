@@ -6,17 +6,7 @@
                     <a :href="link.href" class="nav-link">{{ link.text }}</a>
                 </li>
             </ul>
-            <div class="search-wrapper">
-                <input type="text" v-if="searchResults.length" class="search-field brd" placeholder="Пошук" v-model="searchQuery" @input="performSearch" />
-                <input type="text" v-else class="search-field" placeholder="Пошук" v-model="searchQuery" @input="performSearch" />
-                
-                <svg class="icon search-icon" width="20" height="20">
-                    <use href="../assets/icons.svg#icon-search"></use>
-                </svg>
-                <ul v-if="searchResults.length" class="search-results">
-                    <li v-for="(result, index) in searchResults" :key="index" v-html="result.html" @click="scrollToElement(result)"></li>
-                </ul>
-            </div>
+            <SearchComponent></SearchComponent>
         </div>
     </nav>
 </template>
@@ -24,9 +14,13 @@
 <script>
 import { ref, provide } from 'vue';
 import { items } from '../js/data';
+import SearchComponent from './SearchComponent.vue'
 
 export default {
     name: 'NavComponent',
+    components: {
+        SearchComponent
+    },
     mounted() {
         this.header = document.querySelector('.nav');
         this.headerHeight = document.querySelector('.nav').clientHeight + document.querySelector('.header').clientHeight;

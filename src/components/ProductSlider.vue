@@ -1,26 +1,31 @@
 <template>
-    <div class="slider">
-        <div v-for="(item, index) in filteredItems" :key="index" :class="[`flip-box item ${item.type}`, { active: index === activeIndex }]">
-            <div class="flip-box-inner">
-                <div class="flip-box-front">
-                    <img :src="getImageUrl(item.frontImage)" alt="">
-                </div>
-                <div class="flip-box-back" v-if="item.backImage">
-                    <img :src="getImageUrl(item.backImage)" alt="">
+    <div>
+        <div class="slider">
+            <div v-for="(item, index) in filteredItems" :key="index" :class="[`flip-box item ${item.type}`, { active: index === activeIndex }]">
+                <div class="flip-box-inner">
+                    <div class="flip-box-front">
+                        <img :src="getImageUrl(item.frontImage)" :alt="`${item.title}`">
+                    </div>
+                    <div class="flip-box-back" v-if="item.backImage">
+                        <img :src="getImageUrl(item.backImage)" :alt="`${item.description}`">
+                    </div>
                 </div>
             </div>
+            <button id="prev" @click="prevSlide">&#10094;</button>
+            <button id="next" @click="nextSlide">&#10095;</button>
         </div>
-        <button id="prev" @click="prevSlide">&#10094;</button>
-        <button id="next" @click="nextSlide">&#10095;</button>
     </div>
 </template>
 
 <script>
-import { ref, watch } from 'vue';
-import { items } from '../js/data';
+import SearchComponent from './SearchComponent.vue';
+import { eventBus } from '../js/eventBus';
 
 export default {
     name: 'ProductSlider',
+    components: {
+        SearchComponent
+    },
     props: {
         filteredItems: Array
     },
@@ -65,6 +70,10 @@ export default {
         },
         getImageUrl(path) {
             return new URL(path, import.meta.url).href;
+        },
+        scrollToSlide(index) {
+            this.activeIndex = index;
+            this.loadShow();
         }
     },
     watch: {
@@ -77,9 +86,14 @@ export default {
     },
     mounted() {
         this.loadShow();
+        eventBus.on('scrollToSlide', this.scrollToSlide);
+    },
+    beforeUnmount() {
+        eventBus.off('scrollToSlide', this.scrollToSlide);
     }
 };
 </script>
 
 <style scoped>
+/* Add your styles here */
 </style>

@@ -27,7 +27,7 @@
                 <h3>Зв'яжіться з нами</h3>
                 <form @submit.prevent="sendEmail" class="form">
                     <label for="name">Ваше ім'я:
-                        <input id="name" type="text" v-model="form.name" :class="{'input-error': errors.name}" placeholder="ПІБ" required />
+                        <input id="name" type="text" v-model="form.name" :class="{'input-error': errors.name}" placeholder="ПІБ" autocomplete="true" required />
                         <span v-if="errors.name" class="error">{{ errors.name }}</span>
                     </label>
                     <label for="farm">Господарство:
@@ -35,11 +35,11 @@
                         <span v-if="errors.farm" class="error">{{ errors.farm }}</span>
                     </label>
                     <label for="phone">Номер телефону:
-                        <input id="phone" type="tel" v-model="form.phone" :class="{'input-error': errors.phone}" placeholder="+380" value="+380" required />
+                        <input id="phone" type="tel" v-model="form.phone" :class="{'input-error': errors.phone}" placeholder="+380" value="+380" autocomplete="true" required />
                         <span v-if="errors.phone" class="error">{{ errors.phone }}</span>
                     </label>
                     <label for="email">Електронна адреса:
-                        <input id="email" type="email" v-model="form.email" :class="{'input-error': errors.email}" placeholder="Email"  />
+                        <input id="email" type="email" v-model="form.email" :class="{'input-error': errors.email}" placeholder="Email" autocomplete="true" />
                         <span v-if="errors.email" class="error">{{ errors.email }}</span>
                     </label>
                     <div class="dropdown-wrapper">
