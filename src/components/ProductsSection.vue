@@ -2,32 +2,43 @@
     <section class="section products" id="products">
         <div class="container">
             <h1 class="products-title searchable">Наша продукція</h1>
-            <ProductFilter></ProductFilter>
-            <ProductSlider></ProductSlider>
-            
+            <ProductFilter :selectedType="selectedType" @update:filteredItems="updateFilteredItems" @update:selectedType="updateSelectedType"></ProductFilter>
+            <ProductSlider :filteredItems="filteredItems"></ProductSlider>
         </div>
     </section>
 </template>
 
 <script>
-import { ref, onMounted, watch } from 'vue';
+import { ref } from 'vue';
 import { items, types } from '../js/data';
-import ProductSlider from './ProductSlider.vue'
-import ProductFilter from './ProductFilter.vue'
+import ProductSlider from './ProductSlider.vue';
+import ProductFilter from './ProductFilter.vue';
 
 export default {
     name: 'ProductTypesComponent',
     components: {
         ProductSlider,
         ProductFilter
+    },
+    setup() {
+        const selectedType = ref(null);
+        const filteredItems = ref(items);
+
+        const updateFilteredItems = (newItems) => {
+            filteredItems.value = newItems;
+        };
+
+        const updateSelectedType = (newType) => {
+            selectedType.value = newType;
+        };
+
+        return {
+            selectedType,
+            filteredItems,
+            updateFilteredItems,
+            updateSelectedType
+        };
     }
 };
 </script>
 
-<style scoped>
-.product-types-list {
-    margin: 0 auto;
-    max-width: 1020px;
-    flex-wrap: wrap;
-}
-</style>

@@ -1,17 +1,4 @@
-// src/sections/data.js
-import sunImage from './../assets/content-images/sun.jpg';
-import placeholderImage from './../assets/content-images/logo.png';
-
-// export const items = [
-//     { id: 1, type: 'org', frontImage: '../assets/products/1-min.png', backImage: '@/assets/products/3-min.png', title: 'Биорост Универсал', description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut cum magnam reiciendis' },
-//     { id: 2, type: 'org', frontImage: '@/assets/products/4-min.png', backImage: '@/assets/products/5-min.png', title: 'Биорост Старт', description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut cum magnam reiciendis' },
-//     { id: 3, type: 'org', frontImage: '@/assets/products/6-min.png', backImage: '@/assets/products/7-min.png', title: 'Зима', description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut cum magnam reiciendis' },
-//     { id: 4, type: 'org', frontImage: '@/assets/products/8-min.png', backImage: '@/assets/products/9-min.png', title: 'Ультра Бор Азот', description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut cum magnam reiciendis' },
-//     { id: 5, type: 'org', frontImage: '@/assets/products/10-min.png', backImage: '@/assets/products/11-min.png', title: 'Бор+', description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut cum magnam reiciendis' },
-//     { id: 6, type: 'org', frontImage: '@/assets/products/12-min.png', backImage: '@/assets/products/13-min.png', title: 'Сирка+', description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut cum magnam reiciendis' },
-//     { id: 7, type: 'org', frontImage: '@/assets/products/14-min.png', backImage: '@/assets/products/15-min.png', title: 'Цинк+', description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut cum magnam reiciendis' },
-//     { id: 8, type: 'org', frontImage: '@/assets/products/16-min.png', backImage: '@/assets/products/17-min.png', title: 'Фосфор', description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut cum magnam reiciendis' },
-// ];
+// src/js/data.js
 
 export const items = [
     { id: 1, type: 'org', frontImage: '../assets/products/1-min.png', backImage: '../assets/products/3-min.png', title: 'Біорост Універсал', description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut cum magnam reiciendis' },
@@ -23,7 +10,7 @@ export const items = [
     { id: 7, type: 'org', frontImage: '../assets/products/14-min.png', backImage: '../assets/products/15-min.png', title: 'Цинк+', description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut cum magnam reiciendis' },
     { id: 8, type: 'org', frontImage: '../assets/products/16-min.png', backImage: '../assets/products/17-min.png', title: 'Магній+', description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut cum magnam reiciendis' },
     { id: 9, type: 'org', frontImage: '../assets/products/18-min.png', backImage: '../assets/products/19-min.png', title: 'Суміш для наливу', description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut cum magnam reiciendis' },
-    { id: 10, type: 'org', frontImage: '../assets/products/20-min.png', backImage: '../assets/products/21-min.png', title: 'Гранула "Біорост"', description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut cum magnam reiciendis' }
+    { id: 10, type: 'bact', frontImage: '../assets/products/20-min.png', backImage: '../assets/products/21-min.png', title: 'Гранула "Біорост"', description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut cum magnam reiciendis' }
     // { id: 11, type: 'ino', imageSrc: '../assets/products/1-min.png', title: 'Сухий інокулянт', description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut cum magnam reiciendis' },
     // { id: 12, type: 'fun ins', imageSrc: placeholderImage, title: 'Гаупсин', description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut cum magnam reiciendis' },
     // { id: 13, type: 'fun', imageSrc: placeholderImage, title: 'Триходермін', description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut cum magnam reiciendis' },

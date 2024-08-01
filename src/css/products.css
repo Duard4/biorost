@@ -145,6 +145,11 @@
     display: none;
 }
 
+.product-types-list {
+    margin: 0 auto;
+    max-width: 1020px;
+    flex-wrap: wrap;
+}
 @media (min-width: 768px) {
     .slider-item {
         min-width: calc((100%) / 2 - 60px);

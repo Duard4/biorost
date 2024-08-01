@@ -1,6 +1,6 @@
 <template>
     <div class="slider">
-        <div v-for="(item, index) in items" :key="index" :class="['flip-box item', { active: index === activeIndex }]">
+        <div v-for="(item, index) in filteredItems" :key="index" :class="[`flip-box item ${item.type}`, { active: index === activeIndex }]">
             <div class="flip-box-inner">
                 <div class="flip-box-front">
                     <img :src="getImageUrl(item.frontImage)" alt="">
@@ -16,28 +16,32 @@
 </template>
 
 <script>
+import { ref, watch } from 'vue';
 import { items } from '../js/data';
 
 export default {
     name: 'ProductSlider',
+    props: {
+        filteredItems: Array
+    },
     data() {
         return {
-            items: items,
-            activeIndex: 3,
+            activeIndex: 0,
         };
     },
     methods: {
         loadShow() {
             const items = this.$el.querySelectorAll(".item");
             let stt = 0;
-            items[this.activeIndex].style.transform = `none`;
-            items[this.activeIndex].style.zIndex = 1;
-            items[this.activeIndex].style.filter = "none";
-            items[this.activeIndex].style.opacity = 1;
+            if (items[this.activeIndex]) {
+                items[this.activeIndex].style.transform = `none`;
+                items[this.activeIndex].style.zIndex = 1;
+                items[this.activeIndex].style.filter = "none";
+                items[this.activeIndex].style.opacity = 1;
+            }
             for (let i = this.activeIndex + 1; i < items.length; i++) {
                 stt++;
-                items[i].style.transform = `translateX(${120 * stt}px) scale(${1 - 0.2 * stt
-                    }) perspective(16px) rotateY(-1deg)`;
+                items[i].style.transform = `translateX(${120 * stt}px) scale(${1 - 0.2 * stt}) perspective(16px) rotateY(-1deg)`;
                 items[i].style.zIndex = -stt;
                 items[i].style.filter = "blur(5px)";
                 items[i].style.opacity = stt > 2 ? 0 : 0.6;
@@ -45,15 +49,14 @@ export default {
             stt = 0;
             for (let i = this.activeIndex - 1; i >= 0; i--) {
                 stt++;
-                items[i].style.transform = `translateX(${-120 * stt}px) scale(${1 - 0.2 * stt
-                    }) perspective(16px) rotateY(1deg)`;
+                items[i].style.transform = `translateX(${-120 * stt}px) scale(${1 - 0.2 * stt}) perspective(16px) rotateY(1deg)`;
                 items[i].style.zIndex = -stt;
                 items[i].style.filter = "blur(5px)";
                 items[i].style.opacity = stt > 2 ? 0 : 0.6;
             }
         },
         nextSlide() {
-            this.activeIndex = this.activeIndex + 1 < this.items.length ? this.activeIndex + 1 : this.activeIndex;
+            this.activeIndex = this.activeIndex + 1 < this.filteredItems.length ? this.activeIndex + 1 : this.activeIndex;
             this.loadShow();
         },
         prevSlide() {
@@ -64,12 +67,19 @@ export default {
             return new URL(path, import.meta.url).href;
         }
     },
+    watch: {
+        filteredItems() {
+            this.activeIndex = 0;
+            this.$nextTick(() => {
+                this.loadShow();
+            });
+        }
+    },
     mounted() {
         this.loadShow();
-    },
+    }
 };
 </script>
 
 <style scoped>
-
 </style>
