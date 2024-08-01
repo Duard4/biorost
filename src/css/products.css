@@ -4,6 +4,7 @@
     background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;
+    mix-blend-mode: multiply;
     text-align: center;
     color: var(--white);
 }
@@ -16,7 +17,6 @@
     display: flex;
     justify-content: center;
     gap: 32px;
-    margin-bottom: 72px;
 }
 .ptl-item {
     font-size: 28px;
@@ -72,8 +72,6 @@
 .slider {
     position: relative;
     overflow: hidden;
-    max-width: calc(100% - 60px - 30px);
-    margin-left: 74px;
 }
 .slider-wrapper {
     position: relative;
