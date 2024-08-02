@@ -30,7 +30,7 @@ export default {
 
             const items = document.querySelectorAll('.slider .item img');
             items.forEach((item, index) => {
-                if (item.alt.toLowerCase().includes(query)) {
+                if (query!='' && query != ' ' && item.alt.toLowerCase().includes(query)) {
                     results.push({ index, title: item.alt });
                 }
             });

@@ -6,15 +6,16 @@
             <div class="slider">
                 <div class="slider-content">
                     <img :src="currentImage" class="large-image" alt="certificate">
-                    <button class="slider-button prev" @click="prevSlide">&#10094;</button>
-                    <button class="slider-button next" @click="nextSlide">&#10095;</button>
+                    <img :src="images[1]" class="large-image second" alt="certificate">
                 </div>
                 <div class="thumbnail-wrapper">
                     <img v-for="(image, index) in images" :key="index" :src="image" class="thumbnail"
-                        :class="{ active: index === currentIndex }" @click="setCurrentSlide(index)" />
+                    :class="{ active: index === currentIndex }" @click="setCurrentSlide(index)" />
                 </div>
             </div>
         </div>
+        <button class="slider-button prev" @click="prevSlide">&#10094;</button>
+        <button class="slider-button next" @click="nextSlide">&#10095;</button>
     </div>
 </template>
 
@@ -72,7 +73,7 @@ export default {
     z-index: 998;
     top: 0;
     left: 0;
-    
+
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.7);
@@ -87,7 +88,8 @@ export default {
     z-index: 999;
     position: relative;
     background: rgb(239, 239, 239);
-
+    display: flex;
+    gap: 1rem;
     border-radius: 10px;
     margin: auto;
     overflow: hidden;
@@ -126,8 +128,7 @@ export default {
 }
 
 .large-image {
-    width: 100%;
-    max-height: 460px;
+    max-height: 80vh;
     object-fit: contain;
 }
 
@@ -135,7 +136,7 @@ export default {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.15);
+    background: rgba(109, 238, 77, 0.39);
     color: #fff;
     border: none;
     font-size: 30px;
@@ -143,17 +144,22 @@ export default {
     padding: 10px;
     height: 100%;
 }
-.slider-button:hover, .slider-button:focus  {
+
+.slider-button:hover,
+.slider-button:focus {
     background: rgba(0, 0, 0, 0.25);
 }
+
 .slider-button.prev {
-    left: -85px;
+    left: 0;
 }
 
 .slider-button.next {
-    right: -85px;
+    right: 0;
 }
-
+.second {
+    display: none;
+}
 .thumbnail-wrapper {
     display: flex;
     justify-content: center;
@@ -171,5 +177,31 @@ export default {
 
 .thumbnail.active {
     opacity: 1;
+}
+
+@media (min-width: 768px) {
+    .thumbnail-wrapper, slider-button {
+        display: none;
+    }
+    .second {
+        display: block;
+    }
+    .slider-button {
+        display: none;
+    }
+}
+
+@media (min-width: 1024px) {
+
+    .modal-content {
+        width: 65vw;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .large-image {
+        max-height: unset;
+        width: 30vw;
+    }
 }
 </style>

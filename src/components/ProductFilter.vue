@@ -20,8 +20,10 @@ export default {
 
         const filterItems = (event) => {
             const typeId = event.target.dataset.id;
-            emit('update:filteredItems', items.filter(item => item.type === typeId));
-            emit('update:selectedType', typeId);
+            if(typeId !=null){
+                emit('update:filteredItems', items.filter(item => item.type.includes(typeId)));
+                emit('update:selectedType', typeId);
+            }
         };
 
         return {

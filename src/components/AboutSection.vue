@@ -28,12 +28,8 @@ export default {
         return {
             showModal: false,
             images: [
-                '/src/assets/content-images/certificate-1.jpg',
-                '/src/assets/content-images/certificate-2.jpg',
-                '/src/assets/content-images/certificate-3.jpg',
-                '/src/assets/content-images/certificate-4.jpg',
-                '/src/assets/content-images/certificate-5.jpg'
-                // Add more certificate images as needed
+                '../assets/content-images/certificate-1.jpg',
+                '../assets/content-images/certificate-2.jpg',
             ],
         };
     },

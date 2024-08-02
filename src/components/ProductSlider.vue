@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="slider">
-            <div v-for="(item, index) in filteredItems" :key="index" :class="[`flip-box item ${item.type}`, { active: index === activeIndex }]">
+            <div v-for="(item, index) in filteredItems" :key="item.id" :class="[`flip-box item ${item.type}`, { active: item.id === activeIndex }]">
                 <div class="flip-box-inner">
                     <div class="flip-box-front">
                         <img :src="getImageUrl(item.frontImage)" :alt="`${item.title}`">
