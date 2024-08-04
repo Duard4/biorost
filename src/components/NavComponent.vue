@@ -6,12 +6,12 @@
                 <span></span>
             </label>
             <div class="menu__box fixed-nav">
+                <SearchComponent></SearchComponent>
                 <ul class="nav-list ">
                     <li v-for="link in navLinks" :key="link.text" class="nav-item">
                         <a :href="link.href" class="nav-link">{{ link.text }}</a>
                     </li>
                 </ul>
-                <SearchComponent></SearchComponent>
             </div>
         </div>
         <div class="ordinary-menu">
