@@ -18,28 +18,39 @@
     }
     #next,
     #prev {
-        position: absolute;
-        top: 40%;
-        color: #fff;
-        background-color: transparent;
-        border: none;
-        font-size: xxx-large;
-        font-family: monospace;
-        font-weight: bold;
-        left: 40px;
+        display: none; 
     }
-    #next {
-        left: unset;
-        right: 40px;
+}
+@media (min-width: 520px) {
+    .products {
+
+        #next,
+        #prev {
+            position: absolute;
+            display: block;
+            top: 40%;
+            color: #fff;
+            background-color: transparent;
+            border: none;
+            font-size: xxx-large;
+            font-family: monospace;
+            font-weight: bold;
+            left: 40px;
+        }
+        #next {
+            left: unset;
+            right: 40px;
+        }
     }
 }
 @media (min-width: 768px) {
     .products {
+        
         #prev {
-            left: 140px;
+            left: 120px;
         }
         #next {
-            right: 140px;
+            right: 120px;
         }
     } 
 }
