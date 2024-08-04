@@ -1,4 +1,3 @@
-
 .art-title {
     text-align: center;
 }
@@ -9,9 +8,15 @@
 .articles .container {
     margin-top: 48px;
     display: flex;
+    flex-direction: column-reverse;
     gap: 40px;
 }
-.article-item {background: linear-gradient(to right, rgb(182, 244, 146), rgb(51, 139, 147));
+.article-item {
+    background: linear-gradient(
+        to right,
+        rgb(182, 244, 146),
+        rgb(51, 139, 147)
+    );
     padding: 8px 12px;
 }
 .articles-list {
@@ -25,5 +30,7 @@
     /* color: aqua; */
 }
 @media (min-width: 768px) {
-    
+    .articles .container {
+        flex-direction: row;
+    }
 }

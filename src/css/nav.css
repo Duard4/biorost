@@ -1,29 +1,116 @@
 .nav {
-    position: sticky;
     top: 0;
+    left: 0;
+    position: sticky;
     z-index: 998;
     color: var(--slate);
     padding: 12px 0;
+    font-size: 18px;
+    width: max(min(100vw, 400px), 60vw);
 
     .container {
         display: flex;
+        flex-direction: column;
+        height: 100vh;
+
         align-items: center;
         justify-content: space-between;
     }
 }
-
-.nav-link {
+.nav-list {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+.nav-item {
+    margin-left: 1rem;
     padding: 8px 12px;
     font-weight: 600;
+    color: var(--slate);
+
     transition: color var(--animation), background-color var(--animation),
         box-shadow var(--animation);
 }
+
+/* SEARCH */
 .search-wrapper {
-    display: none;
+    position: relative;
+
+    .search-results {
+        position: absolute;
+        top: 35px;
+        left: 0;
+        right: 0;
+        background: rgb(246, 249, 252);
+        max-height: 200px;
+        overflow-y: auto;
+        z-index: 70;
+        list-style: none;
+        padding: 0;
+        margin-top: auto;
+        border-top: none;
+        border-bottom-left-radius: 1rem;
+        border-bottom-right-radius: 1rem;
+
+        li {
+            padding: 5px;
+            cursor: pointer;
+            color: var(--slate);
+        }
+
+        .highlight {
+            background-color: yellow;
+        }
+    }
+}
+.search-icon {
+    position: absolute;
+    transform: translate(0, 50%);
+    right: 12px;
+}
+
+.search-field {
+    border: none;
+    border-radius: 12px;
+
+    padding: 10px 16px;
+    width: 100%;
+    background-color: rgb(246, 249, 252);
 }
 /* end */
+.fixed-nav {
+    background: linear-gradient(
+        114.3deg,
+        rgb(19, 126, 57, 0.2) 0.2%,
+        rgb(8, 65, 91, 0.2) 68.5%
+    );
+    backdrop-filter: blur(10px);
+
+    color: var(--white);
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
+
+    .nav-link:hover {
+        color: rgb(235, 229, 34);
+    }
+}
 
 @media (min-width: 768px) {
+    .nav {
+        width: 100%;
+        font-size: 16px;
+    }
+    .nav .container {
+        height: unset;
+        flex-direction: row;
+    }
+    .fixed-nav {
+        background: linear-gradient(
+            114.3deg,
+            rgb(19, 126, 57) 0.2%,
+            rgb(8, 65, 91) 68.5%
+        );
+        backdrop-filter: unset;
+    }
     .nav-list {
         flex-direction: row;
         position: static;
@@ -32,55 +119,12 @@
         display: flex;
         gap: 8px;
     }
-
+    .nav-item {
+        margin-left: 0;
+        color: unset;
+    }
     .menu-toggle {
         display: none;
-    }
-
-    /* SEARCH */
-    .search-wrapper {
-        display: block;
-        position: relative;
-
-        .search-results {
-            position: absolute;
-            top: 35px;
-            left: 0;
-            right: 0;
-            background: rgb(246, 249, 252);
-            max-height: 200px;
-            overflow-y: auto;
-            z-index: 70;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            border-top: none;
-            border-bottom-left-radius: 1rem;
-            border-bottom-right-radius: 1rem;
-
-            li {
-                padding: 5px;
-                cursor: pointer;
-                color: var(--slate);
-            }
-
-            .highlight {
-                background-color: yellow;
-            }
-        }
-    }
-    .search-icon {
-        position: absolute;
-        transform: translate(0, 50%);
-        right: 12px;
-    }
-
-    .search-field {
-        border: none;
-        border-radius: 12px;
-        padding: 10px 16px;
-        width: 100%;
-        background-color: rgb(246, 249, 252);
     }
 }
 
@@ -91,18 +135,5 @@
 
     .search-field {
         width: 272px;
-    }
-}
-.fixed-nav {
-    background: linear-gradient(
-        114.3deg,
-        rgb(19, 126, 57) 0.2%,
-        rgb(8, 65, 91) 68.5%
-    );
-    color: var(--white);
-    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
-
-    .nav-link:hover {
-        color: rgb(235, 229, 34);
     }
 }

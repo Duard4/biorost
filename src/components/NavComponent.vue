@@ -23,7 +23,7 @@ export default {
     },
     mounted() {
         this.header = document.querySelector('.nav');
-        this.headerHeight = document.querySelector('.nav').clientHeight + document.querySelector('.header').clientHeight;
+        this.headerHeight = document.querySelector('.header').clientHeight;
 
         this.scrollHandler = () => {
             let scroll = window.scrollY;
