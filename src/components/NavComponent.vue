@@ -1,12 +1,28 @@
 <template>
     <nav class="nav">
-        <div class="container">
-            <ul class="nav-list">
-                <li v-for="link in navLinks" :key="link.text" class="nav-item">
-                    <a :href="link.href" class="nav-link">{{ link.text }}</a>
-                </li>
-            </ul>
-            <SearchComponent></SearchComponent>
+        <div class="hamburger-menu ">
+            <input id="menu__toggle" type="checkbox" />
+            <label class="menu__btn" for="menu__toggle">
+                <span></span>
+            </label>
+            <div class="menu__box fixed-nav">
+                <ul class="nav-list ">
+                    <li v-for="link in navLinks" :key="link.text" class="nav-item">
+                        <a :href="link.href" class="nav-link">{{ link.text }}</a>
+                    </li>
+                </ul>
+                <SearchComponent></SearchComponent>
+            </div>
+        </div>
+        <div class="ordinary-menu">
+            <div class="container">
+                <ul class="nav-list">
+                    <li v-for="link in navLinks" :key="link.text" class="nav-item">
+                        <a :href="link.href" class="nav-link">{{ link.text }}</a>
+                    </li>
+                </ul>
+                <SearchComponent></SearchComponent>
+            </div>
         </div>
     </nav>
 </template>
@@ -22,7 +38,7 @@ export default {
         SearchComponent
     },
     mounted() {
-        this.header = document.querySelector('.nav');
+        this.header = document.querySelector('.ordinary-menu');
         this.headerHeight = document.querySelector('.header').clientHeight;
 
         this.scrollHandler = () => {
@@ -137,7 +153,6 @@ export default {
 </script>
 
 <style scoped>
-
 .search-results li {
     padding: 10px;
     cursor: pointer;
