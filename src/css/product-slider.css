@@ -13,7 +13,7 @@
         text-align: justify;
         border-radius: 10px;
         transition: 0.5s;
-        left: calc(50% - 110px);
+        left: calc(50% - 150px);
         top: 80px;
     }
     #next,
@@ -26,14 +26,23 @@
         font-size: xxx-large;
         font-family: monospace;
         font-weight: bold;
-        left: 220px;
+        left: 40px;
     }
     #next {
         left: unset;
-        right: 140px;
+        right: 40px;
     }
 }
-
+@media (min-width: 768px) {
+    .products {
+        #prev {
+            left: 140px;
+        }
+        #next {
+            right: 140px;
+        }
+    } 
+}
 /* FLIP */
 
 /* The flip box container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
@@ -57,7 +66,7 @@
 
 /* Do an horizontal flip when you move the mouse over the flip box container */
 .flip-box:hover .flip-box-inner {
-    transform: rotateY(180deg) scale(1.4);
+    transform: rotateY(180deg);
 }
 
 /* Position the front and back side */
@@ -81,4 +90,9 @@
     background-color: dodgerblue;
     color: white;
     transform: rotateY(180deg);
+}
+@media (min-width: 768px) {
+    .flip-box:hover .flip-box-inner {
+        transform: rotateY(180deg) scale(1.4);
+    }
 }

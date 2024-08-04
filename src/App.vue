@@ -6,6 +6,7 @@
     <ProductsSection />
     <MapsSection />
     <NewsSection />
+    <TeamSection />
     <ContactSection />
   </Layout>
 </template>
@@ -18,6 +19,7 @@ import ProductsSection from './components/ProductsSection.vue';
 import MapsSection from './components/MapsSection.vue';
 import NewsSection from './components/NewsSection.vue';
 import ContactSection from './components/ContactSection.vue';
+import TeamSection from './components/TeamSection.vue';
 
 export default {
   name: 'App',
@@ -28,7 +30,8 @@ export default {
     ProductsSection,
     MapsSection,
     NewsSection,
-    ContactSection
+    ContactSection,
+    TeamSection
   }
 }
 </script>

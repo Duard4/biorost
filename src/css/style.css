@@ -38,24 +38,43 @@
     font-size: 16px;
     color: var(--black);
 }
-.btn:hover {background: linear-gradient(109.6deg,  rgb(100, 163, 111) 5.2%, rgb(206, 240, 185) 29.5%, rgb(251, 250, 225) 11.2%, rgb(206, 240, 185) 27.5%, rgb(100, 163, 111) 100.2%);
+.btn:hover {
+    background: linear-gradient(
+        109.6deg,
+        rgb(100, 163, 111) 5.2%,
+        rgb(206, 240, 185) 29.5%,
+        rgb(251, 250, 225) 11.2%,
+        rgb(206, 240, 185) 27.5%,
+        rgb(100, 163, 111) 100.2%
+    );
 }
 .container {
-    max-width: 350px;
+    max-width: 600px;
     padding: 0 1rem;
     margin: 0 auto;
 }
 .order {
     margin-right: 12px;
 }
+.section {
+    padding: 100px 0;
+}
 @media (min-width: 768px) {
     .container {
         max-width: 760px;
-    }  
+    }
+
+    .section {
+        padding: 120px 0;
+    }
 }
 @media (min-width: 1024px) {
     .container {
         max-width: 1160px;
         margin: 0 auto;
+    }
+
+    .section {
+        padding: 150px 0;
     }
 }

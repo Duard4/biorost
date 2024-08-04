@@ -43,15 +43,16 @@
                         <span v-if="errors.email" class="error">{{ errors.email }}</span>
                     </label>
                     <div class="dropdown-wrapper">
-                        <label for="subject">Питання за яким звертаєтесь:<br>
-                            <select id="subject" v-model="form.subject" @change="updateSubcategories">
+                        <label for="subject">
+                            Питання за яким звертаєтесь:
+                            <select class="custom-select" id="subject" v-model="form.subject" @change="updateSubcategories">
                                 <option value="" disabled>Оберіть тему</option>
                                 <option v-for="(subcategories, category) in categories" :key="category" :value="category">{{ category }}</option>
                             </select>
                         </label>
 
                         <label v-if="form.subject" for="subcategory">
-                            <select id="subcategory" v-model="form.subcategory">
+                            <select class="custom-select" id="subcategory" v-model="form.subcategory">
                                 <option value="" disabled>Оберіть підкатегорію</option>
                                 <option v-for="subcategory in subcategories" :key="subcategory" :value="subcategory">{{ subcategory }}</option>
                             </select>
