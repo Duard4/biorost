@@ -19,10 +19,16 @@
 .hero-title {
     font-size: 72px;
     color: var(--black);
+    text-shadow: 2px 2px 4px var(--slate);
+    letter-spacing: 2px;
 }
 .hero-text {
     color: var(--slate);
+    max-width: 300px;
+
+    text-shadow: 2px 2px 4px var(--slateOp);
 }
+
 .hero-title, 
 .hero-text {
     /* font-family: 'Open'; */

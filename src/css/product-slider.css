@@ -2,7 +2,7 @@
     .slider {
         position: relative;
         width: 100%;
-        height: 580px;
+        height: 500px;
         margin-top: 1rem;
         overflow: hidden;
     }
@@ -14,17 +14,15 @@
         border-radius: 10px;
         transition: 0.5s;
         left: calc(50% - 150px);
-        top: 80px;
-        
+        top: 10px;
     }
     #next,
     #prev {
-        display: none; 
+        display: none;
     }
 }
 @media (min-width: 520px) {
     .products {
-
         #next,
         #prev {
             position: absolute;
@@ -46,14 +44,19 @@
 }
 @media (min-width: 768px) {
     .products {
-        
+        .slider {
+            height: 580px;
+        }
         #prev {
             left: 120px;
         }
         #next {
             right: 120px;
         }
-    } 
+        .item {
+            top: 80px;
+        }
+    }
 }
 /* FLIP */
 

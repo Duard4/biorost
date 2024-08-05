@@ -1,5 +1,6 @@
 .about {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
 }
@@ -14,7 +15,10 @@
     position: relative;
     margin: 0 auto;
 }
-
+.improvements {
+    display: flex;
+    flex-wrap: wrap;
+}
 .about-age-label {
     display: inline-block;
     text-align: center;
@@ -39,7 +43,7 @@
     min-width: 200px;
 }
 @media (min-width: 768px) {
-    
+
 }
 @media (min-width: 1024px) {
     .bg-img-wrapper {
