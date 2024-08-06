@@ -65,6 +65,8 @@
                 </form>
             </div>
         </div>
+    <TeamSection />
+
     </section>
     <section class="section location">
         <div class="container">
@@ -81,9 +83,13 @@
 
 <script>
 import emailjs from 'emailjs-com';
+import TeamSection from './TeamSection.vue';
 
 export default {
     name: 'ContactSection',
+    components: {
+        TeamSection
+    },
     data() {
         return {
             form: {
