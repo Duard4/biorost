@@ -1,62 +1,73 @@
+Copy code
 <template>
     <section class="team container">
         <h2 class="team-title">Наші менеджера</h2>
-        <ul class="m-list">
-            <li class="m-item">
-                <img src="" alt="" class="m-img">
+        <swiper :slidesPerView="3" :spaceBetween="30" :pagination="{
+            clickable: true,
+        }" :modules="modules" class="mySwiper">
+            <swiper-slide v-for="(manager, index) in managers" :key="index" class="m-item">
+                <img :src="manager.img" alt="" class="m-img">
                 <div class="m-text-wrapper">
-                    <h3 class="m-title"></h3>
-                    <p class="m-text"></p>
+                    <h3 class="m-title">{{ manager.name }}</h3>
+                    <p class="m-text">{{ manager.contact }}</p>
                 </div>
-            </li>
-            <li class="m-item m1">
-                <div class="m-text-wrapper">
-                    <h3 class="m-title">Станіслав</h3>
-                    <p class="m-text">+38 067 617 1488 +38 095 900 1876 biorost.zap@gmail.com</p>
-                </div>
-
-            </li>
-            <li class="m-item m2">
-                <div class="m-text-wrapper">
-                    <h3 class="m-title">Оксана Сиваш</h3>
-                    <p class="team-item-text">oksana@biorost.ua
-                        +38 (066)-47-22-955
-                        +38(068)-30-55-704</p>
-                </div>
-            </li>
-            <li class="m-item">
-                <img src="" alt="" class="m-img">
-                <h3 class="m-title"></h3>
-                <p class="m-text"></p>
-            </li>
-        </ul>
+            </swiper-slide>
+        </swiper>
     </section>
 </template>
 
 <script>
+// Import Swiper Vue.js components
+import { Swiper, SwiperSlide } from 'swiper/vue';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/pagination';
+
+// Import required modules
+import { Pagination } from 'swiper/modules';
+
 export default {
-    name: 'TeamSection',
-    mounted() {
-        const slider = document.querySelector('.m-list');
-        let intervalId;
+    components: {
+        Swiper,
+        SwiperSlide,
+    },
+    setup() {
+        const managers = [
+            {
+                name: 'Станіслав',
+                contact: '+38 067 617 1488 +38 095 900 1876 biorost.zap@gmail.com',
+                img: '../assets/content-images/m1.jpg',
+            },
+            {
+                name: 'Оксана Сиваш',
+                contact: 'oksana@biorost.ua +38 (066)-47-22-955 +38(068)-30-55-704',
+                img: '../../assets/content-images/m2.jpg',
+            },
+            {
+                name: 'Оксана Сиваш',
+                contact: 'oksana@biorost.ua +38 (066)-47-22-955 +38(068)-30-55-704',
+                img: '../../assets/content-images/m2.jpg',
+            },
+            {
+                name: 'Оксана Сиваш',
+                contact: 'oksana@biorost.ua +38 (066)-47-22-955 +38(068)-30-55-704',
+                img: '../../assets/content-images/m2.jpg',
+            },
+            {
+                name: 'Оксана Сиваш',
+                contact: 'oksana@biorost.ua +38 (066)-47-22-955 +38(068)-30-55-704',
+                img: '../assets/content-images/m2.jpg',
+            },
+            // Добавьте другие объекты для остальных слайдов
+        ];
 
-        function startSlider() {
-            intervalId = setInterval(() => {
-                const firstItem = slider.querySelector('.m-item:first-child');
-                slider.appendChild(firstItem);
-            }, 3000); // Change slides every 3 seconds
-        }
-
-        function stopSlider() {
-            clearInterval(intervalId);
-        }
-
-        slider.addEventListener('mouseenter', stopSlider);
-        slider.addEventListener('mouseleave', startSlider);
-
-        startSlider();
-    }
-}
+        return {
+            modules: [Pagination],
+            managers,
+        };
+    },
+};
 </script>
 
 <style scoped>
@@ -105,7 +116,7 @@ img {
 }
 
 .m-item {
-    width: calc((100% - 24px) / 2);
+    width: 100%;
     border-radius: 24px;
     padding: 16px;
     background-color: var(--white);

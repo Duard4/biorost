@@ -3,8 +3,8 @@
     <div v-if="showModal" class="modal-overlay" @click.self="closeModal">
         <div class="modal-content">
             <button class="modal-close" @click="closeModal">&times;</button>
-            <div class="slider">
-                <div class="slider-content">
+            <div class="c-slider">
+                <div class="c-slider-content">
                     <img :src="currentImage" class="large-image" alt="certificate">
                     <img :src="images[1]" class="large-image second" alt="certificate">
                 </div>
@@ -113,13 +113,13 @@ export default {
     cursor: pointer;
 }
 
-.slider {
+.c-slider {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.slider-content {
+.c-slider-content {
     position: relative;
     display: flex;
     justify-content: center;
