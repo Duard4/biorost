@@ -121,7 +121,7 @@
 }
 .nav-item {
     margin-left: 1rem;
-    padding: 8px 12px;
+    /* padding: 8px 12px; */
     font-weight: 600;
     color: var(--slate);
 
@@ -221,7 +221,7 @@
         background: none;
         box-shadow: none;
         display: flex;
-        gap: 8px;
+        gap: 16px;
     }
     .nav-item {
         margin-left: 0;
@@ -230,9 +230,12 @@
     .menu__btn {
         display: none;
     }
+    .search-field {
+        width: 220px;
+    }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1280px) {
     .nav-list {
         gap: 24px;
     }

@@ -43,7 +43,7 @@ export default {
 
         this.scrollHandler = () => {
             let scroll = window.scrollY;
-            if (scroll > this.headerHeight) {
+            if (scroll/1.25 > this.headerHeight) {
                 this.header.classList.add('fixed-nav');
             } else {
                 this.header.classList.remove('fixed-nav');
@@ -137,9 +137,9 @@ export default {
 
         return {
             navLinks: [
-                { text: 'Головна', href: './index#' },
                 { text: 'Про нас', href: './index#about-us' },
                 { text: 'Продукція', href: './index#products' },
+                { text: 'Карти внесення', href: './index#injmaps' },
                 { text: 'Статті', href: './index#articles' },
                 { text: 'Контакти', href: './index#contact-us' },
             ],

@@ -17,7 +17,7 @@
 @import url("./footer.css");
 
 .title {
-    font-size: 50px;
+    font-size: 36px;
     font-weight: 700;
     color: var(--black);
     margin-bottom: 12px;
@@ -25,15 +25,11 @@
 .text {
     color: var(--slate);
 }
-.hero-text {
-    margin: 0 auto;
-    font-size: 22px;
-    max-width: 800px;
-}
+
 .btn {
     border-radius: 12px;
-    padding: 8px 16px;
-    margin-top: 32px;
+    padding: 6px 12px;
+    margin-top: 20px;
     background: linear-gradient(to top, #c1dfc4 0%, #deecdd 100%);
     font-size: 16px;
     color: var(--black);
@@ -57,24 +53,37 @@
     margin-right: 12px;
 }
 .section {
-    padding: 100px 0;
+    padding-top: 100px;
+    padding-bottom: 100px;
 }
 @media (min-width: 768px) {
     .container {
-        max-width: 760px;
+        max-width: unset;
+        padding: 0 1.2rem;
     }
 
     .section {
-        padding: 120px 0;
+        padding-top: 120px;
+        padding-bottom: 120px;
+    }
+
+    .title {
+        font-size: 50px;
+    }
+
+    .btn {
+        padding: 8px 16px;
+        margin-top: 32px;
     }
 }
-@media (min-width: 1024px) {
+@media (min-width: 1280px) {
     .container {
-        max-width: 1160px;
-        margin: 0 auto;
+        max-width: 1220px;
+        padding: 0 1.5rem;
     }
 
     .section {
-        padding: 150px 0;
+        padding-top: 150px;
+        padding-bottom: 150px;
     }
 }
