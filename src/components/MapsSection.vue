@@ -241,6 +241,7 @@ export default {
 <style scoped>
 .button-container {
     margin-bottom: 20px;
+    display: flex;
 }
 button {
     padding: 10px 20px;

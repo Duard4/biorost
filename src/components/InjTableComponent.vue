@@ -54,11 +54,6 @@ export default {
             isWideScreen: window.innerWidth >= 768,
         };
     },
-    methods: {
-        toggleTreatment(index) {
-            this.treatments[index].expanded = !this.treatments[index].expanded;
-        },
-    },
     mounted() {
         window.addEventListener('resize', this.checkScreenWidth);
     },
@@ -68,6 +63,9 @@ export default {
     methods: {
         checkScreenWidth() {
             this.isWideScreen = window.innerWidth >= 768;
+        },
+        toggleTreatment(index) {
+            this.treatments[index].expanded = !this.treatments[index].expanded;
         },
     },
 };
