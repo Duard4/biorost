@@ -204,10 +204,6 @@ export default {
 }
 
 @media (max-width: 768px) {
-    .styled-table {
-        font-size: 14px;
-    }
-
     .styled-table th,
     .styled-table td {
         padding: 10px 12px;
@@ -216,7 +212,7 @@ export default {
 
 @media (max-width: 480px) {
     .styled-table {
-        font-size: 12px;
+        font-size: 14px;
     }
 
     .styled-table th,

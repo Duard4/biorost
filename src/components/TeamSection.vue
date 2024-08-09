@@ -1,31 +1,30 @@
-Copy code
 <template>
-    <section class="team container">
-        <h2 class="team-title">Наші менеджера</h2>
-        <swiper :slidesPerView="3" :spaceBetween="30" :pagination="{
-            clickable: true,
-        }" :modules="modules" class="mySwiper">
-            <swiper-slide v-for="(manager, index) in managers" :key="index" class="m-item">
-                <img :src="manager.img" alt="" class="m-img">
-                <div class="m-text-wrapper">
-                    <h3 class="m-title">{{ manager.name }}</h3>
-                    <p class="m-text">{{ manager.contact }}</p>
-                </div>
-            </swiper-slide>
-        </swiper>
-    </section>
+    <h2 class="title ms-title">Наші менеджера</h2>
+    <swiper :spaceBetween="20" :loop="true"
+        :autoplay="{ delay: 3000, disableOnInteraction: false, pauseOnMouseEnter: true }" :breakpoints="{
+            640: { slidesPerView: 1 },
+            768: { slidesPerView: 2 },
+            1280: { slidesPerView: 3 }
+        }" class="mySwiper">
+        <swiper-slide v-for="(manager, index) in managers" :key="index" class="m-card">
+            <img :src="manager.image" alt="" class="m-img">
+            <div class="m-text-wrapper">
+                <h3 class="m-title">{{ manager.name }}</h3>
+                <p class="m-text">{{ manager.contact }}</p>
+            </div>
+        </swiper-slide>
+    </swiper>
 </template>
 
 <script>
-// Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from 'swiper/vue';
+import SwiperCore from 'swiper/core';
+import { Autoplay } from 'swiper/modules';
+import 'swiper/swiper-bundle.css';
+import { managers } from '../js/data';
 
-// Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/pagination';
-
-// Import required modules
-import { Pagination } from 'swiper/modules';
+// Register the autoplay module
+SwiperCore.use([Autoplay]);
 
 export default {
     components: {
@@ -33,185 +32,120 @@ export default {
         SwiperSlide,
     },
     setup() {
-        const managers = [
-            {
-                name: 'Станіслав',
-                contact: 'biorost.zap@gmail.com +380676171488 +380959001876',
-                img: '../assets/content-images/m1.jpg',
-            },
-            {
-                name: 'Оксана Сиваш',
-                contact: 'oksana@biorost.ua +380664722955 +380683055704',
-                img: '../../assets/content-images/m2.jpg',
-            },
-            {
-                name: 'Галіна Вікторовна',
-                contact: 'gala@biorost.ua +380965399073',
-                img: '../../assets/content-images/m3.jpg',
-            },
-            {
-                name: 'Оксана Сиваш',
-                contact: 'oksana@biorost.ua +38 (066)-47-22-955 +38(068)-30-55-704',
-                img: '../../assets/content-images/m2.jpg',
-            },
-            {
-                name: 'Оксана Сиваш',
-                contact: 'oksana@biorost.ua +38 (066)-47-22-955 +38(068)-30-55-704',
-                img: '../assets/content-images/m2.jpg',
-            },
-            // Добавьте другие объекты для остальных слайдов
-        ];
-
         return {
-            modules: [Pagination],
-            managers,
-        };
+            managers
+        }
     },
 };
 </script>
-
 <style scoped>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-.team {
-    --white: rgba(251, 251, 251, 1);
-    margin: 75px auto 0;
-    --grey: #040306;
-    --black: #1b414b;
-
-    font-family: "Inter", sans-serif;
-    display: flex;
-    flex-direction: column;
-}
-
-ul {
-    list-style: none;
-}
-
-img {
-    display: block;
-}
-
-.team-title {
-    color: var(--white);
-    max-width: 320px;
-    font-size: 28px;
-    line-height: 28px;
-    font-weight: 500;
-    letter-spacing: -0.02em;
+.ms-title {
     text-align: center;
+    margin-top: 32px;
+}
+
+.mySwiper {
+    width: 406px;
+    max-width: 90%;
+    padding-right: 1rem;
+    height: 100%;
+    border-radius: 12px;
+    padding-top: 1rem;
+}
+
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.m-card {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.08);
+    /* Добавляет объём */
+    overflow: hidden;
+    height: 100%;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* Плавные переходы для эффекта при наведении */
     margin: 0 auto;
 }
 
-.m-list {
-    overflow-x: hidden;
-    display: flex;
-    gap: 32px;
-    height: 400px;
-    margin: 40px auto;
+.m-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15), 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Эффект при наведении */
 }
 
-.m-item {
+.m-card:hover .m-text-wrapper {
+    transform: translateY(-50%);
+}
+
+.m-img {
     width: 100%;
-    border-radius: 24px;
-    padding: 16px;
-    background-color: var(--white);
-    flex-shrink: 0;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-clip: content-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: end;
-    align-items: center;
-    text-shadow: 2px 2px 4px var(--black);
-
+    height: 362px;
+    object-fit: cover;
+    border-bottom: 2px solid #e6f2e9;
 }
 
-.m1 {
-    background-image: url(../assets/content-images/m1.jpg);
-    background-position: bottom left 25%;
-}
-
-.m2 {
-    background-image: url(../assets/content-images/m2.jpg);
-    background-position: top 5% center;
+.m-img {
+    max-height: 100%;
+    object-fit: cover;
+    /* Сохраняет пропорции изображения, заполняя контейнер */
 }
 
 .m-text-wrapper {
-    padding: 32px 16px;
-    font-size: 14px;
-    display: flex;
-    flex-direction: column;
-    align-items: self-start;
-    flex-wrap: wrap;
-}
-
-.m-title {
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 17px;
-    letter-spacing: -0.045em;
-    margin-bottom: 12px;
-    color: var(--white);
-}
-
-.m-title {
-    display: inline;
-}
-
-.hid-text {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    max-width: 160px;
-    white-space: nowrap;
-}
-
-.m-text:before {
-    position: absolute;
-    content: "";
+    padding: 16px;
+    background-color: #f9fdfb;
     width: 100%;
-    border-bottom: solid 1px rgba(4, 3, 6, 0.1);
-    position: absolute;
-    left: 0;
-    top: -1rem;
+    /* Светлый фон с легким оттенком зелёного */
+    text-align: top;
+    /* Центрирование текста */
+    transition: transform var(--animation);
+    flex: 1;
+}
+
+.m-title {
+    font-size: 20px;
+    color: #2b5d34;
+    margin-bottom: 8px;
+}
+
+.m-text {
+    font-size: 16px;
+    color: #3e8e41;
 }
 
 @media (min-width: 768px) {
-    .m-list {
-        margin: 40px auto 50px;
-        width: 704px;
+    .m-card {
+        flex-direction: row;
     }
 
-    .team-title {
-        width: 645px;
+    .mySwiper {
+        max-width: unset;
+        width: calc(100% - 2.4rem);
     }
 
-    .m-title {
-        font-size: 16px;
+    .ms-title {
+        margin-top: 50px;
+    }
+    .m-img {
+        max-width: 200px;
     }
 
-    .m-item {
-        width: calc((100% - 24px) / 2);
+    .m-card:hover .m-text-wrapper {
+        transform: unset;
     }
 }
 
 @media (min-width: 1280px) {
-    .m-list {
-        width: 1180px;
-        gap: 24px;
+    .mySwiper {
+        width: calc(1220px - 3rem);
     }
 
-    .m-item {
-        width: calc((100% - 24px) / 3);
-    }
-
-    .hid-text {
-        max-width: 180px;
+    .ms-title {
+        margin-top: 72px;
     }
 }
 </style>

@@ -65,7 +65,7 @@
                 </form>
             </div>
         </div>
-    <!-- <TeamSection /> -->
+    <TeamSection />
 
     </section>
     <section class="section location">

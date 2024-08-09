@@ -33,3 +33,21 @@ export const types = [
     // { id: 'comp', name: 'Біокомплекси' },
     { id: 'fito', name: 'Фітогормони' }
 ];
+
+export const managers = [
+    {
+        name: 'Станіслав',
+        contact: 'biorost.zap@gmail.com +380676171488 +380959001876',
+        image: '../assets/content-images/m1.jpg',
+    },
+    {
+        name: 'Оксана Сиваш',
+        contact: 'oksana@biorost.ua +380664722955 +380683055704',
+        image: '../assets/content-images/m2.jpg',
+    },
+    {
+        name: 'Галіна Вікторовна',
+        contact: 'gala@biorost.ua +380965399073',
+        image: '../assets/content-images/m3.jpg',
+    },
+]

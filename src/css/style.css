@@ -30,6 +30,7 @@
     border-radius: 12px;
     padding: 6px 12px;
     margin-top: 20px;
+    margin-bottom: 20px;
     background: linear-gradient(to top, #c1dfc4 0%, #deecdd 100%);
     font-size: 16px;
     color: var(--black);
