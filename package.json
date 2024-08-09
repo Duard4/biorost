@@ -13,6 +13,7 @@
     "hammerjs": "^2.0.8",
     "mitt": "^3.0.1",
     "swiper": "^11.1.8",
+    "transliterate": "^1.0.1",
     "vue": "^3.4.31",
     "vuetify": "^3.7.0-beta.1"
   },

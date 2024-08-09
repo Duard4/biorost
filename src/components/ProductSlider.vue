@@ -5,10 +5,10 @@
                 :class="[`flip-box item ${item.type}`, { active: item.id === activeIndex }]">
                 <div class="flip-box-inner">
                     <div class="flip-box-front">
-                        <img :src="getImageUrl(item.frontImage)" :alt="`${item.title}`" />
+                        <img :src="getImageUrl(item.frontImage)" :alt="item.title + ` (${getTransliteratedTitle(item.title)})`" />
                     </div>
                     <div class="flip-box-back" v-if="item.backImage">
-                        <img :src="getImageUrl(item.backImage)" :alt="`${item.description}`" />
+                        <img :src="getImageUrl(item.backImage)" :alt="item.title + ` опис (${getTransliteratedTitle(item.title)} description)`" />
                     </div>
                 </div>
             </div>
@@ -23,6 +23,7 @@ import { ref, onMounted, onUnmounted } from 'vue';
 import Hammer from 'hammerjs';
 import SearchComponent from './SearchComponent.vue';
 import { eventBus } from '../js/eventBus';
+import transliterate from 'transliterate';
 
 export default {
     name: 'ProductSlider',
@@ -75,6 +76,9 @@ export default {
         },
         getImageUrl(path) {
             return new URL(path, import.meta.url).href;
+        },
+        getTransliteratedTitle(title) {
+            return transliterate(title);
         },
         scrollToSlide(index) {
             this.activeIndex = index;

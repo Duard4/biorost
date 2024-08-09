@@ -36,18 +36,18 @@ export default {
         const managers = [
             {
                 name: 'Станіслав',
-                contact: '+38 067 617 1488 +38 095 900 1876 biorost.zap@gmail.com',
+                contact: 'biorost.zap@gmail.com +380676171488 +380959001876',
                 img: '../assets/content-images/m1.jpg',
             },
             {
                 name: 'Оксана Сиваш',
-                contact: 'oksana@biorost.ua +38 (066)-47-22-955 +38(068)-30-55-704',
+                contact: 'oksana@biorost.ua +380664722955 +380683055704',
                 img: '../../assets/content-images/m2.jpg',
             },
             {
-                name: 'Оксана Сиваш',
-                contact: 'oksana@biorost.ua +38 (066)-47-22-955 +38(068)-30-55-704',
-                img: '../../assets/content-images/m2.jpg',
+                name: 'Галіна Вікторовна',
+                contact: 'gala@biorost.ua +380965399073',
+                img: '../../assets/content-images/m3.jpg',
             },
             {
                 name: 'Оксана Сиваш',
