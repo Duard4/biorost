@@ -9,7 +9,8 @@
         </ul>
         <!-- Фильтр для мобильных устройств -->
         <select class="product-types-select mobile" @change="filterItems">
-            <option class="product-option" v-for="type in types" :key="type.id" :value="type.id" :selected="isActiveType(type.id)">
+            <option class="product-option" v-for="type in types" :key="type.id" :value="type.id"
+                :selected="isActiveType(type.id)">
                 {{ type.name }}
             </option>
         </select>
@@ -17,8 +18,9 @@
 </template>
 
 <script>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { items, types } from '../js/data';
+import { eventBus } from '../js/eventBus';
 
 export default {
     name: 'ProductFilter',
@@ -27,21 +29,35 @@ export default {
     },
     setup(props, { emit }) {
         const isActiveType = (id) => props.selectedType === id;
-
         const filterItems = (event) => {
-            const typeId = event.target.dataset.id || event.target.value;
+            let typeId;
+            if (event.target?.value?.dataset?.type) {
+                typeId =  event.target.value.dataset.type
+            } else {
+                typeId = event.target.value || event.target.dataset.id;
+            }
+
             if (typeId != null) {
-                emit('update:filteredItems', items.filter(item => item.type.includes(typeId)));
+                const fI = items.filter(item => item.type.includes(typeId));
+                const extra = items.filter(item => !item.type.includes(typeId));
+                emit('update:filteredItems', fI, extra);
                 emit('update:selectedType', typeId);
             }
         };
+        // Make filterItems accessible in onMounted
+        onMounted(() => {
+            eventBus.on('openType', (typeId) => {
+                // Перевіряємо чи `typeId` передається з події і обробляємо його
+                filterItems({ target: { value: typeId } });
+            });
+        });
 
         return {
             types,
             isActiveType,
-            filterItems
+            filterItems,
         };
-    }
+    },
 };
 </script>
 
@@ -52,21 +68,24 @@ export default {
 
 .mobile {
     display: block;
-    
+
 }
+
 .product-title {
     margin-bottom: 12px;
 }
+
 .product-types-select {
     font-size: 20px;
     color: var(--white);
     margin: 0 auto;
     text-align: center;
-    
+
     background-color: var(--slateOp);
     backdrop-filter: blur(30px);
     box-shadow: 2px 2px 4px var(--slateOp);
 }
+
 .product-option {
     color: var(--slate);
     font-size: 12px;
@@ -81,6 +100,7 @@ export default {
     .product-title {
         margin-bottom: 2rem;
     }
+
     .mobile {
         display: none;
     }

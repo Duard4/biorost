@@ -3,7 +3,7 @@
         <div class="container">
             <h2 class="products-title searchable">Наша продукція</h2>
             <ProductFilter :selectedType="selectedType" @update:filteredItems="updateFilteredItems" @update:selectedType="updateSelectedType"></ProductFilter>
-            <ProductSlider :filteredItems="filteredItems"></ProductSlider>
+            <ProductSlider :filteredItems="filteredItems" :extraItems="extraItems"></ProductSlider>
         </div>
     </section>
 </template>
@@ -23,9 +23,12 @@ export default {
     setup() {
         const selectedType = ref(null);
         const filteredItems = ref(items);
-
-        const updateFilteredItems = (newItems) => {
+        const extraItems = ref(items);
+        
+        const updateFilteredItems = (newItems, extra) => {
             filteredItems.value = newItems;
+            extraItems.value = extra;
+
         };
 
         const updateSelectedType = (newType) => {
@@ -35,6 +38,7 @@ export default {
         return {
             selectedType,
             filteredItems,
+            extraItems,
             updateFilteredItems,
             updateSelectedType
         };

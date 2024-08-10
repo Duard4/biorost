@@ -28,16 +28,21 @@ export default {
             const query = this.searchQuery.toLowerCase();
             const results = [];
 
-            const items = document.querySelectorAll('.slider .item img');
+            const items1 = document.querySelectorAll('.slider .item img');
+            const items2 = document.querySelectorAll('.visually-hidden .item img');
+            const items = [...items1, ...items2];
             items.forEach((item, index) => {
                 if (query!='' && query != ' ' && item.alt.toLowerCase().includes(query)) {
-                    results.push({ index, title: item.alt });
+                    results.push({ index, item, title: item.alt });
                 }
             });
 
             this.searchResults = results;
         },
         scrollToElement(result) {
+            const element = document.getElementById('products');
+            element.scrollIntoView({'behaviour' :'smooth'});
+            eventBus.emit('openType', result.item);
             eventBus.emit('scrollToSlide', result.index);
             this.searchResults = [];
             this.searchQuery = '';

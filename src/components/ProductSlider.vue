@@ -5,15 +5,33 @@
                 :class="[`flip-box item ${item.type}`, { active: item.id === activeIndex }]">
                 <div class="flip-box-inner">
                     <div class="flip-box-front">
-                        <img :src="getImageUrl(item.frontImage)" :alt="item.title + ` (${getTransliteratedTitle(item.title)})`" />
+                        <img :src="getImageUrl(item.frontImage)"
+                            :alt="item.title + ` (${getTransliteratedTitle(item.title)})`" :data-type="item.type" />
                     </div>
                     <div class="flip-box-back" v-if="item.backImage">
-                        <img :src="getImageUrl(item.backImage)" :alt="item.title + ` опис (${getTransliteratedTitle(item.title)} description)`" />
+                        <img :src="getImageUrl(item.backImage)"
+                            :alt="item.title + ` опис (${getTransliteratedTitle(item.title)} description)`"
+                            :data-type="item.type" />
                     </div>
                 </div>
             </div>
             <button id="prev" @click="prevSlide">&#10094;</button>
             <button id="next" @click="nextSlide">&#10095;</button>
+        </div>
+        <div class="visually-hidden">
+            <div  v-for="(item, index) in extraItems" :class="[`flip-box item ${item.type}`]">
+                <div class="flip-box-inner">
+                    <div class="flip-box-front">
+                        <img :src="getImageUrl(item.frontImage)"
+                            :alt="item.title + ` (${getTransliteratedTitle(item.title)})`" :data-type="item.type" />
+                    </div>
+                    <div class="flip-box-back" v-if="item.backImage">
+                        <img :src="getImageUrl(item.backImage)"
+                            :alt="item.title + ` опис (${getTransliteratedTitle(item.title)} description)`"
+                            :data-type="item.type" />
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -32,6 +50,7 @@ export default {
     },
     props: {
         filteredItems: Array,
+        extraItems: Array
     },
     data() {
         return {
@@ -117,3 +136,18 @@ export default {
     },
 };
 </script>
+
+<style scoped>
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    white-space: nowrap;
+    clip-path: inset(100%);
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+}
+</style>
