@@ -6,12 +6,13 @@
                 <div class="flip-box-inner">
                     <div class="flip-box-front">
                         <img :src="getImageUrl(item.frontImage)"
-                            :alt="item.title + ` (${getTransliteratedTitle(item.title)})`" :data-type="item.type" />
+                            :alt="item.title + ` (${getTransliteratedTitle(item.title)})`" :data-id="item.type"
+                            :class="`prod-img-item`" :data-index="item.id" />
                     </div>
                     <div class="flip-box-back" v-if="item.backImage">
                         <img :src="getImageUrl(item.backImage)"
                             :alt="item.title + ` опис (${getTransliteratedTitle(item.title)} description)`"
-                            :data-type="item.type" />
+                            :data-id="item.type" />
                     </div>
                 </div>
             </div>
@@ -19,16 +20,16 @@
             <button id="next" @click="nextSlide">&#10095;</button>
         </div>
         <div class="visually-hidden">
-            <div  v-for="(item, index) in extraItems" :class="[`flip-box item ${item.type}`]">
+            <div v-for="(item, index) in extraItems" :class="[`flip-box item ${item.type}`]">
                 <div class="flip-box-inner">
                     <div class="flip-box-front">
                         <img :src="getImageUrl(item.frontImage)"
-                            :alt="item.title + ` (${getTransliteratedTitle(item.title)})`" :data-type="item.type" />
+                            :alt="item.title + ` (${getTransliteratedTitle(item.title)})`" :data-id="item.type" :data-index="item.id" />
                     </div>
                     <div class="flip-box-back" v-if="item.backImage">
                         <img :src="getImageUrl(item.backImage)"
                             :alt="item.title + ` опис (${getTransliteratedTitle(item.title)} description)`"
-                            :data-type="item.type" />
+                            :data-id="item.type" />
                     </div>
                 </div>
             </div>
@@ -99,10 +100,25 @@ export default {
         getTransliteratedTitle(title) {
             return transliterate(title);
         },
-        scrollToSlide(index) {
-            this.activeIndex = index;
+        scrollToSlide(id) {
+            // console.log(id)
+            const products = document.querySelectorAll(".prod-img-item");
+            // console.log(products);
+
+            let res = 0;
+            for (let i = 0; i < products.length; i++) {
+                const product = products[i];
+                // console.log(product.dataset.index);
+                if (product.dataset.index == id) {
+                    res = i;
+                    break;
+                }
+            }
+            this.activeIndex = res;
             this.loadShow();
-        },
+        }
+
+
     },
     watch: {
         filteredItems() {

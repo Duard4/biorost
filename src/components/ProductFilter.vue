@@ -30,12 +30,7 @@ export default {
     setup(props, { emit }) {
         const isActiveType = (id) => props.selectedType === id;
         const filterItems = (event) => {
-            let typeId;
-            if (event.target?.value?.dataset?.type) {
-                typeId =  event.target.value.dataset.type
-            } else {
-                typeId = event.target.value || event.target.dataset.id;
-            }
+            let typeId = event.target?.value || event.dataset.id ;
 
             if (typeId != null) {
                 const fI = items.filter(item => item.type.includes(typeId));
@@ -47,8 +42,7 @@ export default {
         // Make filterItems accessible in onMounted
         onMounted(() => {
             eventBus.on('openType', (typeId) => {
-                // Перевіряємо чи `typeId` передається з події і обробляємо його
-                filterItems({ target: { value: typeId } });
+                filterItems( typeId);
             });
         });
 

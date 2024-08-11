@@ -3,11 +3,11 @@
 export const items = [
     { id: 0, type: 'org', frontImage: '../assets/products/12.png', backImage: '../assets/products/13.png', title: 'Біорост Універсал', description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut cum magnam reiciendis' },
     { id: 1, type: 'org', frontImage: '../assets/products/14.png', backImage: '../assets/products/15.png', title: 'Біорост Старт', description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut cum magnam reiciendis' },
-    { id: 2, type: 'org ', frontImage: '../assets/products/36.png', backImage: '../assets/products/37.png', title: 'Зима', description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut cum magnam reiciendis' },
+    { id: 2, type: 'org', frontImage: '../assets/products/36.png', backImage: '../assets/products/37.png', title: 'Зима', description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut cum magnam reiciendis' },
     { id: 3, type: 'org', frontImage: '../assets/products/32.png', backImage: '../assets/products/33.png', title: 'Ультра Бор Азот', description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut cum magnam reiciendis' },
     { id: 4, type: 'org', frontImage: '../assets/products/34.png', backImage: '../assets/products/35.png', title: 'Бор+', description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut cum magnam reiciendis' },
     { id: 5, type: 'org', frontImage: '../assets/products/30.png', backImage: '../assets/products/31.png', title: 'Сірка+', description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut cum magnam reiciendis' },
-    { id: 6, type: 'org ', frontImage: '../assets/products/26.png', backImage: '../assets/products/27.png', title: 'Цинк+', description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut cum magnam reiciendis' },
+    { id: 6, type: 'org', frontImage: '../assets/products/26.png', backImage: '../assets/products/27.png', title: 'Цинк+', description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut cum magnam reiciendis' },
     { id: 7, type: 'org', frontImage: '../assets/products/28.png', backImage: '../assets/products/29.png', title: 'Магній+', description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut cum magnam reiciendis' },
     { id: 8, type: 'org', frontImage: '../assets/products/38.png', backImage: '../assets/products/39.png', title: 'Суміш для наливу', description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut cum magnam reiciendis' },
     { id: 9, type: 'org', frontImage: '../assets/products/6.png', backImage: '../assets/products/7.png', title: 'Гранула "Біорост"', description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut cum magnam reiciendis' },
