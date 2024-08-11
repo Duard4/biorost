@@ -110,6 +110,10 @@
     .search-wrapper:has(.search-results) ~ .nav-list {
         display: none;
     }
+    .nav-list {
+        margin-top: 1rem;
+        gap: 1rem;
+    }
     .search-wrapper:has(.search-results) .search-field {
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;

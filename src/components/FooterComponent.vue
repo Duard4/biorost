@@ -1,7 +1,8 @@
 <!-- src/components/HeaderComponent.vue -->
 <template>
-    <footer>
+    <footer class="footer">
         <!-- ваш HTML-код из header.html -->
+        <!-- <p>Done by me</p> -->
     </footer>
 </template>
 
