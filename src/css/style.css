@@ -88,3 +88,27 @@
         padding-bottom: 150px;
     }
 }
+
+.top-btn {
+    position: fixed;
+    right: 10vw;
+    bottom: 10vh;
+    background-color: #c1dfc4;
+    border-radius: 50%;
+    transform: rotate(90deg);
+    font-size: 24px;
+    font-weight: 800;
+    width: 2rem;
+    text-align: center;
+    height: 2rem;
+}
+.top-btn-svg {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    stroke-width: 0;
+    stroke: currentColor;
+    fill: currentColor;
+    font-size: 32px;
+    color: red;
+}

@@ -1,8 +1,10 @@
 <!-- src/components/HeaderComponent.vue -->
 <template>
     <footer class="footer">
-        <!-- ваш HTML-код из header.html -->
-        <!-- <p>Done by me</p> -->
+        
+        <a class="header-logo" href="../index.html">
+            <img  src="../assets/content-images/logo.png" alt="logo Biorost" width="240px">
+        </a>
     </footer>
 </template>
 

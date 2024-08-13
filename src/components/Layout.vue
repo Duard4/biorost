@@ -6,7 +6,12 @@
         <main>
             <slot></slot>
         </main>
-        <!-- <FooterComponent /> -->
+        <!-- <a class="top-btn" href="#">
+            <svg class="top-btn-svg" width="28" height="28">
+                <use href="../assets/icons.svg#icon-circle-up"></use>
+            </svg>
+        </a> -->
+        <FooterComponent />
     </div>
 </template>
 

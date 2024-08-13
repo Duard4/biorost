@@ -30,8 +30,9 @@ export default {
     setup(props, { emit }) {
         const isActiveType = (id) => props.selectedType === id;
         const filterItems = (event) => {
-            let typeId = event.target?.value || event.dataset.id ;
-
+            let typeId = event.target?.value ||  event.dataset?.id || event.target.dataset.id;
+            console.log(typeId);
+            
             if (typeId != null) {
                 const fI = items.filter(item => item.type.includes(typeId));
                 const extra = items.filter(item => !item.type.includes(typeId));
