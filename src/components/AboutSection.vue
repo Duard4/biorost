@@ -159,8 +159,8 @@ export default {
 }
 
 .accordion-title {
-    background-color: var(--about-table-green-main);
-    color: var(--about-table-tr-even);
+    background-color: var(--gradient-c1); /* More vibrant green */
+    color: var(--white);
     padding: 12px 15px;
     font-size: 16px;
     font-family: Arial, sans-serif;
@@ -168,11 +168,16 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    transition: background-color var(--animation);
+}
+
+.accordion-title:hover {
+    background-color: var(--gradient-c2); /* Darker green on hover */
 }
 
 .accordion-content {
     padding: 12px 15px;
-    background-color: #f3f3f3;
+    background-color: var(--white); /* Light green background */
     display: none;
 }
 
@@ -180,8 +185,27 @@ export default {
     display: block;
 }
 
-@media (max-width: 768px) {
+.marked-list {
+    padding-left: 18px;
+}
 
+.marked-list li {
+    position: relative;
+    margin-bottom: 8px;
+    padding-left: 20px;
+    font-weight: bold;
+    color: #388e3c; /* Vibrant green text */
+}
+
+.marked-list li::before {
+    content: '✓'; /* Custom mark */
+    position: absolute;
+    left: 0;
+    color: #000000; /* Darker green mark */
+    font-size: 16px;
+}
+
+@media (max-width: 768px) {
     .accordion-title,
     .accordion-content {
         padding: 10px 12px;

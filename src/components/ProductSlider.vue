@@ -38,7 +38,6 @@
 </template>
 
 <script>
-import { ref, onMounted, onUnmounted } from 'vue';
 import Hammer from 'hammerjs';
 import SearchComponent from './SearchComponent.vue';
 import { eventBus } from '../js/eventBus';

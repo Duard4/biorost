@@ -1,16 +1,16 @@
-<!-- src/components/CertificateModal.vue -->
 <template>
     <div v-if="showModal" class="modal-overlay" @click.self="closeModal">
-        <div class="modal-content">
+        <div class="modal-content" @touchstart="handleTouchStart" @touchend="handleTouchEnd">
             <button class="modal-close" @click="closeModal">&times;</button>
             <div class="c-slider">
                 <div class="c-slider-content">
-                    <img :src="currentImage" class="large-image" alt="certificate">
-                    <img :src="images[1]" class="large-image second" alt="certificate">
+                    <img :src="currentImage" class="large-image mob" alt="certificate">
+                    <img :src="images[0]" class="large-image desc" alt="certificate">
+                    <img :src="images[1]" class="large-image desc " alt="certificate">
                 </div>
                 <div class="thumbnail-wrapper">
                     <img v-for="(image, index) in images" :key="index" :src="image" class="thumbnail"
-                    :class="{ active: index === currentIndex }" @click="setCurrentSlide(index)" />
+                        :class="{ active: index === currentIndex }" @click="setCurrentSlide(index)" />
                 </div>
             </div>
         </div>
@@ -35,6 +35,8 @@ export default {
     data() {
         return {
             currentIndex: 0,
+            startX: 0,
+            endX: 0,
         };
     },
     computed: {
@@ -63,9 +65,25 @@ export default {
         setCurrentSlide(index) {
             this.currentIndex = index;
         },
+        handleTouchStart(event) {
+            this.startX = event.touches[0].clientX;
+        },
+        handleTouchEnd(event) {
+            this.endX = event.changedTouches[0].clientX;
+            this.handleSwipe();
+        },
+        handleSwipe() {
+            const threshold = 50; // Minimum distance for swipe
+            if (this.startX - this.endX > threshold) {
+                this.nextSlide();
+            } else if (this.endX - this.startX > threshold) {
+                this.prevSlide();
+            }
+        },
     },
 };
 </script>
+
 
 <style scoped>
 .modal-overlay {
@@ -83,8 +101,8 @@ export default {
 }
 
 .modal-content {
-    background: #fff;
-    padding: 40px 20px 20px;
+    background: var(--white);
+    padding: 0;
     z-index: 999;
     position: relative;
     background: rgb(239, 239, 239);
@@ -117,18 +135,27 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
 }
 
 .c-slider-content {
     position: relative;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
+    width: 100%;
     align-items: center;
 
 }
 
+@media (max-width: 480px) {
+    .slider-button {
+        display: none;
+    }
+}
+
 .large-image {
-    max-height: 80vh;
+    max-height: 670px;
+    width: 100%;
     object-fit: contain;
 }
 
@@ -157,8 +184,12 @@ export default {
 .slider-button.next {
     right: 0;
 }
-.second {
+
+.desc {
     display: none;
+}
+.mob {
+    display: block;
 }
 .thumbnail-wrapper {
     display: flex;
@@ -180,28 +211,40 @@ export default {
 }
 
 @media (min-width: 768px) {
-    .thumbnail-wrapper, slider-button {
+
+    .thumbnail-wrapper,
+    slider-button {
         display: none;
     }
-    .second {
+
+    .large-image {
+        max-height: 670px;
+        width: 48%;
+    }
+    .desc {
         display: block;
     }
+    .mob {
+        display: none;
+    }
+
     .slider-button {
         display: none;
+    }
+
+    .modal-content {
+        background: var(--white);
+        display: flex;
+        justify-content: space-between;
+        padding: 38px 6px 6px;
     }
 }
 
 @media (min-width: 1024px) {
 
     .modal-content {
-        width: 65vw;
-        display: flex;
-        justify-content: space-between;
-    }
-
-    .large-image {
-        max-height: unset;
-        width: 30vw;
+        width: 95vw;
+        padding: 38px 12px 12px;
     }
 }
 </style>
