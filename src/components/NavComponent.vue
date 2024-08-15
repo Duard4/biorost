@@ -29,7 +29,6 @@
 
 <script>
 import { ref, provide } from 'vue';
-import { items } from '../js/data';
 import SearchComponent from './SearchComponent.vue'
 
 export default {
@@ -139,7 +138,7 @@ export default {
             navLinks: [
                 { text: 'Про нас', href: './index#about-us' },
                 { text: 'Продукція', href: './index#products' },
-                { text: 'Карти внесення', href: './index#injmaps' },
+                { text: 'Карти внесення', href: './index#inj-maps' },
                 { text: 'Статті', href: './index#articles' },
                 { text: 'Контакти', href: './index#contact-us' },
             ],

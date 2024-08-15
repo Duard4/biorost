@@ -238,8 +238,8 @@
     .fixed-nav {
         background: linear-gradient(
             114.3deg,
-            rgb(19, 126, 57) 0.2%,
-            rgb(8, 65, 91) 68.5%
+            var(--gradient-c1) 0.2%,
+            var(--gradient-c2) 68.5%
         );
         backdrop-filter: unset;
     }

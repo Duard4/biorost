@@ -1,5 +1,5 @@
 <template>
-    <section class="section container inj-maps" id="injmaps">
+    <section class="section container inj-maps" id="inj-maps">
         <div class="button-container">
             <button @click="setTable('wheat')">Озима пшениця</button>
             <button @click="setTable('canola')">Озимий ріпак</button>
