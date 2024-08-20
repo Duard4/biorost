@@ -1,5 +1,7 @@
 <template>
     <section class="section container inj-maps" id="inj-maps">
+        <h2 class="inj-maps-title title">Карти внесення</h2>
+
         <div class="button-container">
             <button @click="setTable('wheat')">Озима пшениця</button>
             <button @click="setTable('canola')">Озимий ріпак</button>
@@ -243,6 +245,7 @@ export default {
     margin-bottom: 20px;
     display: flex;
 }
+
 button {
     padding: 10px 20px;
     margin: 5px;
@@ -252,9 +255,11 @@ button {
     cursor: pointer;
     font-size: 16px;
 }
+
 button:hover {
     background-color: #66bb6a;
 }
+
 .inj-maps.section {
     padding-bottom: 0;
 }

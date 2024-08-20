@@ -17,10 +17,10 @@
 @import url("./footer.css");
 
 .title {
-    font-size: 36px;
+    font-size: 2rem;
     font-weight: 700;
     color: var(--black);
-    margin-bottom: 12px;
+    margin-bottom: 1rem;
 }
 .text {
     color: var(--slate);
@@ -69,7 +69,7 @@
     }
 
     .title {
-        font-size: 50px;
+        font-size: 3rem;
     }
 
     .btn {

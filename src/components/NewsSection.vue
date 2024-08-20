@@ -41,9 +41,7 @@ export default {
             ],
             // Selected article
             selectedArticle: {
-                image: '../../src/assets/bg-images/news.jpg', // Default image
-                title: 'Новини і досягнення',
-                text: '',
+                image: '../../assets/images/article1.jpg', text: 'Новина 1', title: 'Заголовок 1'
             }
         };
     },
