@@ -1,27 +1,26 @@
 <template>
     <div v-if="showModal" class="modal-overlay" @click.self="closeModal">
-        <div class="modal-content" @touchstart="handleTouchStart" @touchend="handleTouchEnd">
-            <button class="modal-close" @click="closeModal">&times;</button>
-            <div class="c-slider">
-                <div class="c-slider-content">
-                    <img :src="currentImage" class="large-image mob" alt="certificate">
-                    <img :src="images[0]" class="large-image desc" alt="certificate">
-                    <img :src="images[1]" class="large-image desc " alt="certificate">
-                </div>
+        <div class="modal-container">
+            <!-- Thumbnails on the left side -->
+            <div class="thumbnail-container">
                 <div class="thumbnail-wrapper">
                     <img v-for="(image, index) in images" :key="index" :src="image" class="thumbnail"
-                        :class="{ active: index === currentIndex }" @click="setCurrentSlide(index)" />
+                        :class="{ active: index === currentIndex }" @click="setCurrentSlide(index)" alt="Thumbnail" />
                 </div>
             </div>
+
+            <!-- Main document/image viewer -->
+            <div class="document-viewer">
+                <img :src="currentImage" class="large-image" alt="Certificate" />
+            </div>
         </div>
-        <button class="slider-button prev" @click="prevSlide">&#10094;</button>
-        <button class="slider-button next" @click="nextSlide">&#10095;</button>
+        <button class="modal-close" @click="closeModal">&times;</button>
     </div>
 </template>
 
 <script>
 export default {
-    name: 'CertificateModal',
+    name: "CertificateModal",
     props: {
         showModal: {
             type: Boolean,
@@ -35,8 +34,6 @@ export default {
     data() {
         return {
             currentIndex: 0,
-            startX: 0,
-            endX: 0,
         };
     },
     computed: {
@@ -46,44 +43,14 @@ export default {
     },
     methods: {
         closeModal() {
-            this.$emit('close');
-        },
-        prevSlide() {
-            if (this.currentIndex > 0) {
-                this.currentIndex--;
-            } else {
-                this.currentIndex = this.images.length - 1;
-            }
-        },
-        nextSlide() {
-            if (this.currentIndex < this.images.length - 1) {
-                this.currentIndex++;
-            } else {
-                this.currentIndex = 0;
-            }
+            this.$emit("close");
         },
         setCurrentSlide(index) {
             this.currentIndex = index;
         },
-        handleTouchStart(event) {
-            this.startX = event.touches[0].clientX;
-        },
-        handleTouchEnd(event) {
-            this.endX = event.changedTouches[0].clientX;
-            this.handleSwipe();
-        },
-        handleSwipe() {
-            const threshold = 50; // Minimum distance for swipe
-            if (this.startX - this.endX > threshold) {
-                this.nextSlide();
-            } else if (this.endX - this.startX > threshold) {
-                this.prevSlide();
-            }
-        },
     },
 };
 </script>
-
 
 <style scoped>
 .modal-overlay {
@@ -91,7 +58,6 @@ export default {
     z-index: 998;
     top: 0;
     left: 0;
-
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.7);
@@ -100,151 +66,90 @@ export default {
     align-items: center;
 }
 
-.modal-content {
-    background: var(--white);
-    padding: 0;
-    z-index: 999;
-    position: relative;
-    background: rgb(239, 239, 239);
+.modal-container {
     display: flex;
-    gap: 1rem;
-    border-radius: 10px;
-    margin: auto;
-    overflow: hidden;
-}
-
-.modal-close {
-    position: absolute;
-    top: 4px;
-    right: 4px;
-    border-radius: 4px;
-    background: rgba(0, 0, 0, 0.15);
-    color: white;
-    border: none;
-
-    width: 2.3rem;
-    height: 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 30px;
-    cursor: pointer;
-}
-
-.c-slider {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-}
-
-.c-slider-content {
-    position: relative;
-    display: flex;
+    flex-direction: column-reverse;
     justify-content: space-evenly;
-    width: 100%;
-    align-items: center;
-
+    background: #f9f9f9;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 90vw;
+    height: 80vh;
+    max-width: 1200px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-@media (max-width: 480px) {
-    .slider-button {
-        display: none;
+.thumbnail-container {
+    background-color: #ececec;
+    padding: 10px;
+}
+
+.thumbnail-wrapper {
+    height: 100%;
+    display: flex;
+    height: 8rem;
+    gap: 10px;
+}
+
+.thumbnail {
+    width: auto;
+    height: auto;
+    cursor: pointer;
+    border-radius: 4px;
+    object-fit: cover;
+    opacity: 0.6;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.thumbnail.active,
+.thumbnail:hover {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+.document-viewer {
+    width: 100%;
+    padding: 10px;
+    overflow-y: auto;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+}
+
+@media (min-width: 768px) {
+    .document-viewer {
+        padding: 20px;
+    }
+
+    .thumbnail-wrapper {
+        height: unset;
+        flex-direction: column
+    }
+
+    .modal-container {
+        flex-direction: row;
+    }
+
+    .thumbnail-container {
+        width: 20%;
+        height: unset;
     }
 }
 
 .large-image {
-    max-height: 670px;
-    width: 100%;
+    max-width: 100%;
     object-fit: contain;
 }
 
-.slider-button {
+.modal-close {
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(109, 238, 77, 0.39);
-    color: #fff;
+    top: 20px;
+    right: 20px;
+    background: transparent;
     border: none;
-    font-size: 30px;
+    font-size: 24px;
+    color: white;
     cursor: pointer;
-    padding: 10px;
-    height: 100%;
-}
-
-.slider-button:hover,
-.slider-button:focus {
-    background: rgba(0, 0, 0, 0.25);
-}
-
-.slider-button.prev {
-    left: 0;
-}
-
-.slider-button.next {
-    right: 0;
-}
-
-.desc {
-    display: none;
-}
-.mob {
-    display: block;
-}
-.thumbnail-wrapper {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-.thumbnail {
-    width: 100px;
-    height: 60px;
-    object-fit: cover;
-    margin: 0 5px;
-    cursor: pointer;
-    opacity: 0.5;
-}
-
-.thumbnail.active {
-    opacity: 1;
-}
-
-@media (min-width: 768px) {
-
-    .thumbnail-wrapper,
-    slider-button {
-        display: none;
-    }
-
-    .large-image {
-        max-height: 670px;
-        width: 48%;
-    }
-    .desc {
-        display: block;
-    }
-    .mob {
-        display: none;
-    }
-
-    .slider-button {
-        display: none;
-    }
-
-    .modal-content {
-        background: var(--white);
-        display: flex;
-        justify-content: space-between;
-        padding: 38px 6px 6px;
-    }
-}
-
-@media (min-width: 1024px) {
-
-    .modal-content {
-        width: 95vw;
-        padding: 38px 12px 12px;
-    }
 }
 </style>
