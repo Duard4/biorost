@@ -42,6 +42,7 @@ export default {
 .ms-title {
     text-align: center;
     margin-top: 32px;
+    font-size: 2rem;
 }
 
 .mySwiper {

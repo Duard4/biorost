@@ -1,5 +1,5 @@
 <template>
-    <section class="vacancies-section section">
+    <section class="vacancies-section section" id="vacancies">
         <h2 class="vacancies-title title">Запрошуємо до співпраці</h2>
         <div class="vacancies-container container">
             <!-- Accordion for job titles -->
@@ -32,6 +32,8 @@
 </template>
 
 <script>
+import { eventBus } from '../js/eventBus';
+
 export default {
     data() {
         return {
@@ -63,9 +65,11 @@ export default {
             this.activeIndex = this.activeIndex === index ? null : index;
         },
         applyForJob(jobTitle) {
-            // Logic to navigate to an application form, passing the job title
-            console.log(`Applying for: ${jobTitle}`);
-            // Example: this.$router.push({ name: 'JobApplication', params: { jobTitle } });
+            // Emit an event with the job title to scroll and set the form data
+            eventBus.emit('applyForJob', jobTitle);
+            // Scroll to the form section
+            const formSection = document.getElementById('form');
+            formSection.scrollIntoView({ behavior: 'smooth' });
         }
     }
 };

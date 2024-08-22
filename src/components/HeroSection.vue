@@ -4,7 +4,7 @@
         <div class="container">
             <h1 class="hero-title">БІОРОСТ</h1>
             <p class="hero-text">Наша місія – забезпечити відновлення нашої годувальниці Землі</p>
-            <a class="order-btn btn" href="./index#contact-us">Замовити</a>
+            <a class="order-btn btn" href="./index#form">Замовити</a>
         </div>
     </section>
 </template>

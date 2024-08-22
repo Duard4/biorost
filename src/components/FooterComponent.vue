@@ -24,6 +24,7 @@
                     <li class="footer-link-item"><a href="#products">Продукція</a></li>
                     <li class="footer-link-item"><a href="#inj-maps">Карти внесення</a></li>
                     <li class="footer-link-item"><a href="#articles">Статті</a></li>
+                    <li class="footer-link-item"><a href="#vacancies">Вакансії</a></li>
                     <li class="footer-link-item"><a href="#contact-us">Контакти</a></li>
                 </ul>
             </div>

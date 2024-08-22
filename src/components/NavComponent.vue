@@ -140,6 +140,7 @@ export default {
                 { text: 'Продукція', href: './index#products' },
                 { text: 'Карти внесення', href: './index#inj-maps' },
                 { text: 'Статті', href: './index#articles' },
+                { text: 'Вакансії', href: './index#vacancies' },
                 { text: 'Контакти', href: './index#contact-us' },
             ],
             searchQuery,

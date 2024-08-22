@@ -23,7 +23,7 @@
                     </ul>
                 </address>
             </div>
-            <div class="form-wrapper">
+            <div class="form-wrapper" id="form">
                 <h3>Зв'яжіться з нами</h3>
                 <form @submit.prevent="sendEmail" class="form">
                     <label for="name">Ваше ім'я:
@@ -39,7 +39,7 @@
                         <span v-if="errors.phone" class="error">{{ errors.phone }}</span>
                     </label>
                     <label for="email">Електронна адреса:
-                        <input id="email" type="email" v-model="form.email" :class="{'input-error': errors.email}" placeholder="Email" autocomplete="true" />
+                        <input id="email" type="email" v-model="form.email" :class="{'input-error': errors.email}" placeholder="Email" autocomplete="true" required/>
                         <span v-if="errors.email" class="error">{{ errors.email }}</span>
                     </label>
                     <div class="dropdown-wrapper">
@@ -82,6 +82,7 @@
 </template>
 
 <script>
+import { eventBus } from '../js/eventBus.js';
 import emailjs from 'emailjs-com';
 import TeamSection from './TeamSection.vue';
 
@@ -102,13 +103,22 @@ export default {
                 message: ''
             },
             categories: {
-                Покупка: ['Мінеральне', 'Біологічне', 'Сезонне'],
-                Питання: ['З приводу товара', 'Використання', 'Доставка'],
-                Звернення: ['Скарга', 'Пропозиція', 'Подяка']
+                Покупка: ['Комплекс (декілька типів)', 'Органомінеральні', 'Інокулянти', 'Біофунгіциди', 'Біоінсектициди', 'Фітогормони', 'Бактерії ґрунтові'],
+                'Питання щодо': ['Товару', 'Оплати', 'Використання', 'Доставки'],
+                'Відгук на вакансію': ['Спеціаліст з наукової роботи', 'Менеджер з продажу органічних добрив (B2B-сектор)'],
+                'Звернення з': ['Скаргою', 'Пропозицією', 'Подякою']
             },
             subcategories: [],
             errors: {}
         };
+    },
+    mounted() {
+        // Listen to the event to update the form
+        eventBus.on('applyForJob', (jobTitle) => {
+            this.form.subject = 'Відгук на вакансію';
+            this.subcategories = this.categories['Відгук на вакансію'];
+            this.form.subcategory = jobTitle;
+        });
     },
     methods: {
         sendEmail() {
