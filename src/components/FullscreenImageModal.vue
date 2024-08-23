@@ -14,37 +14,7 @@ export default {
     methods: {
         closeModal() {
             this.$emit('close');
-            this.enableScroll(); // Включаем прокрутку при закрытии модального окна
-        },
-        disableScroll() {
-            // Блокируем прокрутку
-            document.body.style.overflow = 'hidden';
-            document.body.style.touchAction = 'none';
-            document.addEventListener('touchmove', this.preventScroll, { passive: false });
-        },
-        enableScroll() {
-            // Включаем прокрутку
-            document.body.style.overflow = '';
-            document.body.style.touchAction = '';
-            document.removeEventListener('touchmove', this.preventScroll);
-        },
-        preventScroll(event) {
-            // Предотвращаем стандартное поведение скроллинга
-            event.preventDefault();
         }
-    },
-    watch: {
-        isVisible(newVal) {
-            if (newVal) {
-                this.disableScroll(); // Выключаем прокрутку при открытии модального окна
-            } else {
-                this.enableScroll(); // Включаем прокрутку при закрытии модального окна
-            }
-        }
-    },
-    beforeDestroy() {
-        // Убедитесь, что события удалены при уничтожении компонента
-        this.enableScroll();
     }
 }
 </script>
