@@ -10,12 +10,7 @@ export default {
     props: {
         isVisible: Boolean,
         imageSrc: String
-    },
-    methods: {
-        closeModal() {
-            this.$emit('close');
-        }
-    },
+    }
 }
 </script>
 
@@ -29,14 +24,15 @@ export default {
     background-color: rgba(0, 0, 0, 0.8);
     display: flex;
     justify-content: center;
+    opacity: 1;
     align-items: center;
-    z-index: 9999;
-    touch-action: pinch-zoom; /* Оставляем возможность для манипуляций, таких как зум */
+    z-index: 1000;
 }
 
 .fullscreen-image {
     max-width: 100%;
     max-height: 100%;
-    touch-action: pinch-zoom; /* Оставляем возможность для манипуляций, таких как зум */
+    touch-action: pinch-zoom;
 }
+
 </style>

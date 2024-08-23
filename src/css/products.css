@@ -12,6 +12,7 @@
     mix-blend-mode: multiply;
     text-align: center;
     color: var(--white);
+    z-index: 10;
 }
 .products-text, .products-title {
     text-shadow: 1px 1px 6px var(--slate);

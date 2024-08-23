@@ -57,6 +57,12 @@
     padding-top: 100px;
     padding-bottom: 100px;
 }
+
+/* Prevents scrolling when modal is open */
+.fixed {
+    position: fixed;
+}
+
 @media (min-width: 768px) {
     .container {
         max-width: unset;
