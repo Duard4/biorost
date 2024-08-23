@@ -1,6 +1,6 @@
 <template>
     <div v-if="isVisible" class="fullscreen-modal" @click="closeModal">
-            <img :src="imageSrc" alt="Fullscreen Image" class="fullscreen-image" />
+        <img :src="imageSrc" alt="Fullscreen Image" class="fullscreen-image" />
     </div>
 </template>
 
@@ -17,18 +17,14 @@ export default {
             this.enableScroll(); // Включаем прокрутку при закрытии модального окна
         },
         disableScroll() {
-            // Блокируем прокрутку
+            // Блокируем прокрутку страницы, но разрешаем жесты зума
             document.body.style.overflow = 'hidden';
-            document.addEventListener('touchmove', this.preventScroll, { passive: false });
+            document.body.style.touchAction = 'pan-x'; // Блокируем только вертикальную прокрутку
         },
         enableScroll() {
             // Включаем прокрутку
             document.body.style.overflow = '';
-            document.removeEventListener('touchmove', this.preventScroll);
-        },
-        preventScroll(event) {
-            // Предотвращаем стандартное поведение скроллинга
-            event.preventDefault();
+            document.body.style.touchAction = ''; // Сбрасываем ограничение действий на касание
         }
     },
     watch: {
@@ -60,7 +56,6 @@ export default {
     align-items: center;
     z-index: 9999;
 }
-
 
 .fullscreen-image {
     max-width: 100%;
