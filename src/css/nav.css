@@ -14,7 +14,7 @@
 }
 
 .hamburger-menu {
-    font-size: 18px;
+    font-size: 1.1rem;
     /* display: flex; */
     /* flex-direction: column; */
     height: 0;
@@ -229,7 +229,7 @@
     }
     .nav {
         width: 100%;
-        font-size: 16px;
+        font-size: 1rem;
     }
     .nav .container {
         height: unset;

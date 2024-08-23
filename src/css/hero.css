@@ -22,7 +22,7 @@
     padding-top: 400px;
 }
 .hero-title {
-    font-size: 52px;
+    font-size: 3rem;
     color: var(--black);
     text-shadow: 2px 2px 4px var(--slate);
     letter-spacing: 2px;
@@ -41,24 +41,24 @@
 }
 .order-btn {
     display: inline-block;
-    font-size: 18px;
+    font-size: 1.1rem;
     min-width: 160px;
 }
 .hero-text {
     margin: 0 auto;
-    font-size: 18px;
+    font-size: 1.1rem;
     max-width: 500px;
 }
 @media (min-width: 768px) {
     .hero-title {
-        font-size: 72px;
+        font-size: 4.5rem;
     }
     .hero-text {
-        font-size: 22px;
+        font-size: 1.4rem;
         max-width: 800px;
     }
     .order-btn {
-        font-size: 18px;
+        font-size: 1.1rem;
         min-width: 200px;
     }
 }

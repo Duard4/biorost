@@ -17,7 +17,7 @@
     text-shadow: 1px 1px 6px var(--slate);
 }
 .products-title {
-    font-size: 40px;
+    font-size: 2.5rem;
     text-align: center;
     margin-bottom: 0.5rem;
 }
@@ -31,7 +31,7 @@
     gap: 16px;
 }
 .ptl-item {
-    font-size: 28px;
+    font-size: 1.75rem;
     padding: 8px 16px;
     
 }
@@ -48,7 +48,7 @@
     overflow: hidden;
 }
 .pil-item {
-    font-size: 24px;
+    font-size: 1.5rem;
     color: cadetblue;
 }
 .swiper-slide {
@@ -153,7 +153,7 @@
         min-width: calc((100%) / 2 - 60px);
     }
     .ptl-item {
-        font-size: 20px;
+        font-size: 1.25rem;
         padding: 6px 12px;
     }
     .slider-button-prev,
@@ -164,7 +164,7 @@
 
 @media (min-width: 1024px) {
     .ptl-item {
-        font-size: 28px;
+        font-size: 1.8rem;
         padding: 8px 16px;
     }
     .product-items-list {

@@ -32,7 +32,7 @@
     margin-top: 20px;
     margin-bottom: 20px;
     background: linear-gradient(to top, #c1dfc4 0%, #deecdd 100%);
-    font-size: 16px;
+    font-size: 1.1rem;
     color: var(--black);
 }
 .btn:hover {
@@ -96,7 +96,7 @@
     background-color: #c1dfc4;
     border-radius: 50%;
     transform: rotate(90deg);
-    font-size: 24px;
+    font-size: 1.5rem;
     font-weight: 800;
     width: 2rem;
     text-align: center;
@@ -109,6 +109,6 @@
     stroke-width: 0;
     stroke: currentColor;
     fill: currentColor;
-    font-size: 32px;
+    font-size: 2rem;
     color: red;
 }

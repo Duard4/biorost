@@ -9,7 +9,7 @@
                             :alt="item.title + ` (${getTransliteratedTitle(item.title)})`" :data-id="item.type"
                             :class="`prod-img-item`" :data-index="item.id" />
                     </div>
-                    <div class="flip-box-back" v-if="item.backImage">
+                    <div class="flip-box-back" v-if="item.backImage" @click="openModal(getImageUrl(item.backImage))">
                         <img :src="getImageUrl(item.backImage)"
                             :alt="item.title + ` опис (${getTransliteratedTitle(item.title)} description)`"
                             :data-id="item.type" />
@@ -20,26 +20,19 @@
             <button id="next" @click="nextSlide">&#10095;</button>
         </div>
         <div class="visually-hidden">
-            <div v-for="(item, index) in extraItems" :class="[`flip-box item ${item.type}`]">
-                <div class="flip-box-inner">
-                    <div class="flip-box-front">
-                        <img :src="getImageUrl(item.frontImage)"
-                            :alt="item.title + ` (${getTransliteratedTitle(item.title)})`" :data-id="item.type" :data-index="item.id" />
-                    </div>
-                    <div class="flip-box-back" v-if="item.backImage">
-                        <img :src="getImageUrl(item.backImage)"
-                            :alt="item.title + ` опис (${getTransliteratedTitle(item.title)} description)`"
-                            :data-id="item.type" />
-                    </div>
-                </div>
-            </div>
+            <!-- Existing code... -->
         </div>
+        <!-- Add FullscreenImageModal -->
+        <fullscreen-image-modal :isVisible="showModal" :imageSrc="modalImageSrc"
+            @close="closeModal"></fullscreen-image-modal>
     </div>
 </template>
+
 
 <script>
 import Hammer from 'hammerjs';
 import SearchComponent from './SearchComponent.vue';
+import FullscreenImageModal from './FullscreenImageModal.vue';
 import { eventBus } from '../js/eventBus';
 import transliterate from 'transliterate';
 
@@ -47,6 +40,7 @@ export default {
     name: 'ProductSlider',
     components: {
         SearchComponent,
+        FullscreenImageModal
     },
     props: {
         filteredItems: Array,
@@ -55,6 +49,8 @@ export default {
     data() {
         return {
             activeIndex: 0,
+            showModal: false,  // Add state to control modal visibility
+            modalImageSrc: ''  // Add state to store the image source for the modal
         };
     },
     methods: {
@@ -115,8 +111,16 @@ export default {
             }
             this.activeIndex = res;
             this.loadShow();
+        },
+        openModal(imageSrc) {  // Method to open the modal with the image
+            if (window.innerWidth <= 768) {
+                this.modalImageSrc = imageSrc;
+                this.showModal = true;
+            }
+        },
+        closeModal() {  // Method to close the modal
+            this.showModal = false;
         }
-
 
     },
     watch: {
@@ -138,6 +142,7 @@ export default {
         this.hammer.on('swiperight', this.prevSlide);
 
         eventBus.on('scrollToSlide', this.scrollToSlide);
+        window.addEventListener('resize', this.handleResize);
     },
     beforeUnmount() {
         // Clean up Hammer.js events
@@ -148,6 +153,7 @@ export default {
         }
 
         eventBus.off('scrollToSlide', this.scrollToSlide);
+        window.removeEventListener('resize', this.handleResize);
     },
 };
 </script>
