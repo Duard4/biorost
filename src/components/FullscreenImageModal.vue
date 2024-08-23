@@ -68,6 +68,6 @@ export default {
 .fullscreen-image {
     max-width: 100%;
     max-height: 100%;
-    touch-action: none; /* Отключаем действия по умолчанию, но сохраняем зумирование */
+    touch-action: manipulation; /* Оставляем возможность для манипуляций, таких как зум */
 }
 </style>
