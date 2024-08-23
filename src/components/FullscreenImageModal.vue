@@ -31,6 +31,7 @@ export default {
     justify-content: center;
     align-items: center;
     z-index: 9999;
+    touch-action: pinch-zoom; /* Оставляем возможность для манипуляций, таких как зум */
 }
 
 .fullscreen-image {
