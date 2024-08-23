@@ -32,7 +32,7 @@ export default {
             if (event.touches.length > 1) {
                 return; // Не блокируем жесты с двумя пальцами (например, зум)
             }
-            event.preventDefault(); // Блокируем стандартное поведение прокрутки
+            event.preventScroll(); // Блокируем стандартное поведение прокрутки
         }
     },
     watch: {
