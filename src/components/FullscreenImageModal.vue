@@ -17,14 +17,22 @@ export default {
             this.enableScroll(); // Включаем прокрутку при закрытии модального окна
         },
         disableScroll() {
-            // Блокируем прокрутку страницы, но разрешаем жесты зума
+            // Блокируем прокрутку страницы, но оставляем возможность зума
             document.body.style.overflow = 'hidden';
-            document.body.style.touchAction = 'pan-x'; // Блокируем только вертикальную прокрутку
+            // Отключаем только вертикальную прокрутку, сохраняя другие жесты
+            document.addEventListener('touchmove', this.preventScroll, { passive: false });
         },
         enableScroll() {
-            // Включаем прокрутку
+            // Включаем прокрутку страницы
             document.body.style.overflow = '';
-            document.body.style.touchAction = ''; // Сбрасываем ограничение действий на касание
+            document.removeEventListener('touchmove', this.preventScroll);
+        },
+        preventScroll(event) {
+            // Блокируем прокрутку только при вертикальном движении, разрешая масштабирование
+            if (event.touches.length > 1) {
+                return; // Не блокируем жесты с двумя пальцами (например, зум)
+            }
+            event.preventDefault(); // Блокируем стандартное поведение прокрутки
         }
     },
     watch: {
@@ -60,5 +68,6 @@ export default {
 .fullscreen-image {
     max-width: 100%;
     max-height: 100%;
+    touch-action: none; /* Отключаем действия по умолчанию, но сохраняем зумирование */
 }
 </style>
