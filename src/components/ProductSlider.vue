@@ -114,6 +114,8 @@ export default {
         },
         openModal(imageSrc) {  // Method to open the modal with the image
             if (window.innerWidth <= 768) {
+                const productSection = document.getElementById('products');
+                productSection.scrollIntoView({ behavior: 'smooth' });
                 this.modalImageSrc = imageSrc;
                 this.showModal = true;
             }
