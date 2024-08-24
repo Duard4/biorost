@@ -21,15 +21,15 @@
         </div>
         <div class="visually-hidden">
             <!-- Existing code... -->
-            <div v-for="(item, index) in extraItems" :class="[flip-box item ${item.type}]">
+            <div v-for="(item, index) in extraItems" :class="[`flip-box item ${item.type}`]">
                 <div class="flip-box-inner">
                     <div class="flip-box-front">
                         <img :src="getImageUrl(item.frontImage)"
-                            :alt="item.title +  (${getTransliteratedTitle(item.title)})" :data-id="item.type" :data-index="item.id" />
+                            :alt="item.title + ` (${getTransliteratedTitle(item.title)})`" :data-id="item.type" :data-index="item.id" />
                     </div>
                     <div class="flip-box-back" v-if="item.backImage">
                         <img :src="getImageUrl(item.backImage)"
-                            :alt="item.title +  опис (${getTransliteratedTitle(item.title)} description)"
+                            :alt="item.title + ` опис (${getTransliteratedTitle(item.title)} description)`"
                             :data-id="item.type" />
                     </div>
                 </div>
