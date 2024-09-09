@@ -41,8 +41,7 @@ export default {
             const newsSection = document.querySelector('.news-section');
             const newsTitle = document.querySelector('.news-section__title');
             const sectionPosition = newsSection.getBoundingClientRect();
-            console.log(sectionPosition.top);
-            // When the top of the section is at 50px from the viewport top, add the class
+
             if (sectionPosition.top > 300) {  
                 newsTitle.classList.add('scrolled');
             } else {
