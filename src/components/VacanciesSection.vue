@@ -79,8 +79,8 @@ export default {
 .vacancies-section {
     display: flex;
     flex-direction: column;
-    padding-top: 0px;
 }
+
 .vacancies-title {
     text-align: center;
     margin-bottom: 3rem;

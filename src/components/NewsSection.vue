@@ -1,145 +1,235 @@
 <template>
-    <section class="articles section" id="articles">
-        <h1 class="art-title title">Новини і досягнення</h1>
-        <div class="container">
-            <!-- Large image and text section -->
-            <div class="featured-article" :style="{ backgroundImage: 'url(' + selectedArticle.image + ')' }">
-                <div class="featured-text">
-                    <h2 class="featured-title">{{ selectedArticle.title }}</h2>
-                    <p class="featured-description">{{ selectedArticle.text }}</p>
-                </div>
-
-                <!-- Articles links over the image -->
-                <ul class="articles-overlay">
-                    <li v-for="article in articleList" :key="article.href" class="article-item-overlay">
-                        <a href="#" @click.prevent="selectArticle(article)" class="nav-link-overlay">
-                            <img :src="article.image" class="article-item-img-overlay" alt="Article Image">
-                            <div class="article-text-wrapper-overlay">
-                                <h3 class="article-item-text-overlay">{{ article.title }}</h3>
-                                <p class="article-item-title-overlay">{{ article.text }}</p>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
+    <section class="news-section section">
+        <h2 class="news-section__title">Новини</h2>
+        <ul class="news-section__list">
+            <li
+                class="news-section__item"
+                v-for="(article, index) in articles"
+                :key="index"
+                @click="openModal(article)"
+            >
+                {{ article.title }}
+            </li>
+        </ul>
+        <div v-if="selectedArticle" class="news-section__modal-overlay" @click.self="closeModal">
+            <div class="news-section__modal-content">
+                <h2 class="news-section__modal-title">{{ selectedArticle.title }}</h2>
+                <div v-html="selectedArticle.content" class="news-section__modal-body"></div>
+                <button @click="closeModal" class="news-section__close-button">Закрити</button>
             </div>
         </div>
     </section>
 </template>
 
-
 <script>
+import { articles } from "../js/articles";
 export default {
-    name: 'NewsSection',
     data() {
         return {
-            // List of articles
-            articleList: [
-                { href: './index#article1', image: '../../assets/images/article1.jpg', text: 'Новина 1', title: 'Заголовок 1' },
-                { href: './index#article2', image: '../../assets/images/article2.jpg', text: 'Новина 2', title: 'Заголовок 2' },
-                { href: './index#article3', image: '../../assets/images/article3.jpg', text: 'Новина 3', title: 'Заголовок 3' },
-                // Add more articles as needed
-            ],
-            // Selected article
-            selectedArticle: {
-                image: '../../assets/images/article1.jpg', text: 'Новина 1', title: 'Заголовок 1'
-            }
+            articles,
+            selectedArticle: null,
         };
     },
     methods: {
-        selectArticle(article) {
+        openModal(article) {
             this.selectedArticle = article;
+        },
+        closeModal() {
+            this.selectedArticle = null;
+        },
+        handleScroll() {
+            const newsSection = document.querySelector('.news-section');
+            const newsTitle = document.querySelector('.news-section__title');
+            const sectionPosition = newsSection.getBoundingClientRect();
+            console.log(sectionPosition.top);
+            // When the top of the section is at 50px from the viewport top, add the class
+            if (sectionPosition.top > 300) {  
+                newsTitle.classList.add('scrolled');
+            } else {
+                newsTitle.classList.remove('scrolled');
+            }
         }
+    },
+    mounted() {
+        window.addEventListener('scroll', this.handleScroll);
+    },
+    beforeDestroy() {
+        window.removeEventListener('scroll', this.handleScroll);
     }
-}
+};
+
 </script>
 
-<style scoped>
-.articles {
-    text-align: center;
-}
-.container {
-    position: relative;
-}
-
-.featured-article {
-    margin-bottom: 2rem;
-    text-align: center;
-    height: 480px;
-    background-size: cover;
+<style>
+.news-section {
+    font-family: 'Roboto', sans-serif;
+    background-image: url('../assets/bg-images/news-2.jpg');
+    background-blend-mode: color;
     background-position: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 1rem;
-    color: white;
-    position: relative;
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
 }
 
-.featured-text {
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for text */
-    padding: 1rem;
+.news-section__title {
+    font-size: 2em;
+    color: #3d9970;
+    text-align: center;
+    text-shadow: 2px 2px 2px var(--white);
+    margin-bottom: 20px;
+}
+
+.news-section__title.scrolled {
+    text-shadow: 2px 2px 4px black;
+}
+
+.news-section__list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 700px;
+}
+
+.news-section__item {
+    padding: 15px 20px;
+    background-color: #ffffff;
     border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    cursor: pointer;
+    font-size: 1.2em;
+}
+
+.news-section__item:hover {
+    background-color: #e8f5e9;
+    transform: translateY(-5px);
+}
+
+.news-section__modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    margin-bottom: 1rem;
-}
-
-.featured-title {
-    font-size: 1.6rem;
-    margin-bottom: 0.5rem;
-}
-
-.featured-description {
-    font-size: 1.2rem;
-    color: #fff;
-}
-
-.articles-overlay {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 1rem;
-    position: absolute;
-    top: 1rem;
-    right: 0;
-    padding: 0 1rem;
-}
-
-.article-item-overlay {
-    width: 12rem;
-}
-
-.nav-link-overlay {
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
     display: flex;
     align-items: center;
-    text-align: center;
-    gap: 0.3rem;
-    padding: 0.5rem;
-    border-radius: 8px;
-    background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent */
+    justify-content: center;
+    z-index: 1000;
+}
+
+.news-section__modal-content {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    max-width: 800px;
+    width: 90%;
+    max-height: 95vh;
+    overflow-y: scroll;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    animation: slideIn 0.4s ease-out;
+    
+    display: flex;
+    flex-direction: column;
+    h2 {
+        line-height: 1.12;
+    }
+    p, li {
+        text-align: justify;
+    }
+    li {
+        position: relative;
+        color: var(--main-green);
+        padding-left: 20px;
+        margin-top: 8px;
+    }
+    
+    li::before {
+        content: "+";
+        position: absolute;
+        font-weight: 700;
+        left: 0; 
+    }
+    button {
+        align-self: end;
+    }
+    a {
+        color: var(--main-cyan);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.news-section__modal-title {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+}
+
+.news-section__modal-body {
+    font-size: 1.1em;
+    line-height: 1.6;
+    
+    display: inherit;
+    flex-direction: inherit;
+    gap: 12px;
+}
+
+.red {
+    color: red;
+}
+.news-section__close-button {
+    margin-top: 20px;
+    padding: 12px 25px;
+    background-color: #66bb6a;
+    border: none;
     color: white;
-    text-decoration: none;
-    transition: all 0.3s ease;
+    cursor: pointer;
+    border-radius: 6px;
+    font-size: 1em;
+    transition: background-color  var(--animation);
 }
 
-.nav-link-overlay:hover {
-    background-color: rgba(255, 255, 255, 0.5); /* More visible on hover */
-    transform: scale(1.05);
+.news-section__close-button:hover {
+    background-color: #4caf50;
 }
 
-.article-item-img-overlay {
-    width: 100%;
-    border-radius: 4px;
-    object-fit: cover;
+@media (max-width: 768px) {
+    .news-section__item {
+        font-size: 1em;
+        padding: 12px 16px;
+    }
+
+    .news-section__modal-content {
+        padding: 20px;
+    }
+
+    .news-section__close-button {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
 }
 
-.article-item-text-overlay {
-    font-size: 0.875rem;
-    font-weight: bold;
-    color: white;
-}
+@media (max-width: 480px) {
+    .news-section__item {
+        font-size: 0.9em;
+        padding: 10px 14px;
+    }
 
-.article-item-title-overlay {
-    font-size: 0.75rem;
-    color: white;
+    .news-section__close-button {
+        padding: 8px 16px;
+        font-size: 0.85em;
+    }
 }
 </style>

@@ -260,7 +260,4 @@ button:hover {
     background-color: #66bb6a;
 }
 
-.inj-maps.section {
-    padding-bottom: 0;
-}
 </style>
