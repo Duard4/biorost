@@ -1,5 +1,5 @@
 <template>
-    <h2 class="title ms-title">Наші менеджера</h2>
+    <h2 class="title ms-title">Наші менеджери</h2>
     <swiper :spaceBetween="20" :loop="true"
         :autoplay="{ delay: 3000, disableOnInteraction: false, pauseOnMouseEnter: true }" :breakpoints="{
             640: { slidesPerView: 1 },

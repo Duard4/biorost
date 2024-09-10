@@ -36,7 +36,7 @@ export const types = [
 
 export const managers = [
     {
-        name: 'Станіслав',
+        name: 'Станіслав Єрмаков',
         contact: 'biorost.zap@gmail.com +380676171488 +380959001876',
         image: '../assets/content-images/m1.jpg',
     },
@@ -46,7 +46,7 @@ export const managers = [
         image: '../assets/content-images/m2.jpg',
     },
     {
-        name: 'Галіна Вікторовна',
+        name: 'Галіна Гнилицька',
         contact: 'gala@biorost.ua +380965399073',
         image: '../assets/content-images/m3.jpg',
     },
