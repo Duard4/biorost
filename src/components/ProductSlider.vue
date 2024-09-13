@@ -25,7 +25,8 @@
                 <div class="flip-box-inner">
                     <div class="flip-box-front">
                         <img :src="getImageUrl(item.frontImage)"
-                            :alt="item.title + ` (${getTransliteratedTitle(item.title)})`" :data-id="item.type" :data-index="item.id" />
+                            :alt="item.title + ` (${getTransliteratedTitle(item.title)})`" :data-id="item.type"
+                            :data-index="item.id" />
                     </div>
                     <div class="flip-box-back" v-if="item.backImage">
                         <img :src="getImageUrl(item.backImage)"
@@ -69,28 +70,38 @@ export default {
     methods: {
         loadShow() {
             const items = this.$el.querySelectorAll('.item');
-            let stt = 0;
-            if (items[this.activeIndex]) {
-                items[this.activeIndex].style.transform = `none`;
-                items[this.activeIndex].style.zIndex = 1;
-                items[this.activeIndex].style.filter = 'none';
-                items[this.activeIndex].style.opacity = 1;
+
+            // Step 1: Batch all the DOM reads
+            const itemStyles = [];
+            const activeIndex = this.activeIndex;
+
+            for (let i = 0; i < items.length; i++) {
+                itemStyles.push({
+                    element: items[i],
+                    index: i,
+                    isActive: i === activeIndex
+                });
             }
-            for (let i = this.activeIndex + 1; i < items.length; i++) {
-                stt++;
-                items[i].style.transform = `translateX(${130 * stt}px) scale(${1 - 0.2 * stt}) perspective(16px) rotateY(-1deg)`;
-                items[i].style.zIndex = -stt;
-                items[i].style.filter = 'blur(5px)';
-                items[i].style.opacity = stt > 2 ? 0 : 0.6;
-            }
-            stt = 0;
-            for (let i = this.activeIndex - 1; i >= 0; i--) {
-                stt++;
-                items[i].style.transform = `translateX(${-130 * stt}px) scale(${1 - 0.2 * stt}) perspective(16px) rotateY(1deg)`;
-                items[i].style.zIndex = -stt;
-                items[i].style.filter = 'blur(5px)';
-                items[i].style.opacity = stt > 2 ? 0 : 0.6;
-            }
+
+            // Step 2: Use requestAnimationFrame for DOM writes
+            requestAnimationFrame(() => {
+                itemStyles.forEach(({ element, index, isActive }) => {
+                    const stt = Math.abs(activeIndex - index);
+
+                    if (isActive) {
+                        element.style.transform = `none`;
+                        element.style.zIndex = 1;
+                        element.style.filter = 'none';
+                        element.style.opacity = 1;
+                    } else {
+                        const direction = index > activeIndex ? 1 : -1;
+                        element.style.transform = `translateX(${130 * stt * direction}px) scale(${1 - 0.2 * stt}) perspective(16px) rotateY(${direction * -1}deg)`;
+                        element.style.zIndex = -stt;
+                        element.style.filter = 'blur(5px)';
+                        element.style.opacity = stt > 2 ? 0 : 0.6;
+                    }
+                });
+            });
         },
         nextSlide() {
             this.activeIndex =
@@ -125,7 +136,7 @@ export default {
             this.activeIndex = res;
             this.loadShow();
         },
-        openModal(imageSrc) {  // Method to open the modal with the image
+        openModal(imageSrc) {
             if (window.innerWidth <= 768) {
                 const productSection = document.getElementById('products');
                 productSection.scrollIntoView({ behavior: 'smooth' });
@@ -133,7 +144,7 @@ export default {
                 this.showModal = true;
             }
         },
-        closeModal() {  // Method to close the modal
+        closeModal() {
             this.showModal = false;
         }
 
