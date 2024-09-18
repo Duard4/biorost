@@ -34,7 +34,7 @@
 .ptl-item {
     font-size: 1.75rem;
     padding: 8px 16px;
-    
+    cursor: pointer;
 }
 .ptl-item.active {
     background-color: var(--slateOp);
