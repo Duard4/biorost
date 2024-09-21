@@ -123,13 +123,16 @@ export default {
     methods: {
         sendEmail() {
             if (this.validateForm()) {
-                const serviceID = 'service_0s5tufy';
-                const templateID = 'template_adyqat3';
-                const userID = 'Vd66fwOsrwsqYN0AR';
+                // const serviceID = 'service_0s5tufy';
+                const serviceID = 'service_u5ugyr7';
+                // const templateID = 'template_adyqat3';
+                const templateID = 'template_bangnib';
+                // const userID = 'Vd66fwOsrwsqYN0AR';
+                const userID = '6xpXf2EoTZal99FW_';
 
                 const templateParams = {
                     name: this.form.name,
-                    farm: this.form.farm,
+                    farm: this.form.farm ? this.form.farm : '"Не вказано"',
                     phone: this.form.phone,
                     email: this.form.email,
                     subject: `${this.form.subject} - ${this.form.subcategory}`,
@@ -163,7 +166,7 @@ export default {
         validateForm() {
             this.errors = {};
 
-            const nameRegex = /^[А-ЯA-Z][а-яa-z]+$/;
+            const nameRegex = /^([А-ЯЁЇA-Z][а-яёїa-z'-]+\s?)+$/;
             const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
             const phoneRegex = /^\+380\d{9}$/;
 
