@@ -31,16 +31,11 @@ address {
     margin: 20px 0;
 }
 
-.footer-links ul li a {
+.footer-link-item{
     color: #fff;
     text-decoration: none;
-    transition: color 0.3s;
 }
 
-.footer-links ul li a:hover {
-    color: #c5e1a5;
-    /* Светло-зеленый цвет при наведении */
-}
 
 .footer-bottom {
     text-align: center;

@@ -9,10 +9,14 @@
                     <h3>Контакти</h3>
                     <ul class="footer-address-list">
                         <li class="footer-address-item"><strong>Адреса:</strong> вул. Сталеварів 17, Запоріжжя</li>
-                        <li class="footer-address-item"><strong>Телефон:</strong> +380687579303</li>
+                        <li class="footer-address-item"><strong>Телефон:</strong> <a href="tel:+380687579303" class="hover">+380687579303</a></li>
                         <li class="footer-address-item">
                             <strong>Email:</strong>
-                            <a href="mailto:biorost.org.zp.ua@gmail.com"> biorost.org.zp.ua@gmail.com</a>
+                            <a class="hover" href="mailto:biorost.org.zp.ua@gmail.com"> biorost.org.zp.ua@gmail.com</a>
+                        </li>
+                        <li class="footer-address-item">
+                            <strong>Instagram: </strong>
+                            <a class="hover" href="https://www.instagram.com/biorost_zp/" target="_blank">biorost_zp</a>
                         </li>
                     </ul>
                 </address>
@@ -20,12 +24,13 @@
             <div class="footer-links">
                 <h3>Корисні посилання</h3>
                 <ul class="footer-link-list">
-                    <li class="footer-link-item"><a href="#about-us">Про нас</a></li>
-                    <li class="footer-link-item"><a href="#products">Продукція</a></li>
-                    <li class="footer-link-item"><a href="#inj-maps">Карти внесення</a></li>
-                    <li class="footer-link-item"><a href="#articles">Статті</a></li>
-                    <li class="footer-link-item"><a href="#vacancies">Вакансії</a></li>
-                    <li class="footer-link-item"><a href="#contact-us">Контакти</a></li>
+                    <li class="footer-link-item hover"><a href="#about-us">Про нас</a></li>
+                    <li class="footer-link-item hover"><a href="#products">Продукція</a></li>
+                    <li class="footer-link-item hover"><a href="#inj-maps">Карти внесення</a></li>
+                    <li class="footer-link-item hover"><a href="#articles">Статті</a></li>
+                    <li class="footer-link-item hover"><a href="#vacancies">Вакансії</a></li>
+                    <li class="footer-link-item hover"><a href="#contact-us">Контакти</a></li>
+                    <!-- <li class="footer-link-item"></li> -->
                 </ul>
             </div>
         </div>

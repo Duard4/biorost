@@ -57,7 +57,12 @@
     padding-top: 100px;
     padding-bottom: 100px;
 }
-
+.hover {
+    transition: color var(--animation);
+}
+.hover:hover {
+    color: var(--yellow);
+}
 /* Prevents scrolling when modal is open */
 .fixed {
     position: fixed;

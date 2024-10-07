@@ -13,12 +13,16 @@
                         <li class="address-point-item">
                             <h3 class="adress-point">Телефон</h3>
                             <p class="adress-point-info">
-                                Головний технолог та вiддiл продажу Денис Георгiйович +380687579303
+                                Головний технолог та вiддiл продажу Денис Георгiйович <a href="tel:+380687579303" class="hover">+380687579303</a>
                             </p>
                         </li>
                         <li class="address-point-item">
                             <h3 class="adress-point">E-mail</h3>
-                            <p class="adress-point-info">biorost.org.zp.ua@gmail.com</p>
+                            <a class="adress-point-info hover" href="mailto:biorost.org.zp.ua@gmail.com">biorost.org.zp.ua@gmail.com</a>
+                        </li>
+                        <li class="address-point-item">
+                            <h3 class="adress-point">Instagram</h3>
+                            <a class="adress-point-info hover" href="https://www.instagram.com/biorost_zp/" target="_blank">biorost_zp</a>
                         </li>
                     </ul>
                 </address>
