@@ -86,7 +86,7 @@
 </template>
 
 <script>
-import { eventBus } from '../js/eventBus.js';
+import { eventBus } from '../../js/eventBus.js';
 import emailjs from 'emailjs-com';
 import TeamSection from './TeamSection.vue';
 

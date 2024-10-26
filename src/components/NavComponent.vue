@@ -139,7 +139,7 @@ export default {
                 { text: 'Про нас', href: './index#about-us' },
                 { text: 'Продукція', href: './index#products' },
                 { text: 'Карти внесення', href: './index#inj-maps' },
-                { text: 'Статті', href: './index#articles' },
+                { text: 'Новини', href: './index#news' },
                 { text: 'Вакансії', href: './index#vacancies' },
                 { text: 'Контакти', href: './index#contact-us' },
             ],

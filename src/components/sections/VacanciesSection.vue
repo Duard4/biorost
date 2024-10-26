@@ -1,6 +1,7 @@
 <template>
     <section class="vacancies-section section" id="vacancies">
-        <h2 class="vacancies-title title">Запрошуємо до співпраці</h2>
+        <h2 class="vacancies-title title">Вакансії — робота в сфері органічного землеробства</h2>
+        <h3 class="vacancies-title">Долучайтеся до нашої команди в Запоріжжі! Вакансії для аграріїв, менеджерів, фахівців з продажу.</h3>
         <div class="vacancies-container container">
             <!-- Accordion for job titles -->
             <div class="accordion">
@@ -32,7 +33,7 @@
 </template>
 
 <script>
-import { eventBus } from '../js/eventBus';
+import { eventBus } from '../../js/eventBus';
 
 export default {
     data() {

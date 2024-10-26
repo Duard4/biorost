@@ -21,7 +21,7 @@ import { Swiper, SwiperSlide } from 'swiper/vue';
 import SwiperCore from 'swiper/core';
 import { Autoplay } from 'swiper/modules';
 import 'swiper/swiper-bundle.css';
-import { managers } from '../js/data';
+import { managers } from '../../js/data';
 
 // Register the autoplay module
 SwiperCore.use([Autoplay]);

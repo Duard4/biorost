@@ -1,5 +1,5 @@
 <template>
-    <section class="news-section section">
+    <section class="news-section section" id="news">
         <h2 class="news-section__title">Новини</h2>
         <ul class="news-section__list">
             <li
@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import { articles } from "../js/articles";
+import { articles } from "../../js/articles";
 export default {
     data() {
         return {
@@ -62,7 +62,7 @@ export default {
 <style>
 .news-section {
     font-family: 'Roboto', sans-serif;
-    background-image: url('../assets/bg-images/news-2.jpg');
+    background-image: url('../../assets/bg-images/news-2.jpg');
     background-blend-mode: color;
     background-position: center;
     background-size: cover;

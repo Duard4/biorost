@@ -18,8 +18,10 @@
     text-shadow: 1px 1px 6px var(--slate);
 }
 .products-title {
-    font-size: 2.5rem;
+    font-size: max(2.5rem, 0.1vw);
     text-align: center;
+}
+.after-title {
     margin-bottom: 0.5rem;
 }
 .products-text {
@@ -174,9 +176,10 @@
     .product-types-list {
         gap: 24px;
     }
-    .products-title {
+    .after-title {
         margin-bottom: 2rem;
     }
+    
     .slider-item {
         min-width: calc((100%) / 3 - 60px);
         max-width: 324px;

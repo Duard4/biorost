@@ -1,7 +1,7 @@
 <template>
     <section class="section container inj-maps" id="inj-maps">
-        <h2 class="inj-maps-title title">Карти внесення</h2>
-
+        <h2 class="inj-maps-title title">Карти внесення добрив для ефективного вирощування культур</h2>
+        <h3>Рекомендації з внесення добрив ТМ «Біорост» для пшениці, ріпаку та інших культур</h3>
         <div class="button-container">
             <button @click="setTable('wheat')">Озима пшениця</button>
             <button @click="setTable('canola')">Озимий ріпак</button>
@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import InjTableComponent from './InjTableComponent.vue';
+import InjTableComponent from '../InjTableComponent.vue';
 export default {
     components: {
         InjTableComponent,

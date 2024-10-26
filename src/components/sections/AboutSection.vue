@@ -1,7 +1,8 @@
 <template>
     <section class="section about container" id="about-us">
         <div class="text-wrapper">
-            <h2 class="about-title title searchable">Про нас</h2>
+            <h2 class="about-title title searchable">ТМ «Біорост» — Органічні добрива та біопрепарати для аграріїв України</h2>
+            <h3>Надійний виробник органічних добрив з 11-річним досвідом для дачників, ягідників, фермерів</h3>
             <p class="about-text text searchable">
                 Компанія ТОВ «Органіка України» ТМ «Біорост» спеціалізується на виробництві органічних та
                 органо-мінеральних добрив, а також мікробних препаратів для сільгоспвиробників та приватних господарств.
@@ -16,7 +17,7 @@
 
         <div class="bg-img-wrapper">
             <p class="about-age-label"><span class="large">11</span><br /> років<br /> досвіду</p>
-            <img src="../assets/bg-images/about.jpg" alt="sprouts" class="about-bg-img" />
+            <img src="../../assets/bg-images/about.jpg" alt="sprouts" class="about-bg-img" />
         </div>
 
         <p>
@@ -38,7 +39,7 @@
 </template>
 
 <script>
-import CertificateModal from './CertificateModal.vue';
+import CertificateModal from '../CertificateModal.vue';
 
 export default {
     name: 'AboutSection',
@@ -147,6 +148,4 @@ export default {
 };
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
