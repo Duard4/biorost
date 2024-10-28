@@ -18,7 +18,7 @@
                         </li>
                         <li class="address-point-item">
                             <h3 class="adress-point">E-mail</h3>
-                            <a class="adress-point-info hover" href="mailto:biorost.org.zp.ua@gmail.com">biorost.org.zp.ua@gmail.com</a>
+                            <a class="adress-point-info hover" href="mailto:Biorost.zap@gmail.com">Biorost.zap@gmail.com</a>
                         </li>
                         <li class="address-point-item">
                             <h3 class="adress-point">Instagram</h3>

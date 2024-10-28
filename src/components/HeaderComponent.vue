@@ -12,7 +12,7 @@
             <img  src="../assets/content-images/logo.png" alt="logo Biorost" width="240px">
         </a>
         <address class="address">
-            <a class="address-link" href="mailto:biorost.org.zp.ua@gmail.com">biorost.org.zp.ua@gmail.com</a>
+            <a class="address-link" href="mailto:Biorost.zap@gmail.com">Biorost.zap@gmail.com</a>
             <a class="address-link" href="tel:+380687579303">+380687579303</a>
         </address>
     </header>

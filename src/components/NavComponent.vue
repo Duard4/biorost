@@ -15,7 +15,7 @@
                 <address class="box-address">
                     <a class="address-link" href="http://">
                         вул. Сталеварів 17, Запоріжжя</a>
-                    <a class="address-link" href="mailto:biorost.org.zp.ua@gmail.com">biorost.org.zp.ua@gmail.com</a>
+                    <a class="address-link" href="mailto:Biorost.zap@gmail.com">Biorost.zap@gmail.com</a>
                     <a class="address-link" href="tel:+380687579303">тел. +380687579303</a>
                 </address>
             </div>
