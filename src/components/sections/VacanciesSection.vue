@@ -1,5 +1,5 @@
 <template>
-    <section class="vacancies-section section" id="vacancies">
+    <section class="vacancies-section section container" id="vacancies">
         <h2 class="vacancies-title title">Вакансії — робота в сфері органічного землеробства</h2>
         <h3 class="vacancies-title">Долучайтеся до нашої команди в Запоріжжі! Вакансії для аграріїв, менеджерів, фахівців з продажу.</h3>
         <div class="vacancies-container container">

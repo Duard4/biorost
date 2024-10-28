@@ -7,7 +7,7 @@
     justify-content: space-between;
 }
 .header-logo {
-    max-width: 168px;
+    max-width: 268px;
     padding: 18px 0;
     margin: auto;
 }
@@ -16,14 +16,26 @@
     display: none;
     flex-direction: column;
 }
+.box-address {
+    display: flex;
+    flex-direction: column;
+    margin-left: 1rem;
+    /* padding: 8px 12px; */
+    margin-top: auto;
+    font-weight: 600;
+    gap: 12px;
+    text-transform: capitalize;
+    color: var(--slate);
 
-@media (min-width: 768px) {
+}
+@media (min-width: 850px) {
     .header {
         height: auto;
     }
     .address,
     .address-link {
         display: flex;
+        font-size: 1.2rem;
         align-items: center;
     }
 }

@@ -12,6 +12,12 @@
                         <a :href="link.href" class="nav-link">{{ link.text }}</a>
                     </li>
                 </ul>
+                <address class="box-address">
+                    <a class="address-link" href="http://">
+                        вул. Сталеварів 17, Запоріжжя</a>
+                    <a class="address-link" href="mailto:biorost.org.zp.ua@gmail.com">biorost.org.zp.ua@gmail.com</a>
+                    <a class="address-link" href="tel:+380687579303">тел. +380687579303</a>
+                </address>
             </div>
         </div>
         <div class="ordinary-menu">
@@ -42,7 +48,7 @@ export default {
 
         this.scrollHandler = () => {
             let scroll = window.scrollY;
-            if (scroll/1.25 > this.headerHeight) {
+            if (scroll / 1.05 > this.headerHeight) {
                 this.header.classList.add('fixed-nav');
             } else {
                 this.header.classList.remove('fixed-nav');
@@ -108,14 +114,13 @@ export default {
             if (typeId) {
                 setType.value = typeId;
 
-                // Обновляем выбранный тип
+                // Оновлюємо обраний тип
                 document.querySelector(`[data-id="${typeId}"]`).click();
             }
 
             if (itemId) {
                 scrollTo.value = itemId;
 
-                // Находим индекс элемента и переходим к нему
                 const itemIndex = Array.from(document.querySelectorAll('.slider-item')).findIndex(item => item.dataset.id == itemId);
                 if (itemIndex !== -1) {
                     const currentPage = Math.floor(itemIndex / slidesToShow.value);
@@ -125,8 +130,8 @@ export default {
 
             element.scrollIntoView({ behavior: 'smooth' });
 
-            // Добавляем оффсет
-            const yOffset = -100; // Настройте значение при необходимости
+            // Додаємо оффсет
+            const yOffset = -100; 
             const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
             window.scrollTo({ top: y, behavior: 'smooth' });
         };
