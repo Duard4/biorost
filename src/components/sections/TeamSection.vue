@@ -23,7 +23,6 @@ import { Autoplay } from 'swiper/modules';
 import 'swiper/swiper-bundle.css';
 import { managers } from '../../js/data';
 
-// Register the autoplay module
 SwiperCore.use([Autoplay]);
 
 export default {
@@ -64,19 +63,16 @@ export default {
     background-color: #ffffff;
     border-radius: 15px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.08);
-    /* Добавляет объём */
     overflow: hidden;
     height: 100%;
     flex-direction: column;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    /* Плавные переходы для эффекта при наведении */
     margin: 0 auto;
 }
 
 .m-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15), 0 4px 8px rgba(0, 0, 0, 0.1);
-    /* Эффект при наведении */
 }
 
 .m-card:hover .m-text-wrapper {
@@ -93,16 +89,13 @@ export default {
 .m-img {
     max-height: 100%;
     object-fit: cover;
-    /* Сохраняет пропорции изображения, заполняя контейнер */
 }
 
 .m-text-wrapper {
     padding: 16px;
     background-color: #f9fdfb;
     width: 100%;
-    /* Светлый фон с легким оттенком зелёного */
     text-align: top;
-    /* Центрирование текста */
     transition: transform var(--animation);
     flex: 1;
 }
@@ -131,6 +124,7 @@ export default {
     .ms-title {
         margin-top: 50px;
     }
+
     .m-img {
         max-width: 200px;
     }

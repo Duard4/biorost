@@ -35,7 +35,3 @@ export default {
   }
 }
 </script>
-
-<style>
-/* ваши общие стили */
-</style>

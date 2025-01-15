@@ -43,11 +43,8 @@ export default {
         scrollToElement(result) {
             const element = document.getElementById('products');
             element.scrollIntoView({ 'behaviour': 'smooth' });
-            // console.log(result.index);
-            // console.log(result.item);
             eventBus.emit('openType', result.item);
             nextTick(() => {
-                // console.log(result.item);
                 eventBus.emit('scrollToSlide', result.item.dataset.index);
 
             });

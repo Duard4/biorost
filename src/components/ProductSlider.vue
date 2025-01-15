@@ -63,15 +63,14 @@ export default {
     data() {
         return {
             activeIndex: 0,
-            showModal: false,  // Add state to control modal visibility
-            modalImageSrc: ''  // Add state to store the image source for the modal
+            showModal: false,
+            modalImageSrc: ''
         };
     },
     methods: {
         loadShow() {
             const items = this.$el.querySelectorAll('.item');
 
-            // Step 1: Batch all the DOM reads
             const itemStyles = [];
             const activeIndex = this.activeIndex;
 
@@ -83,7 +82,6 @@ export default {
                 });
             }
 
-            // Step 2: Use requestAnimationFrame for DOM writes
             requestAnimationFrame(() => {
                 itemStyles.forEach(({ element, index, isActive }) => {
                     const stt = Math.abs(activeIndex - index);
@@ -120,14 +118,11 @@ export default {
             return transliterate(title);
         },
         scrollToSlide(id) {
-            // console.log(id)
             const products = document.querySelectorAll(".prod-img-item");
-            // console.log(products);
 
             let res = 0;
             for (let i = 0; i < products.length; i++) {
                 const product = products[i];
-                // console.log(product.dataset.index);
                 if (product.dataset.index == id) {
                     res = i;
                     break;
@@ -160,7 +155,6 @@ export default {
     mounted() {
         this.loadShow();
 
-        // Integrate Hammer.js for swipe gestures
         const slider = this.$el.querySelector('.slider');
         this.hammer = new Hammer(slider);
 
@@ -171,7 +165,6 @@ export default {
         window.addEventListener('resize', this.handleResize);
     },
     beforeUnmount() {
-        // Clean up Hammer.js events
         if (this.hammer) {
             this.hammer.off('swipeleft', this.nextSlide);
             this.hammer.off('swiperight', this.prevSlide);

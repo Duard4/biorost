@@ -30,9 +30,9 @@ export default {
     setup(props, { emit }) {
         const isActiveType = (id) => props.selectedType === id;
         const filterItems = (event) => {
-            let typeId = event.target?.value ||  event.dataset?.id || event.target.dataset.id;
+            let typeId = event.target?.value || event.dataset?.id || event.target.dataset.id;
             console.log(typeId);
-            
+
             if (typeId != null) {
                 const fI = items.filter(item => item.type.includes(typeId));
                 const extra = items.filter(item => !item.type.includes(typeId));
@@ -40,10 +40,9 @@ export default {
                 emit('update:selectedType', typeId);
             }
         };
-        // Make filterItems accessible in onMounted
         onMounted(() => {
             eventBus.on('openType', (typeId) => {
-                filterItems( typeId);
+                filterItems(typeId);
             });
         });
 
@@ -86,7 +85,6 @@ export default {
     font-size: 12px;
 }
 
-/* Стили для настольных устройств */
 @media (min-width: 768px) {
     .desktop {
         display: flex;

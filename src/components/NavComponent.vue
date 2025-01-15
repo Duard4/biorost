@@ -114,7 +114,6 @@ export default {
             if (typeId) {
                 setType.value = typeId;
 
-                // Оновлюємо обраний тип
                 document.querySelector(`[data-id="${typeId}"]`).click();
             }
 
@@ -130,8 +129,7 @@ export default {
 
             element.scrollIntoView({ behavior: 'smooth' });
 
-            // Додаємо оффсет
-            const yOffset = -100; 
+            const yOffset = -100;
             const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
             window.scrollTo({ top: y, behavior: 'smooth' });
         };
