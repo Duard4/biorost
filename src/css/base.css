@@ -2,7 +2,7 @@
     font-family: "Open Sans";
     font-size: 16px;
 
-    color: #242424;
+    color: #2d333a;
     background-color: rgba(255, 255, 255, 0.87);
 
     font-synthesis: none;
@@ -16,15 +16,23 @@
     --white: #f8f9fc;
     --grey: #c2c9d6;
     --slate: #2d333a;
+    --slateOp: rgba(28, 33, 37, 0.6);
     --black: #0f1c0f;
     --green: #00af36;
     --apple: #daf2d8;
+    --yellow: rgba(245, 192, 63, 1);
     --grackle-blue: #d8ecfb;
     --light-green: #f6fffe;
     --light-apple: #f2fff4;
     --cyber-blue: #62ffe3;
+
+
     --animation: 250ms cubic-bezier(0.4, 0, 0.2, 1);
     --lil-space: 0.02em;
+
+    --gradient-c1: #137e39;
+    --gradient-c2: #08415b;
+
 }
 .section {
     padding: 150px 0;

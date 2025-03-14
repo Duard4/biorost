@@ -4,35 +4,51 @@
     <HeroSection />
     <AboutSection />
     <ProductsSection />
-    <MapsSection />
+    <InjMapsSection />
     <NewsSection />
+    <VacanciesSection />
     <ContactSection />
   </Layout>
 </template>
 
 <script>
-import Layout from './components/Layout.vue';
-import HeroSection from './components/sections/HeroSection.vue';
-import AboutSection from './components/sections/AboutSection.vue';
-import ProductsSection from './components/sections/ProductsSection.vue';
-import MapsSection from './components/sections/MapsSection.vue';
-import NewsSection from './components/sections/NewsSection.vue';
-import ContactSection from './components/sections/ContactSection.vue';
+import Layout from "./components/Layout.vue";
+
+import { defineAsyncComponent } from "vue";
+
+const HeroSection = defineAsyncComponent(() =>
+  import("./sections/HeroSection.vue")
+);
+const AboutSection = defineAsyncComponent(() =>
+  import("./sections/AboutSection.vue")
+);
+const ProductsSection = defineAsyncComponent(() =>
+  import("./sections/ProductsSection.vue")
+);
+const InjMapsSection = defineAsyncComponent(() =>
+  import("./sections/InjMapsSection.vue")
+);
+const NewsSection = defineAsyncComponent(() =>
+  import("./sections/NewsSection.vue")
+);
+const VacanciesSection = defineAsyncComponent(() =>
+  import("./sections/VacanciesSection.vue")
+);
+const ContactSection = defineAsyncComponent(() =>
+  import("./sections/ContactSection.vue")
+);
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     Layout,
     HeroSection,
     AboutSection,
     ProductsSection,
-    MapsSection,
+    InjMapsSection,
     NewsSection,
-    ContactSection
-  }
-}
+    VacanciesSection,
+    ContactSection,
+  },
+};
 </script>
-
-<style>
-/* ваши общие стили */
-</style>

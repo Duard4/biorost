@@ -1,26 +1,26 @@
-<!-- src/components/CertificateModal.vue -->
 <template>
     <div v-if="showModal" class="modal-overlay" @click.self="closeModal">
-        <div class="modal-content">
-            <button class="modal-close" @click="closeModal">&times;</button>
-            <div class="slider">
-                <div class="slider-content">
-                    <img :src="currentImage" class="large-image" alt="certificate">
-                    <button class="slider-button prev" @click="prevSlide">&#10094;</button>
-                    <button class="slider-button next" @click="nextSlide">&#10095;</button>
-                </div>
+        <div class="modal-container">
+            <!-- Thumbnails on the left side -->
+            <div class="thumbnail-container">
                 <div class="thumbnail-wrapper">
                     <img v-for="(image, index) in images" :key="index" :src="image" class="thumbnail"
-                        :class="{ active: index === currentIndex }" @click="setCurrentSlide(index)" />
+                        :class="{ active: index === currentIndex }" @click="setCurrentSlide(index)" alt="Thumbnail" />
                 </div>
             </div>
+
+            <!-- Main document/image viewer -->
+            <div class="document-viewer">
+                <img :src="currentImage" class="large-image" alt="Certificate" />
+            </div>
         </div>
+        <button class="modal-close" @click="closeModal">&times;</button>
     </div>
 </template>
 
 <script>
 export default {
-    name: 'CertificateModal',
+    name: "CertificateModal",
     props: {
         showModal: {
             type: Boolean,
@@ -43,21 +43,7 @@ export default {
     },
     methods: {
         closeModal() {
-            this.$emit('close');
-        },
-        prevSlide() {
-            if (this.currentIndex > 0) {
-                this.currentIndex--;
-            } else {
-                this.currentIndex = this.images.length - 1;
-            }
-        },
-        nextSlide() {
-            if (this.currentIndex < this.images.length - 1) {
-                this.currentIndex++;
-            } else {
-                this.currentIndex = 0;
-            }
+            this.$emit("close");
         },
         setCurrentSlide(index) {
             this.currentIndex = index;
@@ -72,7 +58,6 @@ export default {
     z-index: 998;
     top: 0;
     left: 0;
-    
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.7);
@@ -81,95 +66,90 @@ export default {
     align-items: center;
 }
 
-.modal-content {
-    background: #fff;
-    padding: 40px 20px 20px;
-    z-index: 999;
-    position: relative;
-    background: rgb(239, 239, 239);
-
+.modal-container {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-evenly;
+    background: #f9f9f9;
     border-radius: 10px;
-    margin: auto;
     overflow: hidden;
+    width: 90vw;
+    height: 80vh;
+    max-width: 1200px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.thumbnail-container {
+    background-color: #ececec;
+    padding: 10px;
+}
+
+.thumbnail-wrapper {
+    height: 100%;
+    display: flex;
+    height: 8rem;
+    gap: 10px;
+}
+
+.thumbnail {
+    width: auto;
+    height: auto;
+    cursor: pointer;
+    border-radius: 4px;
+    object-fit: cover;
+    opacity: 0.6;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.thumbnail.active,
+.thumbnail:hover {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+.document-viewer {
+    width: 100%;
+    padding: 10px;
+    overflow-y: auto;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+}
+
+@media (min-width: 768px) {
+    .document-viewer {
+        padding: 20px;
+    }
+
+    .thumbnail-wrapper {
+        height: unset;
+        flex-direction: column
+    }
+
+    .modal-container {
+        flex-direction: row;
+    }
+
+    .thumbnail-container {
+        width: 20%;
+        height: unset;
+    }
+}
+
+.large-image {
+    max-width: 100%;
+    object-fit: contain;
 }
 
 .modal-close {
     position: absolute;
-    top: 4px;
-    right: 4px;
-    border-radius: 4px;
-    background: rgba(0, 0, 0, 0.15);
+    top: 20px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    font-size: 24px;
     color: white;
-    border: none;
-
-    width: 2.3rem;
-    height: 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 30px;
     cursor: pointer;
-}
-
-.slider {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.slider-content {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-}
-
-.large-image {
-    width: 100%;
-    max-height: 460px;
-    object-fit: contain;
-}
-
-.slider-button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.15);
-    color: #fff;
-    border: none;
-    font-size: 30px;
-    cursor: pointer;
-    padding: 10px;
-    height: 100%;
-}
-.slider-button:hover, .slider-button:focus  {
-    background: rgba(0, 0, 0, 0.25);
-}
-.slider-button.prev {
-    left: -85px;
-}
-
-.slider-button.next {
-    right: -85px;
-}
-
-.thumbnail-wrapper {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-.thumbnail {
-    width: 100px;
-    height: 60px;
-    object-fit: cover;
-    margin: 0 5px;
-    cursor: pointer;
-    opacity: 0.5;
-}
-
-.thumbnail.active {
-    opacity: 1;
 }
 </style>

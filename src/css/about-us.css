@@ -1,26 +1,20 @@
-.about { display: flex;
-    align-items: center;
+.about {
+    display: flex;
     flex-wrap: wrap;
+    align-items: center;
     justify-content: space-between;
 }
 .text-wrapper {
     max-width: 572px;
 }
-.about.section {
-    padding: 80px 0;
-}
-.about-title {
-}
-.title {
-}
-.abuot-text {
-}
-.text {
-}
 .bg-img-wrapper {
+    display: none;
     position: relative;
+    margin: 0 auto;
+}
+.improvements {
     display: flex;
-    align-items: baseline;
+    flex-wrap: wrap;
 }
 .about-age-label {
     display: inline-block;
@@ -30,18 +24,108 @@
     border-radius: 10px;
     background-color: rgba(85, 57, 4, 1);
     color: var(--white);
-    font-size: 28px;
+    font-size: 1.75rem;
     transform: translate(50%, -25%);
 }
 .large {
-    font-size: 80px;
+    font-size: 5rem;
 }
 .about-bg-img {
-    border-top-left-radius: 100px;
     max-height: 600px;
+    border-top-left-radius: 100px;
 }
 .certificates-btn {
     margin-top: 24px;
-    font-size: 18px;
+    font-size: 1.125rem;
     min-width: 200px;
+}
+@media (min-width: 768px) {
+
+}
+@media (min-width: 1280px) {
+    .bg-img-wrapper {
+        display: flex;
+        align-items: baseline;
+        margin: unset;
+    }
+}
+
+/* ACCORDION */
+.accordion {
+    margin: 25px 0;
+    width: 100%;
+}
+
+.accordion li {
+    border-bottom: 1px solid #dddddd;
+    cursor: pointer;
+}
+
+.accordion-title {
+    background-color: var(--gradient-c1); /* More vibrant green */
+    color: var(--white);
+    padding: 12px 15px;
+    font-size: 1rem;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color var(--animation);
+}
+
+.accordion-title:hover {
+    background-color: var(--gradient-c2); /* Darker green on hover */
+}
+
+.accordion-content {
+    padding: 12px 15px;
+    background-color: var(--white); /* Light green background */
+    display: none;
+}
+
+.active .accordion-content {
+    display: block;
+}
+
+.marked-list {
+    padding-left: 18px;
+}
+
+.marked-list li {
+    position: relative;
+    margin-bottom: 8px;
+    padding-left: 20px;
+    font-weight: bold;
+    color: #388e3c; /* Vibrant green text */
+}
+
+.marked-list li::before {
+    content: '✓'; /* Custom mark */
+    position: absolute;
+    left: 0;
+    color: #000000; /* Darker green mark */
+    font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+    .accordion-title,
+    .accordion-content {
+        padding: 10px 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .accordion-title {
+        font-size: 0.875rem;
+        padding: 8px 10px;
+    }
+
+    .accordion-content {
+        padding: 8px 10px;
+    }
+
+    .marked-list {
+        padding-left: 18px;
+    }
 }

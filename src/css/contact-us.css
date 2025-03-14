@@ -1,8 +1,18 @@
 /* contact-us section styles */
 .contact-us {
-    background: linear-gradient(114.3deg, rgb(19, 126, 57) 0.2%, rgb(8, 65, 91) 68.5%);
+    background: linear-gradient(
+        114.3deg,
+        rgb(19, 126, 57) 0.2%,
+        rgb(8, 65, 91) 68.5%
+    );
     background-size: cover;
     color: var(--white);
+
+    .container {
+        display: flex;
+        flex-direction: column;
+    }
+    text-align: center;
 }
 
 .contact-us .title {
@@ -21,29 +31,30 @@
 
 .form-wrapper {
     background-color: var(--white);
+    width: 100vw;
     max-width: 600px;
     color: var(--black);
-    border-radius: 12px;
     padding: 24px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 2rem;
 }
 
 .form {
+    text-align: start;
     margin-top: 24px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-direction: column;
     column-gap: 12px;
     row-gap: 10px;
 }
 
-.form input, .form select, .form textarea {
+.form input,
+.form textarea {
     margin-top: 8px;
     padding: 8px;
     border-radius: 4px;
     border: 1px solid var(--slate);
-    display: inline-block;
     width: 100%;
-    box-sizing: border-box;
 }
 
 .form .textarea {
@@ -59,9 +70,24 @@
     flex-wrap: wrap;
     align-items: flex-end;
     gap: 12px;
-    select {
-        width: 270px;
+    label {
+        width: 100%;
     }
+}
+.custom-select {
+    appearance: none;
+    position: relative;
+    margin-top: 10px;
+    padding: 8px;
+    border-radius: 4px;
+    width: 100%;
+    border: 1px solid var(--slate);
+    &:focus-within {
+        color: rgba(245, 192, 63, 1);
+    }
+}
+option {
+    color: var(--slate);
 }
 
 .form textarea {
@@ -84,9 +110,9 @@
     color: rgba(245, 192, 63, 1);
 }
 
-.submit-btn {    
+.submit-btn {
     border: 1px solid var(--slate);
-    padding: 12px 24px;
+    padding: 8px 16px;
     max-width: 160px;
     margin: auto;
     display: flex;
@@ -101,11 +127,11 @@
     transition: border-color 0.3s, color 0.3s;
 }
 
-.submit-btn:hover, 
+.submit-btn:hover,
 .submit-btn:focus {
     border-color: rgba(245, 192, 63, 1);
     color: rgba(245, 192, 63, 1);
-} 
+}
 
 .google-map {
     margin-top: 24px;
@@ -115,7 +141,7 @@
 
 .contact-adress-list {
     display: grid;
-    gap: 24px;
+    gap: 12px;
 }
 
 .contact-pre-text {
@@ -128,4 +154,42 @@
 
 .map {
     width: 100%;
+}
+@media (min-width: 548px) {
+    .form-wrapper {
+        width: 100%;
+        border-radius: 12px;
+    }
+}
+@media (min-width: 768px) {
+    .contact-adress-list {
+        display: grid;
+        gap: 24px;
+    }
+    
+    .contact-info {
+        margin-right: 12px;
+    }
+    .form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    .form-wrapper {
+        border-radius: 12px;
+    }
+    .contact-us .container {
+        flex-direction: row;
+    }
+    .contact-us {
+        text-align: unset;
+    }
+    .dropdown-wrapper label {
+        width: calc((100% - 12px) / 2);
+    }
+}
+@media  (min-width: 1280px) {
+    
+    .submit-btn {
+        padding: 12px 24px;
+    }
 }

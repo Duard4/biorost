@@ -1,26 +1,7 @@
 
-.art-title {
-    text-align: center;
-}
-.art-bg-img {
-    border-top-right-radius: 40px;
-    border-bottom-right-radius: 40px;
-}
-.articles .container {
-    margin-top: 48px;
-    display: flex;
-    gap: 40px;
-}
-.article-item {background: linear-gradient(to right, rgb(182, 244, 146), rgb(51, 139, 147));
-    padding: 8px 12px;
-}
-.articles-list {
-    display: flex;
-    /* justify-content: center; */
-    gap: 24px;
-    flex-direction: column;
-}
-.points:hover {
-    -webkit-line-clamp: unset;
-    /* color: aqua; */
+
+@media (min-width: 768px) {
+    .articles .container {
+        flex-direction: row;
+    }
 }

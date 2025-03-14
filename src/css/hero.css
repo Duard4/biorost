@@ -1,37 +1,62 @@
 .hero {
-    background: linear-gradient(114.3deg, rgb(19, 126, 57, 0.2) 0.2%, rgb(8, 65, 91, 0.2) 68.5%), url(../assets/bg-images/hero.jpg);
-    background-position: center;
-    background-blend-mode: color-burn;
-    background-attachment: fixed;
-    background-size: cover;
-    background-repeat: no-repeat;
-    text-align: center;
-    color: var(--white);
-    /* border-radius: 52px; */
-    margin-top: 12px;
-    margin-top: -250px;
-    height: 800px;
+  background: linear-gradient(
+      180.3deg,
+      rgba(176, 255, 203, 0.4) 10.2%,
+      rgba(3, 62, 88, 0.2) 68.5%
+    ),
+    url(../assets/bg-images/hero.jpg);
+  background-position: center;
+  background-blend-mode: color-burn;
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+  text-align: center;
+  color: var(--white);
+  margin-top: 12px;
+  margin-top: -250px;
+  height: calc(100vh + 250px);
 }
 
 .hero.section {
-    padding-top: 400px;
+  padding-top: 400px;
 }
 .hero-title {
-    font-size: 72px;
-    color: var(--black);
+  font-size: 3rem;
+  color: var(--black);
+  text-shadow: 2px 2px 4px var(--slate);
+  letter-spacing: 2px;
 }
 .hero-text {
-    color: var(--slate);
+  color: var(--slate);
+  max-width: 300px;
+  text-shadow: 2px 2px 4px var(--slateOp);
 }
-.hero-title, 
+
+.hero-title,
 .hero-text {
-    /* font-family: 'Open'; */
-    color: var(--white);
-    /* text-shadow: 0 0 2px #000; */
+  color: var(--white);
 }
 .order-btn {
-    margin-top: 40px;
-    display: inline-block;
-    font-size: 18px;
+  display: inline-block;
+  font-size: 1.1rem;
+  min-width: 160px;
+  transition: all 0.3s ease;
+}
+.hero-text {
+  margin: 0 auto;
+  font-size: 1.1rem;
+  max-width: 500px;
+}
+@media (min-width: 768px) {
+  .hero-title {
+    font-size: 4.5rem;
+  }
+  .hero-text {
+    font-size: 1.4rem;
+    max-width: 800px;
+  }
+  .order-btn {
+    font-size: 1.1rem;
     min-width: 200px;
+  }
 }
