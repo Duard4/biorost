@@ -151,12 +151,12 @@ export default {
 
     return {
       navLinks: [
-        { text: "Про нас", href: "./index#about-us" },
-        { text: "Продукція", href: "./index#products" },
-        { text: "Карти внесення", href: "./index#inj-maps" },
-        { text: "Новини", href: "./index#news" },
-        { text: "Вакансії", href: "./index#vacancies" },
-        { text: "Контакти", href: "./index#contact-us" },
+        { text: "Про нас", href: "#about-us" },
+        { text: "Продукція", href: "#products" },
+        { text: "Карти внесення", href: "#inj-maps" },
+        { text: "Новини", href: "#news" },
+        { text: "Вакансії", href: "#vacancies" },
+        { text: "Контакти", href: "#contact-us" },
       ],
       searchQuery,
       searchResults,
