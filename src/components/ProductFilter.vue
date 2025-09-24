@@ -12,6 +12,7 @@
         {{ type.name }}
       </li>
     </ul>
+
     <!-- Фільтр для мобільних пристроїв -->
     <select class="product-types-select mobile" @change="filterItems">
       <option
@@ -28,20 +29,25 @@
 </template>
 
 <script>
-import { ref, onMounted, onUnmounted } from "vue";
+import { onMounted, onUnmounted } from "vue";
 import { items, types } from "../js/data";
 import { eventBus } from "../js/eventBus";
 
 export default {
   name: "ProductFilter",
   props: {
-    selectedType: String,
+    selectedType: {
+      type: [String, Number],
+      default: null,
+    },
   },
-  setup({ selectedType }, { emit }) {
-    const isActiveType = (id) => selectedType === id;
+  emits: ["update:selectedType", "update:filteredItems"],
+  setup(props, { emit }) {
+    const isActiveType = (id) => String(props.selectedType) === String(id);
 
     const filterItems = (eventOrTypeId) => {
       let typeId;
+
       if (typeof eventOrTypeId === "object") {
         if (eventOrTypeId.target.tagName === "SELECT") {
           typeId = eventOrTypeId.target.value;
@@ -95,7 +101,6 @@ export default {
   color: var(--white);
   margin: 0 auto;
   text-align: center;
-
   background-color: var(--slateOp);
   backdrop-filter: blur(30px);
   box-shadow: 2px 2px 4px var(--slateOp);
@@ -104,6 +109,11 @@ export default {
 .product-option {
   color: var(--slate);
   font-size: 12px;
+}
+
+.ptl-item.active {
+  font-weight: bold;
+  color: var(--accent);
 }
 
 @media (min-width: 768px) {
