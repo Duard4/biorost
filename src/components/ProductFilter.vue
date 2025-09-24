@@ -112,7 +112,6 @@ export default {
 }
 
 .ptl-item.active {
-  font-weight: bold;
   color: var(--accent);
 }
 

@@ -2,20 +2,24 @@
 <template>
   <header class="header container">
     <address class="address">
-      <a class="address-link" href="http://">
+      <a
+        class="address-link"
+        href="https://maps.app.goo.gl/B4SRqeFBW5ZKHrT6A"
+        target="_blank"
+      >
         <svg class="icon" width="24" height="24">
           <use href="../assets/icons.svg#icon-location"></use>
         </svg>
-        вул. Сталеварів 17, Запоріжжя</a
+        вул. Луганська, 29а, Запоріжжя</a
       >
     </address>
-    <a class="header-logo" href="../index.html">
+    <p class="header-logo">
       <img
         src="../assets/content-images/logo.png"
         alt="logo Biorost"
         width="240px"
       />
-    </a>
+    </p>
     <address class="address">
       <a class="address-link" href="mailto:Biorost.zap@gmail.com"
         >Biorost.zap@gmail.com</a

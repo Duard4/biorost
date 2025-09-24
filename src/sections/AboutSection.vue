@@ -1,24 +1,10 @@
 <template>
   <section class="section about container" id="about-us">
     <div class="text-wrapper">
-      <h2 class="about-title title searchable">
-        ТМ «Біорост» — Органічні добрива та біопрепарати для аграріїв України
-      </h2>
-      <h3>
-        Надійний виробник органічних добрив з 11-річним досвідом для дачників,
-        ягідників, фермерів
-      </h3>
-      <p class="about-text text searchable">
-        Компанія ТОВ «Органіка України» ТМ «Біорост» спеціалізується на
-        виробництві органічних та органо-мінеральних добрив, а також мікробних
-        препаратів для сільгоспвиробників та приватних господарств.
-        <br /><br />
-        Наш завод знаходиться в м. Запоріжжі. Компанія виробляє та реалізує свою
-        продукцію, починаючи з 2013 року. З кожним наступним роком ми постійно
-        вдосконалюємо виробничий процес, активно працюючи над створенням нових
-        продуктів, максимально задовольняючи потреби виробників
-        сільськогосподарської продукції.
-      </p>
+      <h2 class="about-title title searchable">{{ about.title }}</h2>
+      <h3>{{ subtitleText }}</h3>
+      <p class="about-text text searchable">{{ about.text }}</p>
+
       <button type="button" class="certificates-btn btn" @click="openModal">
         Сертифікати
       </button>
@@ -26,7 +12,8 @@
 
     <div class="bg-img-wrapper">
       <p class="about-age-label">
-        <span class="large">11</span><br />
+        <span class="large">{{ years }}</span
+        ><br />
         років<br />
         досвіду
       </p>
@@ -36,14 +23,6 @@
         class="about-bg-img"
       />
     </div>
-
-    <p>
-      Продукція ТМ «Біорост» входить в перелік продуктів, дозволених для
-      використання в органічному землеробстві згідно реєстрації «ОРГАНІК
-      СТАНДАРТ», що відображається на сайті цієї організації.<br /><br />
-      Використовуючи продукцію ТОВ «Органіка України», сільгосптоваровиробники
-      досягають значних переваг, отримуючи значні ПОКРАЩЕННЯ:
-    </p>
 
     <ul class="accordion">
       <li
@@ -71,12 +50,11 @@
 
 <script>
 import CertificateModal from "../components/CertificateModal.vue";
+import aboutData from "/src/assets/data/about.json";
 
 export default {
   name: "AboutSection",
-  components: {
-    CertificateModal,
-  },
+  components: { CertificateModal },
   data() {
     return {
       showModal: false,
@@ -84,73 +62,24 @@ export default {
         "../assets/content-images/certificate-1.jpg",
         "../assets/content-images/certificate-2.jpg",
       ],
-      rows: [
-        {
-          category: "Для ґрунту",
-          description: `
-              <strong>Гуміфікація (гумусоутворення)</strong><br>
-              Складний повільний біохімічний процес перетворення органічних залишків за допомогою
-              мікроорганізмів, що призводить до утворення гумусових речовин – специфічних сполук, які
-              мають здатність до полімеризації, тобто ущільненню своїх молекул, що робить їх стійкими до
-              розкладу мікроорганізмами.
-              <br><br>
-              <strong>Деструкція</strong><br>
-              Процес мінералізації, тобто розкладання рослинних решток. Мікроорганізми мінералізують ці
-              рештки і у процесі вивільнюють багато різних сполук, але самі головні з них – це
-              макро/мікроелементи та вуглець.
-              <br><br>
-              <strong>Оздоровлення і відновлення ґрунту</strong><br>
-              Основними причинами втрати родючості є: обробіток важкою технікою, нераціональне
-              використання мінеральних добрив, практично повна відсутність органічних добрив. Завдяки
-              корисним грибам і бактеріям, які знаходяться в наших препаратах, при внесенні їх у ґрунт
-              відбувається його очищення від патогенної флори і фауни, активна його структуризація і
-              розкислення.
-            `,
-          active: false,
-        },
-        {
-          category: "Для рослин",
-          description: `
-              <strong>Інокуляція</strong><br>
-              Внесення живих мікроорганізмів у ризосферу рослини. Це обробка посівного матеріалу за
-              допомогою біопрепаратів, які провокують зерно розвивати більш потужну кореневу систему, а
-              відповідно більш розвинену і міцну рослину.
-              <br><br>
-              <strong>Фізіологічні переваги</strong><br>
-              <ul class="marked-list">
-                <li>Збільшення і прискорення енергії проростання та схожості насіння.</li>
-                <li>Гарний розвиток кореневої системи з більш активним нарощуванням вторинної кореневої
-                  системи.</li>
-                <li>При фоліарному внесенні наших продуктів поглинання поживних речовин відбувається
-                  всією поверхнею надземної частини рослин з подальшим швидким переміщенням їх в
-                  ділянки з найбільш інтенсивним проходженням біохімічних процесів.</li>
-                <li>Забезпечення повного балансу необхідних речовин, що стимулює гарне плодоношення і
-                  збільшення врожайності.</li>
-              </ul>
-            `,
-          active: false,
-        },
-        {
-          category: "Для людини і корисної фауни",
-          description: `
-              Всі добрива і препарати компанії «Органіка України» є екологічно чистими і безпечними для
-              людини і корисної фауни. Наша місія – забезпечити відновлення ґрунту, що призводить до
-              покращення його структури, накопичення вологи, збільшення складу поживних речовин, і як
-              наслідок, підвищення виходу продукції.
-            `,
-          active: false,
-        },
-      ],
+      about: aboutData,
+      rows: aboutData.rows.map((r) => ({ ...r, active: false })),
     };
   },
+  computed: {
+    years() {
+      return new Date().getFullYear() - this.about.founded;
+    },
+    subtitleText() {
+      return this.about.subtitle.replace("{{years}}", this.years);
+    },
+  },
   mounted() {
-    if (window.innerWidth > 768) {
-      this.rows.forEach((row) => {
-        row.active = true;
-      });
-    }
+    // Встановлюємо початковий стан залежно від ширини екрану
+    this.setRowsByWidth();
     window.addEventListener("resize", this.handleResize);
   },
+  // Якщо у тебе Vue 3 — заміни beforeDestroy на beforeUnmount
   beforeDestroy() {
     window.removeEventListener("resize", this.handleResize);
   },
@@ -162,21 +91,18 @@ export default {
       this.showModal = false;
     },
     toggleRow(index) {
+      // Просто мутуємо активність конкретного рядка — тепер це реактивно
       this.rows[index].active = !this.rows[index].active;
     },
     handleResize() {
-      if (window.innerWidth > 768) {
-        this.rows.forEach((row) => {
-          row.active = true;
-        });
-      } else {
-        this.rows.forEach((row) => {
-          row.active = false;
-        });
-      }
+      this.setRowsByWidth();
+    },
+    setRowsByWidth() {
+      const isDesktop =
+        typeof window !== "undefined" && window.innerWidth > 768;
+      // на десктопі — всі відкриті, на мобілі — закриті
+      this.rows.forEach((row) => (row.active = isDesktop));
     },
   },
 };
 </script>
-
-<style scoped></style>

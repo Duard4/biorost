@@ -7,8 +7,17 @@
         <address class="contact-address">
           <ul class="contact-adress-list">
             <li class="address-point-item">
-              <h3 class="adress-point">Наше місцезнаходження</h3>
-              <p class="adress-point-info">вул. Сталеварів 17</p>
+              <h3 class="adress-point">Юридична адреса</h3>
+              <p class="adress-point-info">
+                TM «BIOROST» ТОВ «Органіка України», 69083, Україна, м.
+                Запоріжжя, вул. Луганська, 29а<br />
+              </p>
+            </li>
+            <li class="address-point-item">
+              <h3 class="adress-point">Адреса виробництва</h3>
+              <p class="adress-point-info">
+                69031, Україна, м. Запоріжжя, вул. Дослідна станція, 45
+              </p>
             </li>
             <li class="address-point-item">
               <h3 class="adress-point">Телефон</h3>
@@ -165,8 +174,7 @@
       <div class="google-map">
         <h2 class="title">Ми на карті</h2>
         <iframe
-          class="map"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2677.789536412718!2d35.118602781722814!3d47.84367050796446!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40dc67327f8ac38b%3A0xe8cce331823af74a!2z0YPQuy4g0KHRgtCw0LvQtdCy0LDRgNC-0LIsIDE3LCDQl9Cw0L_QvtGA0L7QttGM0LUsINCX0LDQv9C-0YDQvtC20YHQutCw0Y8g0L7QsdC70LDRgdGC0YwsIDY5MDAw!5e0!3m2!1sru!2sua!4v1721818233308!5m2!1sru!2sua"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2680.4912022686235!2d35.2232529!3d47.7913132!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40dc5e96e0c8ea41%3A0x5de18d14ab65449a!2z0JvRg9Cz0LDQvdGB0LrQsNGPINGD0LsuLCAyOSwg0JfQsNC_0L7RgNC-0LbRjNC1LCDQl9Cw0L_QvtGA0L7QttGB0LrQsNGPINC-0LHQu9Cw0YHRgtGMLCA2OTAwMA!5e0!3m2!1sru!2sua!4v1758735269486!5m2!1sru!2sua"
           width="600"
           height="450"
           style="border: 0"
