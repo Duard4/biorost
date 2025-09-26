@@ -30,8 +30,8 @@
               <h3 class="adress-point">E-mail</h3>
               <a
                 class="adress-point-info hover"
-                href="mailto:Biorost.zap@gmail.com"
-                >Biorost.zap@gmail.com</a
+                href="mailto:a0687579303@gmail.com"
+                >a0687579303@gmail.com</a
               >
             </li>
             <li class="address-point-item">

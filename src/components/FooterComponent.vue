@@ -25,8 +25,8 @@
             </li>
             <li class="footer-address-item">
               <strong>Email:</strong>
-              <a class="hover" href="mailto:biorost.org.zp.ua@gmail.com">
-                biorost.org.zp.ua@gmail.com</a
+              <a class="hover" href="mailto:a0687579303@gmail.com">
+                a0687579303@gmail.com</a
               >
             </li>
             <li class="footer-address-item">
