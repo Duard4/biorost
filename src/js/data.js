@@ -21,7 +21,7 @@ export const items = [
     id: 2,
     type: "org",
     frontImage: "../assets/products/36.png",
-    backImage: "../assets/products/37.png",
+    backImage: "../assets/products/42.png",
     title: "Зима",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut cum magnam reiciendis",
