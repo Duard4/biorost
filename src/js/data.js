@@ -185,14 +185,14 @@ export const types = [
 
 export const managers = [
   {
-    name: "Станіслав Єрмаков",
+    name: "Ігор",
     contact: "biorost.zap@gmail.com +380672786591, +380672786591",
     description:
       "Менеджер заводу з роботи з виногадниками, ягідниками, плодовими деревами, овочевими групами)",
     image: "../assets/content-images/m4.jpg",
   },
   {
-    name: "Оксана Сиваш",
+    name: "Оксана",
     contact: "oksana@biorost.ua +380664722955 +380683055704",
     description:
       "Менеджер заводу з промислових сільгосп-культур (злакові, масляні та ін. групи)",
