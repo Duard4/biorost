@@ -186,17 +186,16 @@ export const types = [
 export const managers = [
   {
     name: "Станіслав Єрмаков",
-    contact: "biorost.zap@gmail.com +380676171488 +380959001876",
-    image: "../assets/content-images/m1.jpg",
+    contact: "biorost.zap@gmail.com +380672786591, +380672786591",
+    description:
+      "Менеджер заводу з роботи з виногадниками, ягідниками, плодовими деревами, овочевими групами)",
+    image: "../assets/content-images/m4.jpg",
   },
   {
     name: "Оксана Сиваш",
     contact: "oksana@biorost.ua +380664722955 +380683055704",
+    description:
+      "Менеджер заводу з промислових сільгосп-культур (злакові, масляні та ін. групи)",
     image: "../assets/content-images/m2.jpg",
-  },
-  {
-    name: "Галіна Гнилицька",
-    contact: "gala@biorost.ua +380965399073",
-    image: "../assets/content-images/m3.jpg",
   },
 ];

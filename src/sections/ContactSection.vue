@@ -167,19 +167,19 @@
         <button class="toast-close" @click="closeToast">×</button>
       </div>
     </div>
-    <TeamSection />
   </section>
+  <TeamSection />
   <section class="section location">
     <div class="container">
       <div class="google-map">
         <h2 class="title">Ми на карті</h2>
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2680.4912022686235!2d35.2232529!3d47.7913132!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40dc5e96e0c8ea41%3A0x5de18d14ab65449a!2z0JvRg9Cz0LDQvdGB0LrQsNGPINGD0LsuLCAyOSwg0JfQsNC_0L7RgNC-0LbRjNC1LCDQl9Cw0L_QvtGA0L7QttGB0LrQsNGPINC-0LHQu9Cw0YHRgtGMLCA2OTAwMA!5e0!3m2!1sru!2sua!4v1758735269486!5m2!1sru!2sua"
-          width="600"
           height="450"
           style="border: 0"
           allowfullscreen=""
           loading="lazy"
+          class="map"
           referrerpolicy="no-referrer-when-downgrade"
         ></iframe>
       </div>
@@ -420,7 +420,12 @@ export default {
   flex-grow: 1;
   margin-right: 10px;
 }
-
+.map {
+  width: 100%;
+  border: none;
+  border-radius: 12px;
+  max-width: 1200px;
+}
 .toast-close {
   background: transparent;
   border: none;

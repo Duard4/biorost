@@ -1,159 +1,257 @@
 <template>
-  <h2 class="title ms-title">Наші менеджери</h2>
-  <swiper
-    :spaceBetween="20"
-    :loop="true"
-    :autoplay="{
-      delay: 3000,
-      disableOnInteraction: false,
-      pauseOnMouseEnter: true,
-    }"
-    :breakpoints="{
-      640: { slidesPerView: 1 },
-      768: { slidesPerView: 2 },
-      1280: { slidesPerView: 3 },
-    }"
-    class="mySwiper"
-  >
-    <swiper-slide
-      v-for="(manager, index) in managers"
-      :key="index"
-      class="m-card"
-    >
-      <img :src="manager.image" alt="" class="m-img" />
-      <div class="m-text-wrapper">
-        <h3 class="m-title">{{ manager.name }}</h3>
-        <p class="m-text">{{ manager.contact }}</p>
+  <section class="managers-section">
+    <div class="section-container">
+      <h2 class="section-title">Наші менеджери</h2>
+      <div class="managers-grid">
+        <div
+          v-for="(manager, index) in managers"
+          :key="index"
+          class="manager-card"
+        >
+          <div class="card-image-wrapper">
+            <img :src="manager.image" :alt="manager.name" class="card-image" />
+          </div>
+
+          <div class="card-content">
+            <h3 class="manager-name">{{ manager.name }}</h3>
+
+            <p class="manager-role">{{ manager.description }}</p>
+
+            <div class="contact-info">
+              <div class="contact-item">
+                <span class="contact-icon-mail">✉</span>
+                <a :href="`mailto:${manager.contact.split(' ')[0]}`">
+                  {{ manager.contact.split(" ")[0] }}
+                </a>
+              </div>
+              <div class="contact-phones">
+                <span class="contact-icon-phone">📞</span>
+                <div class="phones">
+                  <a
+                    v-for="(phone, i) in getPhones(manager.contact)"
+                    :key="i"
+                    :href="`tel:${phone}`"
+                    class="phone-link"
+                  >
+                    {{ phone }}
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </swiper-slide>
-  </swiper>
+    </div>
+  </section>
 </template>
 
 <script>
-import { Swiper, SwiperSlide } from "swiper/vue";
-import SwiperCore from "swiper/core";
-import { Autoplay } from "swiper/modules";
-import "swiper/swiper-bundle.css";
 import { managers } from "../js/data";
 
-SwiperCore.use([Autoplay]);
-
 export default {
-  components: {
-    Swiper,
-    SwiperSlide,
-  },
   setup() {
+    const getPhones = (contact) => {
+      const parts = contact.split(" ");
+      return parts.filter((p) => p.startsWith("+"));
+    };
+
     return {
       managers,
+      getPhones,
     };
   },
 };
 </script>
+
 <style scoped>
-.ms-title {
-  text-align: center;
-  margin-top: 32px;
-  font-size: 2rem;
+.managers-section {
+  width: 100%;
+  padding: 60px 20px;
 }
 
-.mySwiper {
-  width: 406px;
-  max-width: 90%;
-  padding-right: 1rem;
-  height: 100%;
-  border-radius: 12px;
-  padding-top: 1rem;
-}
-
-.swiper-slide {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.m-card {
-  background-color: #ffffff;
-  border-radius: 15px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.08);
-  overflow: hidden;
-  height: 100%;
-  flex-direction: column;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+.section-container {
+  max-width: 1220px;
   margin: 0 auto;
 }
 
-.m-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15), 0 4px 8px rgba(0, 0, 0, 0.1);
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1a4620;
+  margin-bottom: 60px;
+  letter-spacing: -0.5px;
 }
 
-.m-card:hover .m-text-wrapper {
-  transform: translateY(-50%);
+.managers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 40px;
 }
 
-.m-img {
+.manager-card {
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(26, 70, 32, 0.08);
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  display: flex;
+  flex-direction: column;
+  max-width: 380px;
+  margin: 0 auto;
+  border: 1px solid rgba(106, 184, 118, 0.1);
+}
+
+.manager-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(26, 70, 32, 0.15);
+  border-color: rgba(106, 184, 118, 0.3);
+}
+
+.card-image-wrapper {
   width: 100%;
-  height: 362px;
-  object-fit: cover;
-  border-bottom: 2px solid #e6f2e9;
+  height: 320px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+  position: relative;
 }
 
-.m-img {
-  max-height: 100%;
-  object-fit: cover;
-}
-
-.m-text-wrapper {
-  padding: 16px;
-  background-color: #f9fdfb;
+.card-image {
   width: 100%;
-  text-align: top;
-  transition: transform var(--animation);
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.manager-card:hover .card-image {
+  transform: scale(1.05);
+}
+
+.card-content {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
   flex: 1;
 }
 
-.m-title {
-  font-size: 20px;
-  color: #2b5d34;
-  margin-bottom: 8px;
+.manager-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1a4620;
+  margin: 0;
+  line-height: 1.3;
 }
 
-.m-text {
-  font-size: 16px;
-  color: #3e8e41;
+.manager-role {
+  font-size: 0.95rem;
+  color: #4a7c4e;
+  margin: 0;
+  line-height: 1.6;
+  font-weight: 500;
 }
 
-@media (min-width: 768px) {
-  .m-card {
-    flex-direction: row;
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
+  padding-top: 10px;
+  gap: 12px;
+  border-top: 2px solid rgba(106, 184, 118, 0.15);
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.1rem;
+}
+
+.contact-phones {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.phones {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.contact-icon-mail {
+  margin-top: -5px;
+  font-size: 1.9rem;
+  color: #6ab876;
+  flex-shrink: 0;
+}
+.contact-icon-phone {
+  font-size: 1.2rem;
+  margin-top: 12px;
+  color: #6ab876;
+  flex-shrink: 0;
+}
+
+.contact-item a,
+.phone-link {
+  color: #1a4620;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  font-weight: 500;
+  word-break: break-word;
+}
+
+.contact-item a:hover,
+.phone-link:hover {
+  color: #6ab876;
+}
+
+@media (max-width: 768px) {
+  .managers-section {
+    padding: 40px 16px;
   }
 
-  .mySwiper {
-    max-width: unset;
-    width: calc(100% - 2.4rem);
+  .section-title {
+    font-size: 1.8rem;
+    margin-bottom: 40px;
   }
 
-  .ms-title {
-    margin-top: 50px;
+  .managers-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
   }
 
-  .m-img {
-    max-width: 200px;
+  .card-content {
+    padding: 24px;
+    gap: 12px;
   }
 
-  .m-card:hover .m-text-wrapper {
-    transform: unset;
+  .manager-name {
+    font-size: 1.3rem;
+  }
+
+  .card-image-wrapper {
+    height: 280px;
   }
 }
 
-@media (min-width: 1280px) {
-  .mySwiper {
-    width: calc(1220px - 3rem);
+@media (max-width: 480px) {
+  .section-title {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
   }
 
-  .ms-title {
-    margin-top: 72px;
+  .card-content {
+    padding: 20px;
+  }
+
+  .contact-info {
+    gap: 10px;
+  }
+
+  .contact-item,
+  .contact-phones {
+    font-size: 0.85rem;
   }
 }
 </style>
