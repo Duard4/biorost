@@ -15,7 +15,7 @@ const EMAIL = "a0687579303@gmail.com";
 const KEYWORDS =
   "органічні добрива, біопрепарати для аграріїв, добрива для ягідників, мікробні препарати Україна, органо-мінеральні добрива, інокулянти для сільгоспкультур, ТМ Біорост, Запоріжжя, покращення родючості ґрунту, біофунгіциди, біоінсектициди";
 
-const TITLE = about.title; // "ТМ «Біорост» — Органічні добрива та біопрепарати для аграріїв України"
+const TITLE = about.title; // "ТМ «Біорост» – Органічні добрива та біопрепарати для аграріїв України"
 const DESCRIPTION =
   "Виробник сертифікованих органічних добрив, інокулянтів та біопрепаратів з Запоріжжя. Відновлення родючості ґрунту та підвищення врожайності по всій Україні.";
 
@@ -60,9 +60,7 @@ const localBusiness = {
   sameAs: ["https://www.instagram.com/biorost_zp/"],
   openingHoursSpecification: {
     "@type": "OpeningHoursSpecification",
-    dayOfWeek: [
-      "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
-    ],
+    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
     opens: "09:00",
     closes: "18:00",
   },
@@ -84,7 +82,7 @@ const website = {
   publisher: { "@id": `${SITE_URL}/#organization` },
 };
 
-// ItemList of Products — lets search/AI engines enumerate the catalog.
+// ItemList of Products – lets search/AI engines enumerate the catalog.
 const productList = {
   "@type": "ItemList",
   "@id": `${SITE_URL}/#products`,
@@ -130,13 +128,19 @@ export function useSeo() {
       { property: "og:image:type", content: "image/webp" },
       { property: "og:image:width", content: String(OG_IMAGE_W) },
       { property: "og:image:height", content: String(OG_IMAGE_H) },
-      { property: "og:image:alt", content: "Органічні добрива ТМ Біорост — поля України" },
+      {
+        property: "og:image:alt",
+        content: "Органічні добрива ТМ Біорост – поля України",
+      },
       // Twitter / X
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: TITLE },
       { name: "twitter:description", content: DESCRIPTION },
       { name: "twitter:image", content: OG_IMAGE },
-      { name: "twitter:image:alt", content: "Органічні добрива ТМ Біорост — поля України" },
+      {
+        name: "twitter:image:alt",
+        content: "Органічні добрива ТМ Біорост – поля України",
+      },
     ],
     script: [
       {

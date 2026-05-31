@@ -12,7 +12,7 @@ defineEmits(["open"]);
     <button
       type="button"
       class="card__btn"
-      :aria-label="`${product.title} — детальніше`"
+      :aria-label="`${product.title} – детальніше`"
       @click="$emit('open', product)"
     >
       <span class="card__media">
@@ -56,7 +56,8 @@ defineEmits(["open"]);
   cursor: pointer;
   color: var(--ink);
   box-shadow: var(--shadow-1);
-  transition: transform var(--dur) var(--ease-out-quart),
+  transition:
+    transform var(--dur) var(--ease-out-quart),
     box-shadow var(--dur) var(--ease-out-quart),
     border-color var(--dur) var(--ease-out-quart);
 }
@@ -83,7 +84,7 @@ defineEmits(["open"]);
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* pack shots have a white caption strip at the top — bottom-align so it's
+  /* pack shots have a white caption strip at the top – bottom-align so it's
      clipped (proportional, holds across card widths) */
   object-position: center bottom;
   transition: transform var(--dur-slow) var(--ease-out-quart);

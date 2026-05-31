@@ -36,7 +36,7 @@
     padding: 80px 0 0;
     list-style: none;
     text-align: start;
-    background-color: rgb(246, 249, 252);
+    background-color: var(--surface);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
     transition: left 0.3s ease;
     overflow-y: auto;
@@ -53,7 +53,7 @@
     backdrop-filter: blur(var(--nav-blur));
     padding: 24px;
     border-bottom-right-radius: 20%;
-    border: 1px solid rgba(184, 255, 200, 0.35);
+    border: 1px solid color-mix(in oklch, var(--brand) 30%, transparent);
     border-top: none;
     border-left: none;
     cursor: pointer;
@@ -111,11 +111,11 @@
   .fixed-nav {
     background: linear-gradient(
       114.3deg,
-      rgba(225, 255, 236, 0.4) 0.2%,
-      rgba(206, 239, 255, 0.4) 68.5%
+      oklch(0.4 0.085 150 / 0.5) 0.2%,
+      oklch(0.32 0.07 152 / 0.5) 68.5%
     );
     backdrop-filter: blur(var(--nav-blur));
-    border: 1px solid rgba(184, 255, 200, 0.35);
+    border: 1px solid color-mix(in oklch, var(--brand) 30%, transparent);
   }
 
   .search-wrapper {
@@ -159,7 +159,7 @@
       transition: background-color 0.2s ease;
 
       &:hover {
-        background-color: rgba(184, 255, 200, 0.15);
+        background-color: color-mix(in oklch, var(--brand) 12%, transparent);
       }
     }
   }
@@ -196,12 +196,12 @@
   border-radius: var(--border-radius);
   padding: 10px 16px;
   width: 100%;
-  background-color: rgb(246, 249, 252);
+  background-color: var(--surface);
   transition: box-shadow 0.2s ease;
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 2px rgba(184, 255, 200, 0.5);
+    box-shadow: 0 0 0 2px color-mix(in oklch, var(--brand) 45%, transparent);
   }
 }
 
@@ -217,7 +217,7 @@
   top: 35px;
   left: 0;
   right: 0;
-  background: rgb(246, 249, 252);
+  background: var(--surface);
   max-height: 200px;
   overflow-y: auto;
   z-index: 70;
@@ -235,12 +235,12 @@
     transition: background-color 0.2s ease;
 
     &:hover {
-      background-color: rgba(184, 255, 200, 0.15);
+      background-color: color-mix(in oklch, var(--brand) 12%, transparent);
     }
   }
 
   .highlight {
-    background-color: rgba(255, 255, 0, 0.4);
+    background-color: color-mix(in oklch, var(--accent) 45%, transparent);
     font-weight: bold;
   }
 }
@@ -248,15 +248,15 @@
 .fixed-nav {
   background: linear-gradient(
     114.3deg,
-    rgba(19, 126, 57, 0.2) 0.2%,
-    rgba(8, 65, 91, 0.2) 68.5%
+    oklch(0.4 0.085 150 / 0.92) 0.2%,
+    oklch(0.32 0.07 152 / 0.92) 68.5%
   );
   backdrop-filter: blur(var(--nav-blur));
-  color: var(--white);
+  color: var(--on-brand);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 
   .nav-link:hover {
-    color: rgb(235, 229, 34);
+    color: var(--accent);
   }
 }
 

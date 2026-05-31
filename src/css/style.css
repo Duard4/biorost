@@ -4,7 +4,7 @@
   | default @import url()
   |============================
 */
-/* Third-party resets — bundled so they don't block render via external CDN */
+/* Third-party resets – bundled so they don't block render via external CDN */
 @import "modern-normalize";
 @import "swiper/css";
 
@@ -20,42 +20,67 @@
 @import url("./footer.css");
 
 body {
-  background: linear-gradient(135deg, #f8fefb 0%, #f0f8f3 100%);
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
 }
 .title {
-  font-size: 2rem;
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
   font-weight: 700;
-  color: var(--black);
+  line-height: 1.1;
+  color: var(--brand-ink);
   margin-bottom: 1rem;
+  text-wrap: balance;
 }
 .text {
   color: var(--slate);
 }
 
 .btn {
-  border-radius: 12px;
-  padding: 8px 16px;
-  margin: 20px 0;
-  background-color: #c1dfc4;
-  font-size: 1.1rem;
-  color: #333;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  border-radius: var(--radius-full);
+  padding: var(--space-3) var(--space-8);
+  margin: var(--space-4) 0;
+  background-color: var(--accent);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--on-accent);
   border: none;
-  font-weight: 500;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+  font-weight: 700;
+  box-shadow: var(--shadow-1);
+  transition:
+    transform var(--dur) var(--ease-out-quart),
+    box-shadow var(--dur) var(--ease-out-quart),
+    filter var(--dur) var(--ease-out-quart);
   cursor: pointer;
 }
 
 .btn:hover {
-  background-color: #64a36f;
-  color: white;
+  filter: brightness(1.04);
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-2);
 }
 
 .btn:active {
-  transform: translateY(1px);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  transform: translateY(0);
+}
+
+.btn:focus-visible {
+  outline: 3px solid var(--brand);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn {
+    transition: none;
+  }
+  .btn:hover {
+    transform: none;
+  }
 }
 .container {
   max-width: 600px;

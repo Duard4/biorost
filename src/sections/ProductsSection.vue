@@ -21,7 +21,7 @@ import ProductGallery from "../components/product/ProductGallery.vue";
 </template>
 
 <style scoped>
-/* Committed green band — the catalog is the commercial core, so it carries
+/* Committed green band – the catalog is the commercial core, so it carries
    the brand color. Texture from the existing field photo, kept subtle. */
 .products {
   position: relative;

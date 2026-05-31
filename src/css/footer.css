@@ -40,7 +40,7 @@ address {
 .footer-bottom {
     text-align: center;
     padding: 10px 0;
-    border-top: 1px solid #c5e1a5;
+    border-top: 1px solid color-mix(in oklch, var(--on-brand) 30%, transparent);
     margin-top: 20px;
 }
 @media (min-width: 768px) {

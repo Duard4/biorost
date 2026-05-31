@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Біорост – вибір палітри</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: "Open Sans", system-ui, sans-serif;
+        background: #e9ece8;
+        color: #1d231d;
+        padding: clamp(1rem, 4vw, 3rem);
+        line-height: 1.5;
+      }
+      .intro {
+        max-width: 60ch;
+        margin: 0 auto 2.5rem;
+        text-align: center;
+      }
+      .intro h1 {
+        font-size: clamp(1.6rem, 4vw, 2.4rem);
+        margin-bottom: 0.5rem;
+      }
+      .intro p {
+        color: #4a524a;
+      }
+      .options {
+        display: grid;
+        gap: 2.5rem;
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+
+      .opt {
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+        background: #fff;
+      }
+      .opt__head {
+        padding: 1rem 1.5rem;
+        display: flex;
+        align-items: baseline;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+      }
+      .opt__head h2 {
+        font-size: 1.3rem;
+      }
+      .opt__head .tag {
+        font-size: 0.8rem;
+        color: #6a726a;
+      }
+      .swatches {
+        display: flex;
+        gap: 0;
+        padding: 0 1.5rem 1rem;
+        flex-wrap: wrap;
+      }
+      .sw {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 0.62rem;
+        width: 84px;
+      }
+      .sw i {
+        width: 100%;
+        height: 40px;
+        border-radius: 6px;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+      }
+      .sw span {
+        margin-top: 4px;
+        color: #555;
+      }
+
+      /* In-context mockup of the products band */
+      .mock {
+        padding: clamp(1.5rem, 4vw, 2.5rem);
+      }
+      .mock__title {
+        font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+        font-weight: 800;
+        line-height: 1.05;
+        text-align: center;
+      }
+      .mock__lead {
+        text-align: center;
+        max-width: 50ch;
+        margin: 0.5rem auto 1.25rem;
+        font-size: 0.95rem;
+      }
+      .pills {
+        display: flex;
+        gap: 0.5rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 1.5rem;
+      }
+      .pill {
+        min-height: 38px;
+        padding: 0.4rem 0.9rem;
+        border-radius: 999px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border: 1.5px solid;
+        background: transparent;
+      }
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+      }
+      .card {
+        background: #fff;
+        border-radius: 18px;
+        overflow: hidden;
+        border: 1px solid rgba(0, 0, 0, 0.06);
+        box-shadow: 0 2px 10px rgba(20, 40, 20, 0.08);
+      }
+      .card__media {
+        aspect-ratio: 4/5;
+        overflow: hidden;
+        background: #eee;
+      }
+      .card__media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center bottom;
+      }
+      .card__body {
+        padding: 0.85rem 1rem 1.1rem;
+      }
+      .card__cat {
+        font-size: 0.68rem;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        font-weight: 700;
+      }
+      .card__name {
+        font-size: 1.05rem;
+        font-weight: 700;
+        margin: 0.25rem 0;
+        line-height: 1.15;
+      }
+      .card__desc {
+        font-size: 0.8rem;
+        color: #5a625a;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      .cta {
+        display: inline-block;
+        margin-top: 1.5rem;
+        padding: 0.7rem 1.6rem;
+        border-radius: 999px;
+        font-weight: 700;
+        text-decoration: none;
+      }
+      .center {
+        text-align: center;
+      }
+
+      /* ============ PALETTE A – Pine & Harvest ============ */
+      .A {
+        --bg: oklch(0.98 0.008 150);
+        --band1: oklch(0.4 0.082 150);
+        --band2: oklch(0.32 0.07 152);
+        --on: oklch(0.97 0.015 120);
+        --ink: oklch(0.26 0.02 150);
+        --muted: oklch(0.5 0.02 140);
+        --brand: oklch(0.4 0.085 150);
+        --accent: oklch(0.78 0.11 80);
+        --onacc: oklch(0.28 0.05 75);
+        --soil: oklch(0.42 0.05 55);
+      }
+      /* ============ PALETTE B – Olive & Terracotta ============ */
+      .B {
+        --bg: oklch(0.97 0.014 92);
+        --band1: oklch(0.47 0.072 122);
+        --band2: oklch(0.4 0.068 124);
+        --on: oklch(0.97 0.02 95);
+        --ink: oklch(0.27 0.02 80);
+        --muted: oklch(0.48 0.02 80);
+        --brand: oklch(0.45 0.075 122);
+        --accent: oklch(0.6 0.13 45);
+        --onacc: oklch(0.98 0.01 80);
+        --soil: oklch(0.35 0.05 55);
+      }
+      /* ============ PALETTE C – Deep Forest Drench ============ */
+      .C {
+        --bg: oklch(0.97 0.01 150);
+        --band1: oklch(0.29 0.06 155);
+        --band2: oklch(0.24 0.05 156);
+        --on: oklch(0.94 0.025 110);
+        --ink: oklch(0.24 0.025 150);
+        --muted: oklch(0.46 0.02 140);
+        --brand: oklch(0.3 0.06 152);
+        --accent: oklch(0.8 0.12 82);
+        --onacc: oklch(0.26 0.05 75);
+        --soil: oklch(0.4 0.05 55);
+      }
+
+      .opt .mock {
+        background: radial-gradient(
+          120% 90% at 50% -10%,
+          var(--band1),
+          var(--band2)
+        );
+        color: var(--on);
+      }
+      .opt .pill {
+        color: var(--on);
+        border-color: color-mix(in oklch, var(--on) 35%, transparent);
+      }
+      .opt .pill.active {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: var(--onacc);
+      }
+      .opt .card__cat {
+        color: var(--brand);
+      }
+      .opt .card__name {
+        color: var(--brand);
+      }
+      .opt .cta {
+        background: var(--accent);
+        color: var(--onacc);
+      }
+      .opt .page-strip {
+        background: var(--bg);
+        color: var(--ink);
+        padding: 1rem 1.5rem;
+        font-size: 0.85rem;
+      }
+      .opt .page-strip b {
+        color: var(--brand);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="intro">
+      <h1>Три напрямки палітри</h1>
+      <p>
+        Кожен показано в контексті – зелена смуга «Наша продукція», картки з
+        реальними фото, фільтри та кнопка. Оберіть найкращий, і я застосую його
+        до токенів.
+      </p>
+    </div>
+
+    <div class="options" id="opts"></div>
+
+    <script>
+      const opts = [
+        {
+          cls: "A",
+          name: "A – Pine & Harvest",
+          tag: "глибокий хвойно-зелений + приглушене золото (рекомендовано)",
+          sw: [
+            ["bg", "фон"],
+            ["brand", "зелений"],
+            ["ink", "текст"],
+            ["accent", "акцент"],
+            ["soil", "ґрунт"],
+          ],
+        },
+        {
+          cls: "B",
+          name: "B – Olive & Terracotta",
+          tag: "оливковий + теракота, тепліший і землистий",
+          sw: [
+            ["bg", "фон"],
+            ["brand", "оливка"],
+            ["ink", "текст"],
+            ["accent", "теракота"],
+            ["soil", "ґрунт"],
+          ],
+        },
+        {
+          cls: "C",
+          name: "C – Deep Forest",
+          tag: "темно-смарагдова смуга + золото, преміальний контраст",
+          sw: [
+            ["bg", "фон"],
+            ["brand", "темний"],
+            ["ink", "текст"],
+            ["accent", "золото"],
+            ["soil", "ґрунт"],
+          ],
+        },
+      ];
+      const prods = [
+        {
+          img: "/assets/products/12.webp",
+          cat: "Органомінеральні",
+          name: "Біорост Універсал",
+          desc: "Сильнодіюче органічне мікродобриво нового покоління: 7 металів і 7 кислот, прискорює метаболізм та підвищує врожайність.",
+        },
+        {
+          img: "/assets/products/22.webp",
+          cat: "Біофунгіциди",
+          name: "Гаупсин",
+          desc: "Біологічний препарат подвійної інсекто-фунгіцидної дії на основі бактерій Pseudomonas aureofaciens.",
+        },
+        {
+          img: "/assets/products/18.webp",
+          cat: "Біоінсектициди",
+          name: "Метаризин",
+          desc: "Біоінсектицид на основі ентомопатогенного гриба Metarhizium anisopliae проти ґрунтових шкідників.",
+        },
+      ];
+      const swColors = {
+        bg: "var(--bg)",
+        brand: "var(--brand)",
+        ink: "var(--ink)",
+        accent: "var(--accent)",
+        soil: "var(--soil)",
+      };
+      document.getElementById("opts").innerHTML = opts
+        .map(
+          (o) => `
+        <div class="opt ${o.cls}">
+          <div class="opt__head"><h2>${o.name}</h2><span class="tag">${o.tag}</span></div>
+          <div class="swatches">${o.sw.map(([k, l]) => `<div class="sw"><i style="background:${swColors[k]}"></i><span>${l}</span></div>`).join("")}</div>
+          <div class="mock">
+            <div class="mock__title">Наша продукція</div>
+            <div class="mock__lead">Органо-мінеральні добрива, інокулянти, біофунгіциди та інші рішення для аграріїв по всій Україні</div>
+            <div class="pills">
+              <span class="pill active">Усі</span>
+              <span class="pill">Органомінеральні</span>
+              <span class="pill">Інокулянти</span>
+              <span class="pill">Біофунгіциди</span>
+            </div>
+            <div class="cards">
+              ${prods.map((p) => `<div class="card"><div class="card__media"><img src="${p.img}" alt=""></div><div class="card__body"><div class="card__cat">${p.cat}</div><div class="card__name">${p.name}</div><div class="card__desc">${p.desc}</div></div></div>`).join("")}
+            </div>
+            <div class="center"><a class="cta" href="#">Замовити</a></div>
+          </div>
+          <div class="page-strip">Фон сторінки: звичайний текст і <b>акцентні посилання</b> на загальному тлі цієї палітри.</div>
+        </div>
+      `,
+        )
+        .join("");
+    </script>
+  </body>
+</html>

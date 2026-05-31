@@ -8,8 +8,8 @@ brand
 
 Two audiences, one homepage:
 
-- **Commercial growers & agronomists (B2B)** — farms, orchards, vineyards, berry and row-crop operations across Ukraine ordering at volume. They know agronomy, scrutinize composition (NPK, microbial strains, application rates), and choose suppliers on proven efficacy and trust. Two factory managers (Ігор, Оксана) handle their inquiries.
-- **Private growers (B2C)** — dacha owners, gardeners, small orchard/berry keepers. Less technical, motivated by healthy soil and yield without chemistry.
+- **Commercial growers & agronomists (B2B)** – farms, orchards, vineyards, berry and row-crop operations across Ukraine ordering at volume. They know agronomy, scrutinize composition (NPK, microbial strains, application rates), and choose suppliers on proven efficacy and trust. Two factory managers (Ігор, Оксана) handle their inquiries.
+- **Private growers (B2C)** – dacha owners, gardeners, small orchard/berry keepers. Less technical, motivated by healthy soil and yield without chemistry.
 
 Context of use: evaluating a fertilizer/biopreparation supplier, frequently on a phone, sometimes outdoors in sunlight; audience skews older. Decisions hinge on trust, evidence, and being able to find the right product fast.
 
@@ -19,7 +19,7 @@ Present ТМ «Біорост» (ТОВ «Органіка України», a Z
 
 ## Brand Personality
 
-Regenerative and dependable. A serious Ukrainian producer whose mission is restoring soil fertility — grounded, plain-spoken, evidence-backed. Three words: **regenerative, proven, grounded**. The voice respects a knowledgeable audience: direct agronomic language, real numbers, no hype. Emotional goal: confidence that this is a real producer who understands the land and delivers results.
+Regenerative and dependable. A serious Ukrainian producer whose mission is restoring soil fertility – grounded, plain-spoken, evidence-backed. Three words: **regenerative, proven, grounded**. The voice respects a knowledgeable audience: direct agronomic language, real numbers, no hype. Emotional goal: confidence that this is a real producer who understands the land and delivers results.
 
 ## Anti-references
 
@@ -29,11 +29,11 @@ Regenerative and dependable. A serious Ukrainian producer whose mission is resto
 
 ## Design Principles
 
-1. **Proof over claims.** Lead with evidence — certifications, composition data (NPK, strains), application rates, "since 2013," real product packs. Earned trust, not adjectives.
+1. **Proof over claims.** Lead with evidence – certifications, composition data (NPK, strains), application rates, "since 2013," real product packs. Earned trust, not adjectives.
 2. **The land is the hero.** Soil, growth, and field imagery plus the soil-regeneration narrative carry the emotion. Never colored-block placeholders or corporate stock.
 3. **Plain-spoken Ukrainian.** Direct, specific agronomic language. No marketing buzzwords; the audience knows the domain.
 4. **Built for the field.** Mobile-first, outdoor-readable contrast, generous tap targets, works for older users on phones. Performance and legibility before decoration.
-5. **One catalog, clearly navigable.** Six product categories and ~20 products must be effortless to browse, filter, and compare — the product section is the commercial core.
+5. **One catalog, clearly navigable.** Six product categories and ~20 products must be effortless to browse, filter, and compare – the product section is the commercial core.
 
 ## Accessibility & Inclusion
 

@@ -90,7 +90,7 @@ export default {
       this.showModal = false;
     },
     toggleRow(index) {
-      // Просто мутуємо активність конкретного рядка — тепер це реактивно
+      // Просто мутуємо активність конкретного рядка – тепер це реактивно
       this.rows[index].active = !this.rows[index].active;
     },
     handleResize() {
@@ -99,7 +99,7 @@ export default {
     setRowsByWidth() {
       const isDesktop =
         typeof window !== "undefined" && window.innerWidth > 768;
-      // на десктопі — всі відкриті, на мобілі — закриті
+      // на десктопі – всі відкриті, на мобілі – закриті
       this.rows.forEach((row) => (row.active = isDesktop));
     },
   },

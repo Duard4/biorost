@@ -52,7 +52,7 @@ function onBackdropClick(event) {
       <figure class="modal__media">
         <img
           :src="activeProduct.backImage || activeProduct.frontImage"
-          :alt="`${activeProduct.title} — склад та рекомендації із застосування`"
+          :alt="`${activeProduct.title} – склад та рекомендації із застосування`"
         />
       </figure>
 
@@ -199,7 +199,8 @@ function onBackdropClick(event) {
   color: var(--on-accent);
   font-weight: 700;
   text-decoration: none;
-  transition: transform var(--dur) var(--ease-out-quart),
+  transition:
+    transform var(--dur) var(--ease-out-quart),
     box-shadow var(--dur) var(--ease-out-quart);
 }
 .modal__cta:hover {

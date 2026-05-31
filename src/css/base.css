@@ -1,9 +1,9 @@
 :root {
-    font-family: "Open Sans";
+    font-family: var(--font-body);
     font-size: 16px;
 
-    color: #2d333a;
-    background-color: rgba(255, 255, 255, 0.87);
+    color: var(--ink);
+    background-color: var(--bg);
 
     font-synthesis: none;
     text-rendering: optimizeLegibility;
@@ -11,16 +11,18 @@
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
 
-    --main-green: #00ad72;
-    --main-cyan: #00adad;
-    --white: #f8f9fc;
+    /* Legacy vars bridged to the Pine & Harvest palette so sections not yet
+       refactored stay color-cohesive. */
+    --main-green: var(--brand);
+    --main-cyan: var(--brand);
+    --white: var(--on-brand);
     --grey: #c2c9d6;
-    --slate: #2d333a;
-    --slateOp: rgba(28, 33, 37, 0.6);
-    --black: #0f1c0f;
-    --green: #00af36;
-    --apple: #daf2d8;
-    --yellow: rgba(245, 192, 63, 1);
+    --slate: var(--ink);
+    --slateOp: oklch(0.26 0.02 150 / 0.6);
+    --black: var(--brand-ink);
+    --green: var(--brand);
+    --apple: var(--surface-sunk);
+    --yellow: var(--accent);
     --grackle-blue: #d8ecfb;
     --light-green: #f6fffe;
     --light-apple: #f2fff4;
@@ -30,8 +32,8 @@
     --animation: 250ms cubic-bezier(0.4, 0, 0.2, 1);
     --lil-space: 0.02em;
 
-    --gradient-c1: #137e39;
-    --gradient-c2: #08415b;
+    --gradient-c1: var(--brand);
+    --gradient-c2: var(--brand-strong);
 
 }
 .section {

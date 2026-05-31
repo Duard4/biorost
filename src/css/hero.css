@@ -1,62 +1,47 @@
 .hero {
+  /* field photo with a pine gradient overlay for legible light text
+     (replaces the muddy color-burn blend) */
   background: linear-gradient(
-      180.3deg,
-      rgba(176, 255, 203, 0.4) 10.2%,
-      rgba(3, 62, 88, 0.2) 68.5%
+      to bottom,
+      oklch(0.3 0.06 152 / 0.45),
+      oklch(0.24 0.05 156 / 0.78)
     ),
     url(/assets/bg-images/hero.webp);
   background-position: center;
-  background-blend-mode: color-burn;
-  background-attachment: fixed;
   background-size: cover;
   background-repeat: no-repeat;
   text-align: center;
-  color: var(--white);
-  margin-top: 12px;
+  color: var(--on-brand);
   margin-top: -250px;
   height: calc(100vh + 250px);
+  display: grid;
+  place-items: center;
 }
 
 .hero.section {
-  padding-top: 400px;
-}
-.hero-title {
-  font-size: 3rem;
-  color: var(--black);
-  text-shadow: 2px 2px 4px var(--slate);
-  letter-spacing: 2px;
-}
-.hero-text {
-  color: var(--slate);
-  max-width: 300px;
-  text-shadow: 2px 2px 4px var(--slateOp);
+  padding-top: 250px;
 }
 
-.hero-title,
-.hero-text {
-  color: var(--white);
+.hero-title {
+  font-family: var(--font-display);
+  font-size: var(--text-display);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  color: var(--on-brand);
+  text-wrap: balance;
+  text-shadow: 0 2px 24px oklch(0.2 0.04 152 / 0.5);
 }
+
+.hero-text {
+  margin: var(--space-4) auto var(--space-8);
+  max-width: 42ch;
+  font-size: var(--text-xl);
+  line-height: 1.4;
+  color: color-mix(in oklch, var(--on-brand) 90%, transparent);
+  text-wrap: pretty;
+}
+
 .order-btn {
-  display: inline-block;
-  font-size: 1.1rem;
-  min-width: 160px;
-  transition: all 0.3s ease;
-}
-.hero-text {
-  margin: 0 auto;
-  font-size: 1.1rem;
-  max-width: 500px;
-}
-@media (min-width: 768px) {
-  .hero-title {
-    font-size: 4.5rem;
-  }
-  .hero-text {
-    font-size: 1.4rem;
-    max-width: 800px;
-  }
-  .order-btn {
-    font-size: 1.1rem;
-    min-width: 200px;
-  }
+  min-width: 200px;
 }
