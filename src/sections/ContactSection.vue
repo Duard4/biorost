@@ -3,7 +3,7 @@
     <div class="container">
       <div class="contact-info">
         <p class="contact-pre-text">Адреса та контактна інформація</p>
-        <h1 class="contact-us-title title">Контакти</h1>
+        <h2 class="contact-us-title title">Контакти</h2>
         <address class="contact-address">
           <ul class="contact-adress-list">
             <li class="address-point-item">

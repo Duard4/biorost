@@ -13,6 +13,7 @@
 
 <script>
 import Layout from "./components/Layout.vue";
+import { useSeo } from "./js/seo";
 
 import { defineAsyncComponent } from "vue";
 
@@ -40,6 +41,9 @@ const ContactSection = defineAsyncComponent(() =>
 
 export default {
   name: "App",
+  setup() {
+    useSeo();
+  },
   components: {
     Layout,
     HeroSection,

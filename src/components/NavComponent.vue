@@ -13,8 +13,12 @@
           </li>
         </ul>
         <address class="box-address">
-          <a class="address-link" href="http://">
-            вул. Сталеварів 17, Запоріжжя</a
+          <a
+            class="address-link"
+            href="https://maps.app.goo.gl/B4SRqeFBW5ZKHrT6A"
+            target="_blank"
+            rel="noopener noreferrer"
+          >вул. Луганська, 29а, Запоріжжя</a
           >
           <a class="address-link" href="mailto:Biorost.zap@gmail.com"
             >Biorost.zap@gmail.com</a
