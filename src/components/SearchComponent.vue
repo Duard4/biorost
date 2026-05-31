@@ -1,60 +1,54 @@
-<template>
-    <div class="search-wrapper">
-        <input type="text" class="search-field" placeholder="Пошук" v-model="searchQuery" @input="performSearch" />
-        <svg class="icon search-icon" width="20" height="20">
-            <use href="/assets/icons.svg#icon-search"></use>
-        </svg>
-        <ul v-if="searchResults.length" class="search-results">
-            <li v-for="(result, index) in searchResults" :key="index" @click="scrollToElement(result)">
-                {{ result.title }}
-            </li>
-        </ul>
-    </div>
-</template>
+<script setup>
+import { ref } from "vue";
+import { useProductCatalog, categoryName } from "../js/useProductCatalog";
 
-<script>
-import { eventBus } from '../js/eventBus';
-import { nextTick } from 'vue';
+const { searchProducts, focusProduct } = useProductCatalog();
 
-export default {
-    name: 'SearchBar',
-    data() {
-        return {
-            searchQuery: '',
-            searchResults: []
-        };
-    },
-    methods: {
-        performSearch() {
-            const query = this.searchQuery.toLowerCase();
-            const results = [];
+const searchQuery = ref("");
+const searchResults = ref([]);
 
-            const items1 = document.querySelectorAll('.slider .item .flip-box-front img');
-            const items2 = document.querySelectorAll('.visually-hidden .item .flip-box-front img');
-            const items = [...items1, ...items2];
-            items.forEach((item, index) => {
-                if (query != '' && query != ' ' && item.alt.toLowerCase().includes(query)) {
-                    results.push({ item, title: item.alt });
-                }
-            });
+function performSearch() {
+  searchResults.value = searchProducts(searchQuery.value);
+}
 
-            this.searchResults = results;
-        },
-        scrollToElement(result) {
-            const element = document.getElementById('products');
-            element.scrollIntoView({ 'behaviour': 'smooth' });
-            eventBus.emit('openType', result.item);
-            nextTick(() => {
-                eventBus.emit('scrollToSlide', result.item.dataset.index);
-
-            });
-            this.searchResults = [];
-            this.searchQuery = '';
-        }
-    }
-};
+function selectResult(product) {
+  document.getElementById("products")?.scrollIntoView({ behavior: "smooth" });
+  focusProduct(product);
+  searchResults.value = [];
+  searchQuery.value = "";
+}
 </script>
 
+<template>
+  <div class="search-wrapper">
+    <input
+      type="text"
+      class="search-field"
+      placeholder="Пошук продукції"
+      aria-label="Пошук продукції"
+      v-model="searchQuery"
+      @input="performSearch"
+    />
+    <svg class="icon search-icon" width="20" height="20" aria-hidden="true">
+      <use href="/assets/icons.svg#icon-search"></use>
+    </svg>
+    <ul v-if="searchResults.length" class="search-results">
+      <li
+        v-for="product in searchResults"
+        :key="product.id"
+        @click="selectResult(product)"
+      >
+        {{ product.title }}
+        <small>{{ categoryName(product.type) }}</small>
+      </li>
+    </ul>
+  </div>
+</template>
+
 <style scoped>
-/* Add your styles here */
+.search-results small {
+  display: block;
+  color: var(--muted, #5a6b5a);
+  font-size: 0.8em;
+}
 </style>

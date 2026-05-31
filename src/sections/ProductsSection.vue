@@ -1,57 +1,69 @@
+<script setup>
+import ProductCategoryFilter from "../components/product/ProductCategoryFilter.vue";
+import ProductGallery from "../components/product/ProductGallery.vue";
+</script>
+
 <template>
-  <section class="section products" id="products">
+  <section class="products section" id="products">
     <div class="container">
-      <h2 class="products-title searchable">Наша продукція</h2>
-      <h3 class="after-title">
-        Органо-мінеральні добрива, інокулянти, біофунгіциди та інші рішення для
-        аграріїв по всій Україні
-      </h3>
-      <ProductFilter
-        :selectedType="selectedType"
-        @update:filteredItems="updateFilteredItems"
-        @update:selectedType="updateSelectedType"
-      ></ProductFilter>
-      <ProductSlider
-        :filteredItems="filteredItems"
-        :extraItems="extraItems"
-      ></ProductSlider>
+      <header class="products__head">
+        <h2 class="products__title searchable">Наша продукція</h2>
+        <p class="products__lead">
+          Органо-мінеральні добрива, інокулянти, біофунгіциди та інші рішення
+          для аграріїв по всій Україні
+        </p>
+      </header>
+
+      <ProductCategoryFilter />
+      <ProductGallery />
     </div>
   </section>
 </template>
 
-<script>
-import { ref } from "vue";
-import { items, types } from "../js/data";
-import ProductSlider from "../components/ProductSlider.vue";
-import ProductFilter from "../components/ProductFilter.vue";
+<style scoped>
+/* Committed green band — the catalog is the commercial core, so it carries
+   the brand color. Texture from the existing field photo, kept subtle. */
+.products {
+  position: relative;
+  background-color: var(--brand);
+  background-image: linear-gradient(
+      to bottom,
+      var(--brand-strong),
+      var(--brand)
+    ),
+    url("/assets/bg-images/prod.webp");
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: multiply;
+  color: var(--on-brand);
+  isolation: isolate;
+}
 
-export default {
-  name: "ProductTypesComponent",
-  components: {
-    ProductSlider,
-    ProductFilter,
-  },
-  setup() {
-    const selectedType = ref(null);
-    const filteredItems = ref(items);
-    const extraItems = ref(items);
+.products__head {
+  text-align: center;
+  max-width: 60ch;
+  margin: 0 auto var(--space-8);
+}
 
-    const updateFilteredItems = (newItems, extra) => {
-      filteredItems.value = newItems;
-      extraItems.value = extra;
-    };
+.products__title {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  font-weight: 800;
+  line-height: 1.05;
+  margin: 0 0 var(--space-3);
+  text-wrap: balance;
+}
 
-    const updateSelectedType = (newType) => {
-      selectedType.value = newType;
-    };
+.products__lead {
+  font-size: var(--text-lg);
+  line-height: 1.5;
+  color: color-mix(in oklch, var(--on-brand) 88%, var(--brand));
+  margin: 0;
+  text-wrap: pretty;
+}
 
-    return {
-      selectedType,
-      filteredItems,
-      extraItems,
-      updateFilteredItems,
-      updateSelectedType,
-    };
-  },
-};
-</script>
+/* Space between the filter and the grid */
+.products :deep(.filter) {
+  margin-bottom: var(--space-8);
+}
+</style>
