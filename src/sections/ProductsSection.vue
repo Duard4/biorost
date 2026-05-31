@@ -25,16 +25,13 @@ import ProductGallery from "../components/product/ProductGallery.vue";
    the brand color. Texture from the existing field photo, kept subtle. */
 .products {
   position: relative;
-  background-color: var(--brand);
-  background-image: linear-gradient(
-      to bottom,
-      var(--brand-strong),
-      var(--brand)
-    ),
-    url("/assets/bg-images/prod.webp");
-  background-size: cover;
-  background-position: center;
-  background-blend-mode: multiply;
+  /* clean deep-green band with a soft top highlight for depth (no muddy
+     photo multiply) */
+  background: radial-gradient(
+    120% 90% at 50% -10%,
+    var(--brand) 0%,
+    var(--brand-strong) 100%
+  );
   color: var(--on-brand);
   isolation: isolate;
 }

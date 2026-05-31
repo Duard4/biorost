@@ -83,6 +83,9 @@ defineEmits(["open"]);
   width: 100%;
   height: 100%;
   object-fit: cover;
+  /* pack shots have a white caption strip at the top — bottom-align so it's
+     clipped (proportional, holds across card widths) */
+  object-position: center bottom;
   transition: transform var(--dur-slow) var(--ease-out-quart);
 }
 

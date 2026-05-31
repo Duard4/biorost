@@ -10,23 +10,25 @@ Color strategy: **Committed** (one saturated color carries 30–60% of surface).
 
 ## Color (OKLCH, semantic roles)
 
+Palette: **Pine & Harvest** — deep, muted pine green carries bands; warm harvest gold is the scarce accent. Low chroma keeps the green grounded/premium rather than the bright eco-template green.
+
 | Token | Value | Role |
 |---|---|---|
-| `--bg` | `oklch(0.97 0.012 130)` | Page background, warm clay-tinted off-white |
+| `--bg` | `oklch(0.98 0.008 150)` | Page background, near-white with a faint pine tint |
 | `--surface` | `oklch(1 0 0)` | Cards, panels, raised surfaces |
-| `--surface-sunk` | `oklch(0.95 0.012 130)` | Insets, wells |
-| `--brand` | `oklch(0.52 0.13 150)` | Primary green; carries hero + bands (≈ legacy `#137e39`) |
-| `--brand-strong` | `oklch(0.43 0.12 152)` | Hover/pressed green |
-| `--brand-ink` | `oklch(0.30 0.07 150)` | Large green-black headings |
-| `--on-brand` | `oklch(0.98 0.01 130)` | Text/icons on green surfaces |
-| `--ink` | `oklch(0.26 0.02 120)` | Body text — ≥7:1 on `--bg` (outdoor legible) |
-| `--muted` | `oklch(0.50 0.02 120)` | Secondary text — still ≥4.5:1 on `--bg` |
-| `--soil` | `oklch(0.38 0.04 60)` | Earth-brown grounding accent |
-| `--accent` | `oklch(0.80 0.15 85)` | Yellow — CTAs/highlights only, scarce (legacy `--yellow`) |
-| `--on-accent` | `oklch(0.26 0.03 80)` | Text on yellow |
-| `--line` | `oklch(0.88 0.01 130)` | Hairline borders |
+| `--surface-sunk` | `oklch(0.96 0.008 150)` | Insets, wells |
+| `--brand` | `oklch(0.40 0.085 150)` | Deep pine; carries bands |
+| `--brand-strong` | `oklch(0.32 0.07 152)` | Darker band stop / hover/pressed |
+| `--brand-ink` | `oklch(0.27 0.06 150)` | Large green-black headings on light |
+| `--on-brand` | `oklch(0.97 0.015 120)` | Text/icons on green surfaces |
+| `--ink` | `oklch(0.26 0.02 150)` | Body text — ≥7:1 on `--bg` (outdoor legible) |
+| `--muted` | `oklch(0.48 0.02 140)` | Secondary text — ≥4.5:1 on `--bg` |
+| `--soil` | `oklch(0.42 0.05 55)` | Earth-brown grounding accent |
+| `--accent` | `oklch(0.78 0.11 80)` | Harvest gold — CTAs/highlights/active state only, scarce |
+| `--on-accent` | `oklch(0.28 0.05 75)` | Text on gold |
+| `--line` | `oklch(0.89 0.01 150)` | Hairline borders |
 
-Rules: green carries large surfaces; yellow stays scarce (CTAs, active states); neutrals tint toward the brand hue (130/120), never generic warm. Color is never the sole signal (active filter pairs color with weight/underline). Contrast verified: `--ink`/`--bg` ≈ 9:1, `--muted`/`--bg` ≈ 4.7:1, `--on-brand`/`--brand` ≥ 5:1.
+Rules: green carries large surfaces; gold stays scarce (CTAs, active states); neutrals tint toward the pine hue (150), never generic warm. Color is never the sole signal (active filter pairs color with a solid fill + weight). Contrast verified: `--ink`/`--bg` ≈ 9:1, `--muted`/`--bg` ≈ 4.6:1, `--on-brand`/`--brand` ≥ 6:1.
 
 ## Typography
 

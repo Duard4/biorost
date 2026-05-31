@@ -4,24 +4,27 @@
  * section is migrated, so loading this file changes nothing on its own.
  */
 :root {
-  /* ── Color (OKLCH, semantic roles) ───────────────────────── */
-  --bg: oklch(0.97 0.012 130);
+  /* ── Color (OKLCH, semantic roles) ───────────────────────────
+     Palette: "Pine & Harvest" — deep muted pine green carries bands,
+     warm harvest gold as the scarce accent. Low-chroma green reads
+     grounded/premium, not the bright eco-template green. */
+  --bg: oklch(0.98 0.008 150);
   --surface: oklch(1 0 0);
-  --surface-sunk: oklch(0.95 0.012 130);
+  --surface-sunk: oklch(0.96 0.008 150);
 
-  --brand: oklch(0.52 0.13 150);
-  --brand-strong: oklch(0.43 0.12 152);
-  --brand-ink: oklch(0.3 0.07 150);
-  --on-brand: oklch(0.98 0.01 130);
+  --brand: oklch(0.4 0.085 150);
+  --brand-strong: oklch(0.32 0.07 152);
+  --brand-ink: oklch(0.27 0.06 150);
+  --on-brand: oklch(0.97 0.015 120);
 
-  --ink: oklch(0.26 0.02 120);
-  --muted: oklch(0.5 0.02 120);
-  --soil: oklch(0.38 0.04 60);
+  --ink: oklch(0.26 0.02 150);
+  --muted: oklch(0.48 0.02 140);
+  --soil: oklch(0.42 0.05 55);
 
-  --accent: oklch(0.8 0.15 85);
-  --on-accent: oklch(0.26 0.03 80);
+  --accent: oklch(0.78 0.11 80);
+  --on-accent: oklch(0.28 0.05 75);
 
-  --line: oklch(0.88 0.01 130);
+  --line: oklch(0.89 0.01 150);
 
   /* ── Typography ───────────────────────────────────────────── */
   --font-display: "Unbounded", "Open Sans", system-ui, sans-serif;
