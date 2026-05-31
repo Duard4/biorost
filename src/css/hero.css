@@ -12,14 +12,13 @@
   background-repeat: no-repeat;
   text-align: center;
   color: var(--on-brand);
-  margin-top: -250px;
-  height: calc(100vh + 250px);
+  min-height: min(82svh, 760px);
   display: grid;
   place-items: center;
 }
 
 .hero.section {
-  padding-top: 250px;
+  padding-block: var(--space-16);
 }
 
 .hero-title {
