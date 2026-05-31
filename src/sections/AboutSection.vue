@@ -79,8 +79,7 @@ export default {
     this.setRowsByWidth();
     window.addEventListener("resize", this.handleResize);
   },
-  // Якщо у тебе Vue 3 — заміни beforeDestroy на beforeUnmount
-  beforeDestroy() {
+  beforeUnmount() {
     window.removeEventListener("resize", this.handleResize);
   },
   methods: {

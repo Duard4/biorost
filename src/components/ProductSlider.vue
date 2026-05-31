@@ -45,7 +45,6 @@
 
 <script>
 import Hammer from 'hammerjs';
-import SearchComponent from './SearchComponent.vue';
 import FullscreenImageModal from './FullscreenImageModal.vue';
 import { eventBus } from '../js/eventBus';
 import transliterate from 'transliterate';
@@ -53,7 +52,6 @@ import transliterate from 'transliterate';
 export default {
     name: 'ProductSlider',
     components: {
-        SearchComponent,
         FullscreenImageModal
     },
     props: {

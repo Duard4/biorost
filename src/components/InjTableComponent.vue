@@ -57,7 +57,7 @@ export default {
     mounted() {
         window.addEventListener('resize', this.checkScreenWidth);
     },
-    beforeDestroy() {
+    beforeUnmount() {
         window.removeEventListener('resize', this.checkScreenWidth);
     },
     methods: {
