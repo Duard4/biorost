@@ -2,7 +2,7 @@
     <div class="search-wrapper">
         <input type="text" class="search-field" placeholder="Пошук" v-model="searchQuery" @input="performSearch" />
         <svg class="icon search-icon" width="20" height="20">
-            <use href="../assets/icons.svg#icon-search"></use>
+            <use href="/assets/icons.svg#icon-search"></use>
         </svg>
         <ul v-if="searchResults.length" class="search-results">
             <li v-for="(result, index) in searchResults" :key="index" @click="scrollToElement(result)">

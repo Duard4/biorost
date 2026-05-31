@@ -112,7 +112,7 @@ export default {
             this.loadShow();
         },
         getImageUrl(path) {
-            return new URL(path, import.meta.url).href;
+            return path;
         },
         getTransliteratedTitle(title) {
             return transliterate(title);

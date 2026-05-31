@@ -70,7 +70,7 @@ export default {
 <style>
 .news-section {
   font-family: "Roboto", sans-serif;
-  background-image: url("../assets/bg-images/news-2.jpg");
+  background-image: url("/assets/bg-images/news-2.webp");
   background-blend-mode: color;
   background-position: center;
   background-size: cover;

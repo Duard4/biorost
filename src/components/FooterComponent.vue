@@ -3,7 +3,7 @@
     <div class="container">
       <div class="footer-section">
         <div class="footer-logo">
-          <img src="../assets/content-images/logo.png" alt="Biorost Logo" />
+          <img src="/assets/content-images/logo.webp" alt="Biorost Logo" />
         </div>
         <address class="footer-contact">
           <h3>Контакти</h3>

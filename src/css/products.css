@@ -4,7 +4,7 @@
             rgba(19, 126, 57, 0.3) 0.2%,
             rgba(8, 65, 91, 0.3) 68.5%
         ),
-        url(../assets/bg-images/prod.jpg);
+        url(/assets/bg-images/prod.webp);
     background-size: cover;
     background-position: center;
     background-attachment: fixed;

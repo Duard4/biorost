@@ -18,7 +18,7 @@
         досвіду
       </p>
       <img
-        src="../assets/bg-images/about.jpg"
+        src="/assets/bg-images/about.webp"
         alt="sprouts"
         class="about-bg-img"
       />
@@ -59,8 +59,8 @@ export default {
     return {
       showModal: false,
       images: [
-        "../assets/content-images/certificate-1.jpg",
-        "../assets/content-images/certificate-2.jpg",
+        "/assets/content-images/certificate-1.webp",
+        "/assets/content-images/certificate-2.webp",
       ],
       about: aboutData,
       rows: aboutData.rows.map((r) => ({ ...r, active: false })),

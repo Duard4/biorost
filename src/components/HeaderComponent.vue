@@ -8,14 +8,14 @@
         target="_blank"
       >
         <svg class="icon" width="24" height="24">
-          <use href="../assets/icons.svg#icon-location"></use>
+          <use href="/assets/icons.svg#icon-location"></use>
         </svg>
         вул. Луганська, 29а, Запоріжжя</a
       >
     </address>
     <p class="header-logo">
       <img
-        src="../assets/content-images/logo.png"
+        src="/assets/content-images/logo.webp"
         alt="logo Biorost"
         width="240px"
       />
