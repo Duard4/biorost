@@ -191,7 +191,7 @@
 
 <script>
 import { resolvePrefill } from "../js/contactPrefill.js";
-import emailjs from "emailjs-com";
+import emailjs from "@emailjs/browser";
 import { usePageSeo } from "../js/seo";
 
 export default {
@@ -227,12 +227,17 @@ export default {
           "Фітогормони",
           "Бактерії ґрунтові",
         ],
-        "Питання щодо": ["Товару", "Оплати", "Використання", "Доставки"],
-        "Відгук на вакансію": [
-          "Спеціаліст з наукової роботи",
-          "Менеджер з продажу органічних добрив (B2B-сектор)",
+        Питання: [
+          "Про товар",
+          "Про оплату",
+          "Про використання",
+          "Про доставку",
         ],
-        "Звернення з": ["Скаргою", "Пропозицією", "Подякою"],
+        Вакансії: [
+          "Спеціаліст з наукової роботи",
+          "Менеджер з продажу органічних добрив (B2B)",
+        ],
+        Відгук: ["Скарга", "Пропозиція", "Подяка"],
       },
       subcategories: [],
       errors: {},
@@ -275,14 +280,15 @@ export default {
       const userID = "6xpXf2EoTZal99FW_";
       const templateParams = {
         name: this.form.name,
-        farm: this.form.farm ? this.form.farm : '"Не вказано"',
+        farm: this.form.farm ? this.form.farm : "Не вказано",
         phone: this.form.phone,
         email: this.form.email,
-        subject: `${this.form.subject} - ${this.form.subcategory}`,
+        subject: this.form.subject,
+        subcategory: this.form.subcategory,
         message: this.form.message,
       };
       emailjs
-        .send(serviceID, templateID, templateParams, userID)
+        .send(serviceID, templateID, templateParams, { publicKey: userID })
         .then(() => {
           this.showToast("Повідомлення успішно надіслано!", "success");
           this.resetForm();

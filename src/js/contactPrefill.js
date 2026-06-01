@@ -53,16 +53,16 @@ export function resolvePrefill(query, categories) {
       };
     }
     case "consultation": {
-      const subject = "Питання щодо";
+      const subject = "Питання";
       return {
         subject,
-        subcategory: "Використання",
+        subcategory: "Про використання",
         message:
           "Хочу замовити консультацію агронома щодо підбору препаратів і норм внесення під мою культуру.",
       };
     }
     case "application": {
-      const subject = "Відгук на вакансію";
+      const subject = "Вакансії";
       return {
         subject,
         subcategory: bestMatch(query.job, categories[subject]),
