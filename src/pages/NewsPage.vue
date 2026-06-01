@@ -17,7 +17,7 @@ const current = computed(() => articles[openIndex.value]);
 
 <template>
   <div class="page news">
-    <div class="container container--narrow">
+    <div class="container news__inner">
       <header class="news__head">
         <p class="news__kicker">Журнал · агрономія та родючість</p>
         <h1 class="news__title">Новини та статті</h1>
@@ -49,6 +49,7 @@ const current = computed(() => articles[openIndex.value]);
   padding-block: clamp(2.5rem, 1.5rem + 5vw, 5rem);
   min-height: 100vh;
 }
+.news__inner { max-width: 1000px; }
 .news__head { margin-bottom: var(--space-8); }
 .news__kicker {
   font-weight: 600;
@@ -115,7 +116,7 @@ const current = computed(() => articles[openIndex.value]);
   margin: 0 0 var(--space-6);
   text-wrap: balance;
 }
-.article__body { color: var(--ink); font-size: var(--text-base); line-height: 1.7; }
+.article__body { color: var(--ink); font-size: var(--text-base); line-height: 1.7; max-width: 70ch; }
 .article__body :deep(p) { margin: 0 0 var(--space-4); }
 .article__body :deep(h3) {
   font-family: var(--font-display);

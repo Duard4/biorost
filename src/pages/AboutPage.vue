@@ -79,7 +79,7 @@ const emailOf = (contact) => contact.split(" ")[0];
 
     <!-- Philosophy accordion -->
     <section class="section">
-      <div class="container container--narrow">
+      <div class="container">
         <h2 class="title about__h2">Що дає жива органіка</h2>
         <p class="lead about__h2-lead">
           Три напрями впливу наших препаратів — на ґрунт, на рослину та на все,
@@ -214,7 +214,7 @@ const emailOf = (contact) => contact.split(" ")[0];
 .about__h2-lead { margin: 0 0 var(--space-8); }
 
 /* Accordion (shared by philosophy + vacancies) */
-.acc { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-3); }
+.acc { list-style: none; margin: 0; padding: 0; max-width: 58rem; display: grid; gap: var(--space-3); }
 .acc__item {
   background: var(--surface);
   border: 1px solid var(--line);

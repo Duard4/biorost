@@ -93,7 +93,7 @@ const proof = [
 
         <ul class="catalog__grid">
           <li v-for="cat in categories" :key="cat.id">
-            <router-link class="cat-card" to="/products">
+            <router-link class="cat-card" :to="{ path: '/products', query: { category: cat.id } }">
               <span class="cat-card__count">{{ cat.count }}</span>
               <h3 class="cat-card__name">{{ cat.name }}</h3>
               <p class="cat-card__desc">{{ cat.description }}</p>

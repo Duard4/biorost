@@ -52,10 +52,12 @@ const { filteredItems, openProduct } = useProductCatalog();
 .card-enter-active {
   transition: opacity var(--dur) var(--ease-out-quart),
     transform var(--dur) var(--ease-out-quart);
+  transition-delay: var(--dur-fast);
 }
+/* Leaving cards fade in place (kept in grid flow) so they never break out
+   to full container width before the layout settles. */
 .card-leave-active {
   transition: opacity var(--dur-fast) var(--ease-out-quart);
-  position: absolute;
 }
 .card-move {
   transition: transform var(--dur-slow) var(--ease-out-quart);

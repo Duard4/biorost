@@ -77,11 +77,11 @@ export default {
     --header-text-color: var(--on-brand);
     --row-bg-color: var(--brand-wash);
     --alt-row-bg-color: var(--surface-sunk);
-    --hover-bg-color: var(--accent-wash);
+    --hover-bg-color: color-mix(in oklch, var(--brand) 10%, var(--surface));
     --text-color: var(--ink);
     --border-color: var(--line);
     --treatment-bg-color: var(--brand-wash);
-    --treatment-hover-bg-color: var(--accent-wash);
+    --treatment-hover-bg-color: color-mix(in oklch, var(--brand) 16%, var(--surface));
     --treatment-text-color: var(--brand-ink);
     font-size: var(--text-base);
 }

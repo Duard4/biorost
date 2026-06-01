@@ -1,7 +1,10 @@
 <script setup>
+import { computed, onMounted, watch } from "vue";
+import { useRoute, useRouter } from "vue-router";
 import ProductCategoryFilter from "../components/product/ProductCategoryFilter.vue";
 import ProductGallery from "../components/product/ProductGallery.vue";
 import { items } from "../js/data";
+import { useProductCatalog } from "../js/useProductCatalog";
 import { usePageSeo } from "../js/seo";
 
 usePageSeo({
@@ -12,6 +15,27 @@ usePageSeo({
 });
 
 const count = items.length;
+
+// Filter <-> URL ?category= sync, so deep links and the home-page category
+// cards land on the right filter, and clicking a filter is shareable/bookmarkable.
+const route = useRoute();
+const router = useRouter();
+const { selectedType, selectType, ALL, categories } = useProductCatalog();
+const validIds = computed(() => categories.value.map((c) => c.id));
+
+function applyQuery() {
+  const q = route.query.category;
+  selectType(validIds.value.includes(q) ? q : ALL);
+}
+
+onMounted(applyQuery);
+watch(() => route.query.category, applyQuery);
+watch(selectedType, (val) => {
+  const next = val === ALL ? undefined : val;
+  if ((route.query.category ?? undefined) !== next) {
+    router.replace({ query: { ...route.query, category: next } });
+  }
+});
 </script>
 
 <template>
