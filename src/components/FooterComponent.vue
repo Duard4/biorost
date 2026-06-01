@@ -18,13 +18,21 @@ const nav = [
   <footer class="footer">
     <div class="container footer__grid">
       <div class="footer__brand">
-        <img class="footer__logo" src="/assets/content-images/logo.webp" alt="Біорост" width="160" height="42" />
+        <img
+          class="footer__logo"
+          src="/assets/content-images/logo.webp"
+          alt="Біорост"
+          width="160"
+          height="42"
+        />
         <p class="footer__tagline">
           Органічні добрива та біопрепарати для відновлення родючості ґрунту.
           Власне виробництво в Запоріжжі з 2013 року.
         </p>
         <a class="footer__ig" :href="INSTAGRAM" target="_blank" rel="noopener">
-          <svg width="20" height="20" aria-hidden="true"><use href="/assets/icons.svg#icon-instagram" /></svg>
+          <svg width="20" height="20" aria-hidden="true">
+            <use href="/assets/icons.svg#icon-instagram" />
+          </svg>
           biorost_zp
         </a>
       </div>
@@ -58,7 +66,9 @@ const nav = [
             <a class="hover" :href="`mailto:${EMAIL}`">{{ EMAIL }}</a>
           </li>
           <li>
-            <a class="hover" :href="MAP_URL" target="_blank" rel="noopener">Ми на карті →</a>
+            <a class="hover" :href="MAP_URL" target="_blank" rel="noopener"
+              >Ми на карті →</a
+            >
           </li>
         </ul>
       </address>
@@ -103,8 +113,12 @@ const nav = [
   text-decoration: none;
   font-weight: 600;
 }
-.footer__ig svg { fill: currentColor; }
-.footer__ig:hover { color: var(--on-soil); }
+.footer__ig svg {
+  fill: currentColor;
+}
+.footer__ig:hover {
+  color: var(--on-soil);
+}
 
 .footer__h {
   font-family: var(--font-display);
@@ -126,8 +140,15 @@ const nav = [
   color: color-mix(in oklch, var(--on-soil) 82%, transparent);
   text-decoration: none;
 }
-.footer__nav a:hover { color: var(--spark); }
-.footer__contacts { font-style: normal; }
+.footer__nav a:hover {
+  color: var(--spark);
+}
+.hover:hover {
+  color: var(--spark);
+}
+.footer__contacts {
+  font-style: normal;
+}
 .footer__contacts li {
   color: color-mix(in oklch, var(--on-soil) 72%, transparent);
   line-height: 1.5;
@@ -153,7 +174,9 @@ const nav = [
   font-size: var(--text-sm);
   color: color-mix(in oklch, var(--on-soil) 60%, transparent);
 }
-.footer__bottom-inner p { margin: 0; }
+.footer__bottom-inner p {
+  margin: 0;
+}
 
 @media (min-width: 720px) {
   .footer__grid {

@@ -10,9 +10,10 @@ const { filteredItems, openProduct } = useProductCatalog();
   <div class="gallery">
     <transition-group tag="ul" name="card" class="gallery__grid">
       <ProductCard
-        v-for="product in filteredItems"
+        v-for="(product, i) in filteredItems"
         :key="product.id"
         :product="product"
+        :index="i"
         @open="openProduct"
       />
     </transition-group>

@@ -53,9 +53,7 @@ const current = computed(() => articles[openIndex.value]);
   padding-block: clamp(2.5rem, 1.5rem + 5vw, 5rem);
   min-height: 100vh;
 }
-.news__inner {
-  max-width: 1000px;
-}
+
 .news__head {
   margin-bottom: var(--space-8);
 }

@@ -1,10 +1,16 @@
 <script setup>
+import { computed } from "vue";
 import { categoryName } from "../../js/useProductCatalog";
 
 const props = defineProps({
   product: { type: Object, required: true },
+  index: { type: Number, default: 0 },
 });
 defineEmits(["open"]);
+
+// Eager-load the first row (grid is up to ~4 cols) so above-the-fold pack
+// shots never flash the empty placeholder; the rest stay lazy.
+const priority = computed(() => props.index < 4);
 </script>
 
 <template>
@@ -19,7 +25,8 @@ defineEmits(["open"]);
         <img
           :src="product.frontImage"
           :alt="product.title"
-          loading="lazy"
+          :loading="priority ? 'eager' : 'lazy'"
+          :fetchpriority="priority ? 'high' : 'auto'"
           decoding="async"
           width="300"
           height="380"
@@ -76,7 +83,13 @@ defineEmits(["open"]);
 .card__media {
   display: block;
   aspect-ratio: 4 / 5;
-  background: var(--surface-sunk);
+  /* branded tint so any pre-decode frame reads as an intentional placeholder
+     rather than an empty box; hidden once the opaque pack shot paints */
+  background: linear-gradient(
+    150deg,
+    var(--brand-wash),
+    var(--surface-sunk)
+  );
   overflow: hidden;
 }
 

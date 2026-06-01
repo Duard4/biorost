@@ -53,7 +53,7 @@
   --text-xl: clamp(1.35rem, 1.1rem + 1.1vw, 1.6rem);
   --text-2xl: clamp(1.7rem, 1.3rem + 1.8vw, 2.2rem);
   --text-3xl: clamp(2.1rem, 1.5rem + 2.8vw, 3.1rem);
-  --text-display: clamp(2.5rem, 1.5rem + 4.4vw, 5rem);
+  --text-display: clamp(2.5rem, 1.5rem + 4.4vw, 4rem);
 
   /* ── Spacing (8px base) ─────────────────────────────────────── */
   --space-1: 0.25rem;
@@ -81,7 +81,8 @@
   --shadow-2:
     0 4px 12px oklch(0.3 0.05 45 / 0.1), 0 12px 32px oklch(0.3 0.05 45 / 0.12);
   --shadow-3:
-    0 8px 24px oklch(0.28 0.05 45 / 0.14), 0 24px 60px oklch(0.28 0.05 45 / 0.16);
+    0 8px 24px oklch(0.28 0.05 45 / 0.14),
+    0 24px 60px oklch(0.28 0.05 45 / 0.16);
 
   /* ── Motion (ease-out only) ─────────────────────────────────── */
   --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);

@@ -44,7 +44,10 @@ const proof = [
       <div class="container hero__grid">
         <div class="hero__copy">
           <p class="hero__kicker">ТОВ «Органіка України» · Запоріжжя</p>
-          <h1 class="hero__title">Живий ґрунт – основа<br />високого врожаю</h1>
+          <h1 class="hero__title">
+            Живий ґрунт – основа<br />
+            високого врожаю
+          </h1>
           <p class="hero__lead">
             Органічні та органо-мінеральні добрива, інокулянти й біопрепарати,
             що відновлюють родючість ґрунту та захищають культури без хімії.
@@ -68,8 +71,11 @@ const proof = [
             fetchpriority="high"
           />
           <p class="hero__badge">
-            <span class="hero__badge-num">з 2013</span>
-            <span class="hero__badge-text">власне<br />виробництво</span>
+            <span class="hero__badge-num">BIO</span>
+            <span class="hero__badge-text"
+              >біопрепарати <br />
+              для здорового ґрунту</span
+            >
           </p>
         </figure>
       </div>
