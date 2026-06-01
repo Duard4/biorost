@@ -1,7 +1,10 @@
 <script setup>
 import { ref } from "vue";
+import { useRouter } from "vue-router";
 import { useProductCatalog, categoryName } from "../js/useProductCatalog";
 
+const emit = defineEmits(["select"]);
+const router = useRouter();
 const { searchProducts, focusProduct } = useProductCatalog();
 
 const searchQuery = ref("");
@@ -11,11 +14,12 @@ function performSearch() {
   searchResults.value = searchProducts(searchQuery.value);
 }
 
-function selectResult(product) {
-  document.getElementById("products")?.scrollIntoView({ behavior: "smooth" });
+async function selectResult(product) {
+  await router.push("/products");
   focusProduct(product);
   searchResults.value = [];
   searchQuery.value = "";
+  emit("select", product);
 }
 </script>
 

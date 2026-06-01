@@ -16,10 +16,10 @@ export default defineConfig({
     ...(process.env.SKIP_PRERENDER !== "1"
       ? [
           prerender({
-            routes: ["/"],
+            routes: ["/", "/products", "/maps", "/about", "/news", "/contacts"],
             renderer: "@prerenderer/renderer-puppeteer",
             rendererOptions: {
-              // defineAsyncComponent chunks load after mount; give them time.
+              // Lazy route chunks load after mount; give them time.
               // renderAfterTime is more reliable than element-exists on slow CI.
               renderAfterTime: 5000,
               timeout: 30000,

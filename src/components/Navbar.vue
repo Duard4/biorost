@@ -1,23 +1,24 @@
 <script setup>
 import { ref, watch, onMounted, onUnmounted } from "vue";
+import { useRoute } from "vue-router";
 import SearchComponent from "./SearchComponent.vue";
 
 const MAP_URL = "https://maps.app.goo.gl/B4SRqeFBW5ZKHrT6A";
 const TEL = "+380687579303";
-const EMAIL = "Biorost.zap@gmail.com";
+const EMAIL = "a0687579303@gmail.com";
 const INSTAGRAM = "https://www.instagram.com/biorost_zp/";
 
 const links = [
-  { text: "Про нас", href: "#about-us" },
-  { text: "Продукція", href: "#products" },
-  { text: "Карти внесення", href: "#inj-maps" },
-  { text: "Новини", href: "#news" },
-  { text: "Вакансії", href: "#vacancies" },
-  { text: "Контакти", href: "#contact-us" },
+  { text: "Продукція", to: "/products" },
+  { text: "Карти внесення", to: "/maps" },
+  { text: "Про нас", to: "/about" },
+  { text: "Новини", to: "/news" },
+  { text: "Контакти", to: "/contacts" },
 ];
 
 const open = ref(false);
 const scrolled = ref(false);
+const route = useRoute();
 
 const onScroll = () => (scrolled.value = window.scrollY > 8);
 const onKey = (e) => e.key === "Escape" && (open.value = false);
@@ -25,6 +26,10 @@ const onKey = (e) => e.key === "Escape" && (open.value = false);
 watch(open, (v) => {
   document.body.style.overflow = v ? "hidden" : "";
 });
+watch(
+  () => route.fullPath,
+  () => (open.value = false)
+);
 
 onMounted(() => {
   onScroll();
@@ -39,7 +44,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <!-- Thin utility strip: location + contact (keeps location present everywhere) -->
+  <!-- Thin utility strip: location + contact -->
   <div class="topbar">
     <div class="container topbar__inner">
       <a class="topbar__item topbar__loc" :href="MAP_URL" target="_blank" rel="noopener">
@@ -48,13 +53,10 @@ onUnmounted(() => {
         <span class="topbar__loc-short">Запоріжжя</span>
       </a>
       <div class="topbar__contacts">
+        <span class="topbar__item topbar__since">Виробництво з 2013 року</span>
         <a class="topbar__item" :href="`tel:${TEL}`">
           <svg width="16" height="16" aria-hidden="true"><use href="/assets/icons.svg#icon-phone" /></svg>
           <span>+380 68 757 93 03</span>
-        </a>
-        <a class="topbar__item topbar__hide-sm" :href="`mailto:${EMAIL}`">
-          <svg width="16" height="16" aria-hidden="true"><use href="/assets/icons.svg#icon-email" /></svg>
-          <span>{{ EMAIL }}</span>
         </a>
         <a class="topbar__item topbar__icon" :href="INSTAGRAM" target="_blank" rel="noopener" aria-label="Instagram">
           <svg width="16" height="16" aria-hidden="true"><use href="/assets/icons.svg#icon-instagram" /></svg>
@@ -66,18 +68,19 @@ onUnmounted(() => {
   <!-- Main sticky nav -->
   <nav class="navbar" :class="{ 'is-scrolled': scrolled }" aria-label="Головна навігація">
     <div class="container navbar__inner">
-      <a class="navbar__logo" href="#" aria-label="Біорост — на початок">
+      <router-link class="navbar__logo" to="/" aria-label="Біорост — на головну">
         <img src="/assets/content-images/logo.webp" alt="Біорост" width="150" height="40" />
-      </a>
+      </router-link>
 
       <ul class="navbar__links">
-        <li v-for="link in links" :key="link.href">
-          <a class="navbar__link" :href="link.href">{{ link.text }}</a>
+        <li v-for="link in links" :key="link.to">
+          <router-link class="navbar__link" :to="link.to">{{ link.text }}</router-link>
         </li>
       </ul>
 
       <div class="navbar__actions">
         <SearchComponent class="navbar__search" />
+        <router-link class="navbar__cta" to="/contacts#form">Замовити</router-link>
         <button
           type="button"
           class="burger"
@@ -109,26 +112,25 @@ onUnmounted(() => {
       </button>
     </div>
 
-    <SearchComponent class="drawer__search" />
+    <SearchComponent class="drawer__search" @select="open = false" />
 
     <nav class="drawer__nav" aria-label="Розділи сайту">
-      <a
+      <router-link
         v-for="(link, i) in links"
-        :key="link.href"
+        :key="link.to"
         class="drawer__link"
         :style="{ '--i': i }"
-        :href="link.href"
-        @click="open = false"
+        :to="link.to"
       >
         <span>{{ link.text }}</span>
         <svg class="drawer__chevron" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
           <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
         </svg>
-      </a>
+      </router-link>
     </nav>
 
     <div class="drawer__foot">
-      <a class="drawer__cta" href="#form" @click="open = false">Замовити продукцію</a>
+      <router-link class="drawer__cta" to="/contacts#form">Замовити продукцію</router-link>
       <address class="drawer__contacts">
         <a :href="MAP_URL" target="_blank" rel="noopener">
           <svg width="18" height="18" aria-hidden="true"><use href="/assets/icons.svg#icon-location" /></svg>
@@ -150,8 +152,8 @@ onUnmounted(() => {
 <style scoped>
 /* ── Utility strip ─────────────────────────────────────────── */
 .topbar {
-  background: var(--brand-strong);
-  color: var(--on-brand);
+  background: var(--soil);
+  color: var(--on-soil);
   font-size: var(--text-sm);
 }
 .topbar__inner {
@@ -166,22 +168,23 @@ onUnmounted(() => {
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
-  color: color-mix(in oklch, var(--on-brand) 90%, transparent);
+  color: color-mix(in oklch, var(--on-soil) 88%, transparent);
   text-decoration: none;
   white-space: nowrap;
 }
-.topbar__item:hover { color: var(--accent); }
+.topbar__item:hover { color: var(--spark); }
 .topbar__item svg { fill: currentColor; flex: none; }
-.topbar__contacts { display: flex; align-items: center; gap: var(--space-4); }
+.topbar__contacts { display: flex; align-items: center; gap: var(--space-5); }
 .topbar__loc-full { display: none; }
-.topbar__hide-sm { display: none; }
+.topbar__since { display: none; color: var(--spark); font-weight: 600; }
 
 /* ── Sticky nav ────────────────────────────────────────────── */
 .navbar {
   position: sticky;
   top: 0;
   z-index: var(--z-sticky);
-  background: var(--surface);
+  background: color-mix(in oklch, var(--surface) 88%, transparent);
+  backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--line);
   transition: box-shadow var(--dur) var(--ease-out-quart);
 }
@@ -191,14 +194,15 @@ onUnmounted(() => {
   align-items: center;
   justify-content: space-between;
   gap: var(--space-4);
-  min-height: 64px;
+  min-height: 66px;
 }
 .navbar__logo { display: inline-flex; flex: none; }
-.navbar__logo img { height: 34px; width: auto; display: block; }
+.navbar__logo img { height: 36px; width: auto; display: block; }
 
 .navbar__links { display: none; }
-.navbar__actions { display: flex; align-items: center; gap: var(--space-2); }
+.navbar__actions { display: flex; align-items: center; gap: var(--space-3); }
 .navbar__search { display: none; }
+.navbar__cta { display: none; }
 
 /* ── Burger ────────────────────────────────────────────────── */
 .burger {
@@ -231,7 +235,7 @@ onUnmounted(() => {
   position: fixed;
   inset: 0;
   z-index: var(--z-backdrop);
-  background: oklch(0.18 0.03 152 / 0.45);
+  background: oklch(0.22 0.04 45 / 0.5);
   backdrop-filter: blur(3px);
   opacity: 0;
   visibility: hidden;
@@ -253,7 +257,7 @@ onUnmounted(() => {
   background: var(--surface);
   border-top-left-radius: var(--radius-lg);
   border-bottom-left-radius: var(--radius-lg);
-  box-shadow: -24px 0 60px oklch(0.2 0.04 152 / 0.25);
+  box-shadow: -24px 0 60px oklch(0.2 0.04 45 / 0.28);
   transform: translateX(105%);
   transition: transform var(--dur-slow) var(--ease-out-expo);
   overflow-y: auto;
@@ -294,7 +298,6 @@ onUnmounted(() => {
   font-weight: 600;
   color: var(--brand-ink);
   text-decoration: none;
-  /* staggered reveal once the drawer opens */
   opacity: 0;
   transform: translateX(16px);
   transition: opacity var(--dur) var(--ease-out-quart),
@@ -307,8 +310,9 @@ onUnmounted(() => {
   transform: none;
   transition-delay: calc(var(--i) * 45ms + 120ms);
 }
-.drawer__link:hover {
-  background: color-mix(in oklch, var(--brand) 9%, transparent);
+.drawer__link:hover,
+.drawer__link.router-link-active {
+  background: var(--brand-wash);
   color: var(--brand);
 }
 .drawer__chevron {
@@ -330,7 +334,7 @@ onUnmounted(() => {
   justify-content: center;
   min-height: 50px;
   border-radius: var(--radius-full);
-  background: var(--accent);
+  background: var(--accent-strong);
   color: var(--on-accent);
   font-weight: 700;
   text-decoration: none;
@@ -360,7 +364,7 @@ onUnmounted(() => {
 .drawer__contacts a:hover { color: var(--brand); }
 .drawer__contacts svg { fill: var(--brand); flex: none; }
 
-/* Search field styling (nav.css removed) */
+/* Search field styling */
 :deep(.search-wrapper) { position: relative; width: 100%; }
 :deep(.search-field) {
   width: 100%;
@@ -403,12 +407,12 @@ onUnmounted(() => {
 :deep(.search-results li:hover) { background: var(--surface-sunk); }
 
 /* ── Desktop ───────────────────────────────────────────────── */
-@media (min-width: 900px) {
+@media (min-width: 1000px) {
   .topbar__loc-full { display: inline; }
   .topbar__loc-short { display: none; }
-  .topbar__hide-sm { display: inline-flex; }
+  .topbar__since { display: inline-flex; }
 
-  .navbar__logo img { height: 40px; }
+  .navbar__logo img { height: 42px; }
   .navbar__links {
     display: flex;
     align-items: center;
@@ -418,16 +422,43 @@ onUnmounted(() => {
     padding: 0;
   }
   .navbar__link {
+    position: relative;
     font-weight: 600;
     color: var(--brand-ink);
     text-decoration: none;
     padding: var(--space-2) 0;
-    border-bottom: 2px solid transparent;
-    transition: color var(--dur) var(--ease-out-quart),
-      border-color var(--dur) var(--ease-out-quart);
+    transition: color var(--dur) var(--ease-out-quart);
   }
-  .navbar__link:hover { color: var(--brand); border-bottom-color: var(--accent); }
-  .navbar__search { display: block; width: 220px; }
+  .navbar__link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -4px;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--dur) var(--ease-out-quart);
+  }
+  .navbar__link:hover { color: var(--brand); }
+  .navbar__link:hover::after,
+  .navbar__link.router-link-active::after { transform: scaleX(1); }
+  .navbar__link.router-link-active { color: var(--brand); }
+  .navbar__search { display: block; width: 210px; }
+  .navbar__cta {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 var(--space-5);
+    border-radius: var(--radius-full);
+    background: var(--accent-strong);
+    color: var(--on-accent);
+    font-weight: 700;
+    text-decoration: none;
+    transition: background var(--dur) var(--ease-out-quart), transform var(--dur) var(--ease-out-quart);
+  }
+  .navbar__cta:hover { background: var(--accent); transform: translateY(-1px); }
   .burger { display: none; }
   .drawer, .drawer-backdrop { display: none; }
 }
@@ -435,7 +466,6 @@ onUnmounted(() => {
 @media (prefers-reduced-motion: reduce) {
   .navbar, .burger span, .drawer, .drawer-backdrop, .navbar__link,
   .drawer__link, .drawer__chevron, .drawer__cta, .drawer__close { transition: none; }
-  /* never gate link visibility on a transition that won't fire */
   .drawer__link { opacity: 1; transform: none; }
 }
 </style>

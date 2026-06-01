@@ -1,6 +1,7 @@
-// Centralized SEO / GEO head config: meta tags, Open Graph, Twitter cards,
-// and JSON-LD structured data. Driven by useHead (@unhead/vue) so it is
-// injected at runtime AND baked into the static HTML by the prerender step.
+// Centralized SEO / GEO head config. Site-wide tags + JSON-LD live in
+// useSiteHead() (called once in App.vue); per-route title/description/canonical
+// live in usePageSeo() (called by each page). Driven by @unhead/vue so tags are
+// injected at runtime AND baked into static HTML by the prerender step.
 import { useHead } from "@unhead/vue";
 import { items, types } from "./data";
 import about from "../assets/data/about.json";
@@ -12,12 +13,6 @@ const OG_IMAGE_W = 1920;
 const OG_IMAGE_H = 1144;
 const PHONE = "+380687579303";
 const EMAIL = "a0687579303@gmail.com";
-const KEYWORDS =
-  "органічні добрива, біопрепарати для аграріїв, добрива для ягідників, мікробні препарати Україна, органо-мінеральні добрива, інокулянти для сільгоспкультур, ТМ Біорост, Запоріжжя, покращення родючості ґрунту, біофунгіциди, біоінсектициди";
-
-const TITLE = about.title; // "ТМ «Біорост» – Органічні добрива та біопрепарати для аграріїв України"
-const DESCRIPTION =
-  "Виробник сертифікованих органічних добрив, інокулянтів та біопрепаратів з Запоріжжя. Відновлення родючості ґрунту та підвищення врожайності по всій Україні.";
 
 const abs = (path) => `${SITE_URL}${path}`;
 const typeName = (typeStr) => {
@@ -25,20 +20,21 @@ const typeName = (typeStr) => {
   return types.find((t) => t.id === first)?.name || "Добрива";
 };
 
-// LocalBusiness anchors the geo-targeting (Запоріжжя) for local search + maps.
-// AgriculturalBusiness is the most specific applicable Schema.org type.
+const SITE_TITLE = about.title;
+const SITE_DESCRIPTION =
+  "Виробник сертифікованих органічних добрив, інокулянтів та біопрепаратів з Запоріжжя. Відновлення родючості ґрунту та підвищення врожайності по всій Україні.";
+
+// LocalBusiness anchors geo-targeting (Запоріжжя); AgriculturalBusiness is the
+// most specific applicable Schema.org type.
 const localBusiness = {
   "@type": ["LocalBusiness", "AgriculturalBusiness"],
   "@id": `${SITE_URL}/#organization`,
   name: "ТМ «Біорост»",
   legalName: about.company,
   url: SITE_URL,
-  logo: {
-    "@type": "ImageObject",
-    url: LOGO,
-  },
+  logo: { "@type": "ImageObject", url: LOGO },
   image: OG_IMAGE,
-  description: DESCRIPTION,
+  description: SITE_DESCRIPTION,
   foundingDate: String(about.founded),
   email: EMAIL,
   telephone: PHONE,
@@ -77,12 +73,11 @@ const website = {
   "@type": "WebSite",
   "@id": `${SITE_URL}/#website`,
   url: SITE_URL,
-  name: TITLE,
+  name: SITE_TITLE,
   inLanguage: "uk-UA",
   publisher: { "@id": `${SITE_URL}/#organization` },
 };
 
-// ItemList of Products – lets search/AI engines enumerate the catalog.
 const productList = {
   "@type": "ItemList",
   "@id": `${SITE_URL}/#products`,
@@ -98,7 +93,7 @@ const productList = {
       category: typeName(p.type),
       image: abs(p.frontImage),
       brand: { "@type": "Brand", name: "Біорост" },
-      url: `${SITE_URL}/#products`,
+      url: `${SITE_URL}/products`,
     },
   })),
 };
@@ -108,45 +103,45 @@ const schema = {
   "@graph": [localBusiness, website, productList],
 };
 
-export function useSeo() {
+// Site-wide head: language, default OG/Twitter chrome, JSON-LD graph.
+export function useSiteHead() {
   useHead({
-    title: TITLE,
     htmlAttrs: { lang: "uk" },
-    link: [{ rel: "canonical", href: `${SITE_URL}/` }],
     meta: [
-      { name: "description", content: DESCRIPTION },
-      { name: "keywords", content: KEYWORDS },
       { name: "robots", content: "index, follow" },
-      // Open Graph
+      { name: "keywords", content:
+          "органічні добрива, біопрепарати для аграріїв, мікробні препарати Україна, органо-мінеральні добрива, інокулянти, ТМ Біорост, Запоріжжя, родючість ґрунту, біофунгіциди, біоінсектициди" },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "ТМ «Біорост»" },
       { property: "og:locale", content: "uk_UA" },
-      { property: "og:title", content: TITLE },
-      { property: "og:description", content: DESCRIPTION },
-      { property: "og:url", content: `${SITE_URL}/` },
       { property: "og:image", content: OG_IMAGE },
       { property: "og:image:type", content: "image/webp" },
       { property: "og:image:width", content: String(OG_IMAGE_W) },
       { property: "og:image:height", content: String(OG_IMAGE_H) },
-      {
-        property: "og:image:alt",
-        content: "Органічні добрива ТМ Біорост – поля України",
-      },
-      // Twitter / X
+      { property: "og:image:alt", content: "Органічні добрива ТМ Біорост – поля України" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: TITLE },
-      { name: "twitter:description", content: DESCRIPTION },
       { name: "twitter:image", content: OG_IMAGE },
-      {
-        name: "twitter:image:alt",
-        content: "Органічні добрива ТМ Біорост – поля України",
-      },
     ],
     script: [
-      {
-        type: "application/ld+json",
-        innerHTML: JSON.stringify(schema),
-      },
+      { type: "application/ld+json", innerHTML: JSON.stringify(schema) },
+    ],
+  });
+}
+
+// Per-route head: title, description, canonical, og:url/title/description.
+export function usePageSeo({ title, description, path = "/" }) {
+  const url = `${SITE_URL}${path}`;
+  const desc = description || SITE_DESCRIPTION;
+  useHead({
+    title,
+    link: [{ rel: "canonical", href: url }],
+    meta: [
+      { name: "description", content: desc },
+      { property: "og:title", content: title },
+      { property: "og:description", content: desc },
+      { property: "og:url", content: url },
+      { name: "twitter:title", content: title },
+      { name: "twitter:description", content: desc },
     ],
   });
 }

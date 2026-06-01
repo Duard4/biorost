@@ -72,18 +72,18 @@ export default {
 </script>
 <style scoped>
 .inj-table {
-    --bg-color: #f0fff0;
-    --header-bg-color: #c8e6c9;
-    --header-text-color: #2e7d32;
-    --row-bg-color: #e8f5e9;
-    --alt-row-bg-color: #f1f8e9;
-    --hover-bg-color: #c5e1a5;
-    --text-color: #1b5e20;
-    --border-color: #81c784;
-    --treatment-bg-color: #c8e6c9;
-    --treatment-hover-bg-color: #aed581;
-    --treatment-text-color: #2e7d32;
-    font-size: 16px
+    --bg-color: var(--surface);
+    --header-bg-color: var(--brand);
+    --header-text-color: var(--on-brand);
+    --row-bg-color: var(--brand-wash);
+    --alt-row-bg-color: var(--surface-sunk);
+    --hover-bg-color: var(--accent-wash);
+    --text-color: var(--ink);
+    --border-color: var(--line);
+    --treatment-bg-color: var(--brand-wash);
+    --treatment-hover-bg-color: var(--accent-wash);
+    --treatment-text-color: var(--brand-ink);
+    font-size: var(--text-base);
 }
 
 .inj-table {
@@ -91,14 +91,17 @@ export default {
     border-collapse: collapse;
     background-color: var(--bg-color);
     color: var(--text-color);
-    font-family: Arial, sans-serif;
+    font-family: var(--font-body);
+    border-radius: var(--radius-md);
+    overflow: hidden;
 }
 
 .inj-table thead th {
     background-color: var(--header-bg-color);
     color: var(--header-text-color);
-    font-weight: bold;
-    padding: 12px;
+    font-weight: 700;
+    text-align: left;
+    padding: 14px 12px;
     border-bottom: 2px solid var(--border-color);
 }
 
