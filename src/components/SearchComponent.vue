@@ -5,7 +5,7 @@ import { useProductCatalog, categoryName } from "../js/useProductCatalog";
 
 const emit = defineEmits(["select"]);
 const router = useRouter();
-const { searchProducts, focusProduct } = useProductCatalog();
+const { searchProducts } = useProductCatalog();
 
 const searchQuery = ref("");
 const searchResults = ref([]);
@@ -14,12 +14,17 @@ function performSearch() {
   searchResults.value = searchProducts(searchQuery.value);
 }
 
-async function selectResult(product) {
-  await router.push("/products");
-  focusProduct(product);
+// Encode the target in the URL (category + product) and let ProductsPage open
+// the modal once it's mounted. Setting shared state here instead raced the
+// page/modal mount and the ?category sync, so results were hit-or-miss.
+function selectResult(product) {
   searchResults.value = [];
   searchQuery.value = "";
   emit("select", product);
+  router.push({
+    path: "/products",
+    query: { category: String(product.type).split(" ")[0], product: product.id },
+  });
 }
 </script>
 

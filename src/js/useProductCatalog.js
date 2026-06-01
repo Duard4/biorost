@@ -56,12 +56,6 @@ function searchProducts(query) {
   );
 }
 
-// From the Nav search: jump to a product's category and open its detail.
-function focusProduct(product) {
-  selectedType.value = String(product.type).split(" ")[0];
-  activeProduct.value = product;
-}
-
 export function useProductCatalog() {
   return {
     ALL,
@@ -73,6 +67,5 @@ export function useProductCatalog() {
     openProduct,
     closeProduct,
     searchProducts,
-    focusProduct,
   };
 }

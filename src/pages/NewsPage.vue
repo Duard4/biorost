@@ -4,7 +4,7 @@ import { articles } from "../js/articles";
 import { usePageSeo } from "../js/seo";
 
 usePageSeo({
-  title: "Новини та статті ТМ «Біорост» — органічне землеробство та родючість",
+  title: "Новини та статті ТМ «Біорост» – органічне землеробство та родючість",
   description:
     "Статті та поради ТМ «Біорост»: відновлення родючості ґрунту, деструкція пожнивних залишків, застосування біопрепаратів у сучасних кліматичних умовах.",
   path: "/news",
@@ -29,7 +29,11 @@ const current = computed(() => articles[openIndex.value]);
 
       <ul v-if="articles.length > 1" class="news__list">
         <li v-for="(a, i) in articles" :key="i">
-          <button class="news__pick" :class="{ 'is-active': i === openIndex }" @click="select(i)">
+          <button
+            class="news__pick"
+            :class="{ 'is-active': i === openIndex }"
+            @click="select(i)"
+          >
             {{ a.title }}
           </button>
         </li>
@@ -49,8 +53,12 @@ const current = computed(() => articles[openIndex.value]);
   padding-block: clamp(2.5rem, 1.5rem + 5vw, 5rem);
   min-height: 100vh;
 }
-.news__inner { max-width: 1000px; }
-.news__head { margin-bottom: var(--space-8); }
+.news__inner {
+  max-width: 1000px;
+}
+.news__head {
+  margin-bottom: var(--space-8);
+}
 .news__kicker {
   font-weight: 600;
   font-size: var(--text-sm);
@@ -96,8 +104,13 @@ const current = computed(() => articles[openIndex.value]);
   color: var(--brand-ink);
   transition: border-color var(--dur) var(--ease-out-quart);
 }
-.news__pick:hover { border-color: var(--brand); }
-.news__pick.is-active { border-color: var(--brand); background: var(--brand-wash); }
+.news__pick:hover {
+  border-color: var(--brand);
+}
+.news__pick.is-active {
+  border-color: var(--brand);
+  background: var(--brand-wash);
+}
 
 .article {
   background: var(--surface);
@@ -116,8 +129,15 @@ const current = computed(() => articles[openIndex.value]);
   margin: 0 0 var(--space-6);
   text-wrap: balance;
 }
-.article__body { color: var(--ink); font-size: var(--text-base); line-height: 1.7; max-width: 70ch; }
-.article__body :deep(p) { margin: 0 0 var(--space-4); }
+.article__body {
+  color: var(--ink);
+  font-size: var(--text-base);
+  line-height: 1.7;
+  max-width: 70ch;
+}
+.article__body :deep(p) {
+  margin: 0 0 var(--space-4);
+}
 .article__body :deep(h3) {
   font-family: var(--font-display);
   font-weight: 600;
@@ -125,11 +145,21 @@ const current = computed(() => articles[openIndex.value]);
   color: var(--brand-ink);
   margin: var(--space-6) 0 var(--space-3);
 }
-.article__body :deep(ul) { margin: 0 0 var(--space-4); padding-left: 1.3em; }
-.article__body :deep(li) { margin-bottom: var(--space-2); }
-.article__body :deep(a) { color: var(--accent-strong); font-weight: 600; }
+.article__body :deep(ul) {
+  margin: 0 0 var(--space-4);
+  padding-left: 1.3em;
+}
+.article__body :deep(li) {
+  margin-bottom: var(--space-2);
+}
+.article__body :deep(a) {
+  color: var(--accent-strong);
+  font-weight: 600;
+}
 
 @media (prefers-reduced-motion: reduce) {
-  .news__pick { transition: none; }
+  .news__pick {
+    transition: none;
+  }
 }
 </style>

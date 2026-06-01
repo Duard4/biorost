@@ -30,6 +30,9 @@
 
 html {
   scroll-behavior: smooth;
+  /* Stop the rubber-band overscroll from exposing the html background behind
+     pages that paint their own (e.g. the dark Products page). */
+  overscroll-behavior-y: none;
 }
 
 @media screen and (prefers-reduced-motion: reduce) {

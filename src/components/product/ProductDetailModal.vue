@@ -1,9 +1,22 @@
 <script setup>
 import { ref, watch, nextTick } from "vue";
+import { useRouter } from "vue-router";
 import { useProductCatalog, categoryName } from "../../js/useProductCatalog";
+import { orderProductQuery } from "../../js/contactPrefill";
 
+const router = useRouter();
 const { activeProduct, closeProduct } = useProductCatalog();
 const dialog = ref(null);
+
+// Close the native <dialog> first, then route on the next tick. Navigating while
+// the dialog is still open in the top layer stalls the page's out-in transition.
+async function orderProduct() {
+  const product = activeProduct.value;
+  if (!product) return;
+  closeProduct();
+  await nextTick();
+  router.push(orderProductQuery(product));
+}
 
 // Drive the native <dialog> from shared state (focus-trap + Esc come free).
 watch(activeProduct, async (product) => {
@@ -64,9 +77,9 @@ function onBackdropClick(event) {
         <p v-if="activeProduct.description" class="modal__desc">
           {{ activeProduct.description }}
         </p>
-        <a class="modal__cta" href="#form" @click="closeProduct">
+        <button type="button" class="modal__cta" @click="orderProduct">
           Замовити цей продукт
-        </a>
+        </button>
       </div>
     </div>
   </dialog>
@@ -194,11 +207,14 @@ function onBackdropClick(event) {
   display: inline-flex;
   align-items: center;
   padding: var(--space-3) var(--space-6);
+  border: none;
   border-radius: var(--radius-full);
   background: var(--accent);
   color: var(--on-accent);
+  font: inherit;
   font-weight: 700;
   text-decoration: none;
+  cursor: pointer;
   transition:
     transform var(--dur) var(--ease-out-quart),
     box-shadow var(--dur) var(--ease-out-quart);

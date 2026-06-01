@@ -3,9 +3,11 @@ import { computed } from "vue";
 import { items, types } from "../js/data";
 import about from "../assets/data/about.json";
 import { usePageSeo } from "../js/seo";
+import { consultationQuery, requestQuery } from "../js/contactPrefill";
 
 usePageSeo({
-  title: "ТМ «Біорост» – Органічні добрива та біопрепарати для аграріїв України",
+  title:
+    "ТМ «Біорост» – Органічні добрива та біопрепарати для аграріїв України",
   path: "/",
 });
 
@@ -25,7 +27,7 @@ const categories = computed(() =>
     ...t,
     description: descriptions[t.id] || "",
     count: items.filter((p) => String(p.type).split(" ").includes(t.id)).length,
-  }))
+  })),
 );
 
 const proof = [
@@ -42,23 +44,25 @@ const proof = [
       <div class="container hero__grid">
         <div class="hero__copy">
           <p class="hero__kicker">ТОВ «Органіка України» · Запоріжжя</p>
-          <h1 class="hero__title">
-            Живий ґрунт — основа<br />високого врожаю
-          </h1>
+          <h1 class="hero__title">Живий ґрунт – основа<br />високого врожаю</h1>
           <p class="hero__lead">
             Органічні та органо-мінеральні добрива, інокулянти й біопрепарати,
             що відновлюють родючість ґрунту та захищають культури без хімії.
           </p>
           <div class="hero__actions">
-            <router-link class="btn btn--primary" to="/products">Переглянути продукцію</router-link>
-            <router-link class="btn btn--ghost" to="/contacts#form">Замовити консультацію</router-link>
+            <router-link class="btn btn--primary" to="/products"
+              >Переглянути продукцію</router-link
+            >
+            <router-link class="btn btn--ghost" :to="consultationQuery()"
+              >Замовити консультацію</router-link
+            >
           </div>
         </div>
 
         <figure class="hero__media">
           <img
             src="/assets/bg-images/hero.webp"
-            alt="Молоді сходи на родючому ґрунті — органічне землеробство ТМ Біорост"
+            alt="Молоді сходи на родючому ґрунті – органічне землеробство ТМ Біорост"
             width="900"
             height="700"
             fetchpriority="high"
@@ -84,16 +88,21 @@ const proof = [
     <section class="section catalog">
       <div class="container">
         <header class="catalog__head">
-          <h2 class="title catalog__title">Шість напрямів для повного циклу живлення</h2>
+          <h2 class="title catalog__title">
+            Шість напрямів для повного циклу живлення
+          </h2>
           <p class="lead">
-            Від обробки насіння до наливу плодів — рішення на кожну фазу
+            Від обробки насіння до наливу плодів – рішення на кожну фазу
             вегетації, для промислових господарств і приватних ділянок.
           </p>
         </header>
 
         <ul class="catalog__grid">
           <li v-for="cat in categories" :key="cat.id">
-            <router-link class="cat-card" :to="{ path: '/products', query: { category: cat.id } }">
+            <router-link
+              class="cat-card"
+              :to="{ path: '/products', query: { category: cat.id } }"
+            >
               <span class="cat-card__count">{{ cat.count }}</span>
               <h3 class="cat-card__name">{{ cat.name }}</h3>
               <p class="cat-card__desc">{{ cat.description }}</p>
@@ -121,10 +130,12 @@ const proof = [
           <p class="text story__text">
             Корисні гриби й бактерії в наших препаратах структурують ґрунт,
             очищують його від патогенів і запускають гуміфікацію. Це підвищує
-            родючість рік за роком — на відміну від мінеральної хімії, що
+            родючість рік за роком – на відміну від мінеральної хімії, що
             виснажує землю.
           </p>
-          <router-link class="btn btn--clay" to="/about">Про виробництво</router-link>
+          <router-link class="btn btn--clay" to="/about"
+            >Про виробництво</router-link
+          >
         </div>
       </div>
     </section>
@@ -134,28 +145,38 @@ const proof = [
       <div class="container">
         <div class="maps-cta">
           <div class="maps-cta__copy">
-            <h2 class="maps-cta__title">Карти внесення для пшениці та ріпаку</h2>
+            <h2 class="maps-cta__title">
+              Карти внесення для пшениці та ріпаку
+            </h2>
             <p class="maps-cta__text">
-              Покрокові схеми застосування препаратів по фазах вегетації — норми,
-              способи обробки та комбінації для кожного етапу.
+              Покрокові схеми застосування препаратів по фазах вегетації –
+              норми, способи обробки та комбінації для кожного етапу.
             </p>
           </div>
-          <router-link class="btn btn--on-dark" to="/maps">Відкрити карти внесення</router-link>
+          <router-link class="btn btn--on-dark" to="/maps"
+            >Відкрити карти внесення</router-link
+          >
         </div>
       </div>
     </section>
 
     <!-- Final CTA -->
-    <section class="section--tight">
-      <div class="container final-cta">
-        <h2 class="title final-cta__title">Підберемо програму живлення під вашу культуру</h2>
+    <section class="section--tight final-cta">
+      <div class="container">
+        <h2 class="title final-cta__title">
+          Підберемо програму живлення під вашу культуру
+        </h2>
         <p class="lead final-cta__lead">
-          Напишіть нам — менеджери-агрономи Ігор та Оксана допоможуть із вибором
+          Напишіть нам – менеджери-агрономи Ігор та Оксана допоможуть із вибором
           препаратів, нормами та доставкою по всій Україні.
         </p>
         <div class="final-cta__actions">
-          <router-link class="btn btn--primary" to="/contacts#form">Залишити заявку</router-link>
-          <router-link class="btn btn--ghost" to="/products">Каталог продукції</router-link>
+          <router-link class="btn btn--primary" :to="requestQuery()"
+            >Залишити заявку</router-link
+          >
+          <router-link class="btn btn--ghost" to="/products"
+            >Каталог продукції</router-link
+          >
         </div>
       </div>
     </section>
@@ -163,6 +184,9 @@ const proof = [
 </template>
 
 <style scoped>
+.final-cta {
+  padding-top: 0;
+}
 /* ── Hero ───────────────────────────────────────────────────── */
 .hero {
   position: relative;
@@ -173,7 +197,8 @@ const proof = [
 .hero__grid {
   display: grid;
   gap: var(--space-8);
-  padding-block: clamp(2.5rem, 1.5rem + 5vw, 5.5rem) clamp(2rem, 1rem + 3vw, 3.5rem);
+  padding-block: clamp(2.5rem, 1.5rem + 5vw, 5.5rem)
+    clamp(2rem, 1rem + 3vw, 3.5rem);
   align-items: center;
 }
 .hero__kicker {
@@ -201,7 +226,11 @@ const proof = [
   margin: 0 0 var(--space-8);
   text-wrap: pretty;
 }
-.hero__actions { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
 
 .hero__media {
   position: relative;
@@ -256,7 +285,9 @@ const proof = [
   gap: var(--space-4);
   padding-block: var(--space-6);
 }
-.hero__stat { text-align: center; }
+.hero__stat {
+  text-align: center;
+}
 .hero__stat-num {
   display: block;
   font-family: var(--font-display);
@@ -277,7 +308,9 @@ const proof = [
   max-width: 60ch;
   margin-bottom: var(--space-12);
 }
-.catalog__title { margin-bottom: var(--space-4); }
+.catalog__title {
+  margin-bottom: var(--space-4);
+}
 .catalog__grid {
   list-style: none;
   margin: 0;
@@ -316,8 +349,13 @@ const proof = [
   box-shadow: var(--shadow-2);
   border-color: transparent;
 }
-.cat-card:hover::before { transform: scaleX(1); }
-.cat-card:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.cat-card:hover::before {
+  transform: scaleX(1);
+}
+.cat-card:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
 .cat-card__count {
   display: inline-flex;
   align-items: center;
@@ -351,16 +389,22 @@ const proof = [
   color: var(--accent);
   transition: transform var(--dur) var(--ease-out-quart);
 }
-.cat-card:hover .cat-card__arrow { transform: translateX(6px); }
+.cat-card:hover .cat-card__arrow {
+  transform: translateX(6px);
+}
 
 /* ── Story ──────────────────────────────────────────────────── */
-.story { background: var(--brand-wash); }
+.story {
+  background: var(--brand-wash);
+}
 .story__grid {
   display: grid;
   gap: var(--space-8);
   align-items: center;
 }
-.story__media { margin: 0; }
+.story__media {
+  margin: 0;
+}
 .story__media img {
   display: block;
   width: 100%;
@@ -385,8 +429,11 @@ const proof = [
   align-items: center;
   padding: clamp(2rem, 1.5rem + 3vw, 3.5rem);
   border-radius: var(--radius-lg);
-  background:
-    radial-gradient(120% 120% at 100% 0%, var(--brand) 0%, var(--brand-deep) 100%);
+  background: radial-gradient(
+    120% 120% at 100% 0%,
+    var(--brand) 0%,
+    var(--brand-deep) 100%
+  );
   color: var(--on-brand);
 }
 .maps-cta__title {
@@ -409,7 +456,9 @@ const proof = [
   max-width: 64ch;
   margin-inline: auto;
 }
-.final-cta__lead { margin: var(--space-4) auto var(--space-8); }
+.final-cta__lead {
+  margin: var(--space-4) auto var(--space-8);
+}
 .final-cta__actions {
   display: flex;
   flex-wrap: wrap;
@@ -418,12 +467,22 @@ const proof = [
 }
 
 @media (min-width: 768px) {
-  .hero__grid { grid-template-columns: 1.05fr 0.95fr; }
-  .story__grid { grid-template-columns: 0.9fr 1.1fr; }
-  .maps-cta { grid-template-columns: 1fr auto; }
+  .hero__grid {
+    grid-template-columns: 1.05fr 0.95fr;
+  }
+  .story__grid {
+    grid-template-columns: 0.9fr 1.1fr;
+  }
+  .maps-cta {
+    grid-template-columns: 1fr auto;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .cat-card, .cat-card__arrow, .cat-card::before { transition: none; }
+  .cat-card,
+  .cat-card__arrow,
+  .cat-card::before {
+    transition: none;
+  }
 }
 </style>

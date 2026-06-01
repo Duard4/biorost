@@ -22,7 +22,17 @@ const router = createRouter({
   routes,
   scrollBehavior(to, from, savedPosition) {
     if (to.hash) {
-      return { el: to.hash, behavior: "smooth", top: 80 };
+      // The out-in page transition and async route chunks mean the target
+      // isn't in the DOM the instant navigation resolves — wait for it.
+      return new Promise((resolve) => {
+        const position = { el: to.hash, behavior: "smooth", top: 80 };
+        let tries = 0;
+        const tryScroll = () => {
+          if (document.querySelector(to.hash) || tries++ > 60) resolve(position);
+          else requestAnimationFrame(tryScroll);
+        };
+        requestAnimationFrame(tryScroll);
+      });
     }
     if (savedPosition) return savedPosition;
     return { top: 0 };

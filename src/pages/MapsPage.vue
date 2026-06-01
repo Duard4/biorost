@@ -3,9 +3,10 @@ import { ref, computed } from "vue";
 import InjTableComponent from "../components/InjTableComponent.vue";
 import { crops, treatmentsWheat, treatmentsCanola } from "../js/injectionMaps";
 import { usePageSeo } from "../js/seo";
+import { consultationQuery } from "../js/contactPrefill";
 
 usePageSeo({
-  title: "Карти внесення добрив ТМ «Біорост» — схеми для пшениці та ріпаку",
+  title: "Карти внесення добрив ТМ «Біорост» – схеми для пшениці та ріпаку",
   description:
     "Покрокові карти внесення біопрепаратів ТМ «Біорост» по фазах вегетації озимої пшениці та озимого ріпаку: норми, способи обробки та комбінації продуктів.",
   path: "/maps",
@@ -13,7 +14,7 @@ usePageSeo({
 
 const active = ref(crops[0].id);
 const treatments = computed(() =>
-  active.value === "wheat" ? treatmentsWheat : treatmentsCanola
+  active.value === "wheat" ? treatmentsWheat : treatmentsCanola,
 );
 </script>
 
@@ -25,7 +26,7 @@ const treatments = computed(() =>
         <h1 class="maps__title">Карти внесення</h1>
         <p class="maps__lead">
           Готові схеми застосування препаратів від обробки пожнивних залишків до
-          наливу зерна. Оберіть культуру — норми та способи внесення для кожного
+          наливу зерна. Оберіть культуру – норми та способи внесення для кожного
           етапу.
         </p>
       </header>
@@ -54,8 +55,12 @@ const treatments = computed(() =>
       </p>
 
       <div class="maps__foot">
-        <router-link class="btn btn--primary" to="/contacts#form">Замовити консультацію</router-link>
-        <router-link class="btn btn--ghost" to="/products">Каталог продукції</router-link>
+        <router-link class="btn btn--primary" :to="consultationQuery()"
+          >Замовити консультацію</router-link
+        >
+        <router-link class="btn btn--ghost" to="/products"
+          >Каталог продукції</router-link
+        >
       </div>
     </div>
   </div>
@@ -121,13 +126,18 @@ const treatments = computed(() =>
     background var(--dur) var(--ease-out-quart),
     color var(--dur) var(--ease-out-quart);
 }
-.maps__tab:hover { color: var(--brand-ink); }
+.maps__tab:hover {
+  color: var(--brand-ink);
+}
 .maps__tab.is-active {
   background: var(--brand);
   color: var(--on-brand);
   box-shadow: var(--shadow-1);
 }
-.maps__tab:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.maps__tab:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
 
 .maps__table {
   background: var(--surface);
@@ -152,6 +162,8 @@ const treatments = computed(() =>
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .maps__tab { transition: none; }
+  .maps__tab {
+    transition: none;
+  }
 }
 </style>

@@ -6,6 +6,7 @@ import ProductGallery from "../components/product/ProductGallery.vue";
 import { items } from "../js/data";
 import { useProductCatalog } from "../js/useProductCatalog";
 import { usePageSeo } from "../js/seo";
+import { consultationQuery } from "../js/contactPrefill";
 
 usePageSeo({
   title: "Продукція ТМ «Біорост» – органічні добрива, інокулянти, біопрепарати",
@@ -20,20 +21,38 @@ const count = items.length;
 // cards land on the right filter, and clicking a filter is shareable/bookmarkable.
 const route = useRoute();
 const router = useRouter();
-const { selectedType, selectType, ALL, categories } = useProductCatalog();
+const { selectedType, selectType, ALL, categories, activeProduct, openProduct, closeProduct } =
+  useProductCatalog();
 const validIds = computed(() => categories.value.map((c) => c.id));
 
+// Drive both the category filter and the detail modal from the URL, so search
+// results, deep links and the back button all behave the same. Children (and
+// thus the modal's watcher) mount before this parent's onMounted, so setting
+// activeProduct here reliably opens the dialog.
 function applyQuery() {
   const q = route.query.category;
   selectType(validIds.value.includes(q) ? q : ALL);
+
+  const id = route.query.product;
+  const product = id != null ? items.find((p) => String(p.id) === String(id)) : null;
+  if (product) openProduct(product);
+  else if (activeProduct.value) closeProduct();
 }
 
 onMounted(applyQuery);
-watch(() => route.query.category, applyQuery);
+watch(() => [route.query.category, route.query.product], applyQuery);
 watch(selectedType, (val) => {
   const next = val === ALL ? undefined : val;
   if ((route.query.category ?? undefined) !== next) {
     router.replace({ query: { ...route.query, category: next } });
+  }
+});
+// When the modal is dismissed (Esc / backdrop / close), drop ?product= so the
+// URL reflects state and a later filter change can't re-trigger it.
+watch(activeProduct, (val) => {
+  if (!val && route.query.product != null && route.path === "/products") {
+    const { product, ...rest } = route.query;
+    router.replace({ query: rest });
   }
 });
 </script>
@@ -46,7 +65,7 @@ watch(selectedType, (val) => {
         <h1 class="products__title">Наша продукція</h1>
         <p class="products__lead">
           Органо-мінеральні добрива, інокулянти, біофунгіциди, біоінсектициди,
-          ґрунтові бактерії та фітогормони — для промислових господарств і
+          ґрунтові бактерії та фітогормони – для промислових господарств і
           приватних ділянок по всій Україні.
         </p>
       </header>
@@ -59,8 +78,12 @@ watch(selectedType, (val) => {
       <div class="products__foot">
         <p>Потрібна допомога з вибором або норми внесення?</p>
         <div class="products__foot-actions">
-          <router-link class="btn btn--on-dark" to="/maps">Карти внесення</router-link>
-          <router-link class="btn btn--primary" to="/contacts#form">Замовити консультацію</router-link>
+          <router-link class="btn btn--on-dark" to="/maps"
+            >Карти внесення</router-link
+          >
+          <router-link class="btn btn--primary" :to="consultationQuery()"
+            >Замовити консультацію</router-link
+          >
         </div>
       </div>
     </div>
@@ -69,8 +92,11 @@ watch(selectedType, (val) => {
 
 <style scoped>
 .products {
-  background:
-    radial-gradient(130% 90% at 50% -10%, var(--brand) 0%, var(--brand-deep) 100%);
+  background: radial-gradient(
+    130% 90% at 50% -10%,
+    var(--brand) 0%,
+    var(--brand-deep) 100%
+  );
   color: var(--on-brand);
   padding-block: clamp(2.5rem, 1.5rem + 5vw, 5rem);
   min-height: 100vh;
@@ -102,7 +128,9 @@ watch(selectedType, (val) => {
   margin: 0;
   text-wrap: pretty;
 }
-.products__gallery { margin-top: var(--space-8); }
+.products__gallery {
+  margin-top: var(--space-8);
+}
 
 .products__foot {
   margin-top: var(--space-16);
