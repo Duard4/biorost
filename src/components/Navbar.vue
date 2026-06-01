@@ -102,32 +102,48 @@ onUnmounted(() => {
     :aria-hidden="!open"
     aria-label="Меню"
   >
-    <button type="button" class="drawer__close" aria-label="Закрити меню" @click="open = false">
-      <svg width="24" height="24" aria-hidden="true"><use href="/assets/icons.svg#icon-close" /></svg>
-    </button>
+    <div class="drawer__head">
+      <img class="drawer__logo" src="/assets/content-images/logo.webp" alt="Біорост" width="120" height="32" />
+      <button type="button" class="drawer__close" aria-label="Закрити меню" @click="open = false">
+        <svg width="22" height="22" aria-hidden="true"><use href="/assets/icons.svg#icon-close" /></svg>
+      </button>
+    </div>
 
     <SearchComponent class="drawer__search" />
 
-    <ul class="drawer__links">
-      <li v-for="link in links" :key="link.href">
-        <a class="drawer__link" :href="link.href" @click="open = false">{{ link.text }}</a>
-      </li>
-    </ul>
+    <nav class="drawer__nav" aria-label="Розділи сайту">
+      <a
+        v-for="(link, i) in links"
+        :key="link.href"
+        class="drawer__link"
+        :style="{ '--i': i }"
+        :href="link.href"
+        @click="open = false"
+      >
+        <span>{{ link.text }}</span>
+        <svg class="drawer__chevron" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </a>
+    </nav>
 
-    <address class="drawer__contacts">
-      <a :href="MAP_URL" target="_blank" rel="noopener">
-        <svg width="18" height="18" aria-hidden="true"><use href="/assets/icons.svg#icon-location" /></svg>
-        вул. Луганська, 29а, Запоріжжя
-      </a>
-      <a :href="`tel:${TEL}`">
-        <svg width="18" height="18" aria-hidden="true"><use href="/assets/icons.svg#icon-phone" /></svg>
-        +380 68 757 93 03
-      </a>
-      <a :href="`mailto:${EMAIL}`">
-        <svg width="18" height="18" aria-hidden="true"><use href="/assets/icons.svg#icon-email" /></svg>
-        {{ EMAIL }}
-      </a>
-    </address>
+    <div class="drawer__foot">
+      <a class="drawer__cta" href="#form" @click="open = false">Замовити продукцію</a>
+      <address class="drawer__contacts">
+        <a :href="MAP_URL" target="_blank" rel="noopener">
+          <svg width="18" height="18" aria-hidden="true"><use href="/assets/icons.svg#icon-location" /></svg>
+          вул. Луганська, 29а, Запоріжжя
+        </a>
+        <a :href="`tel:${TEL}`">
+          <svg width="18" height="18" aria-hidden="true"><use href="/assets/icons.svg#icon-phone" /></svg>
+          +380 68 757 93 03
+        </a>
+        <a :href="`mailto:${EMAIL}`">
+          <svg width="18" height="18" aria-hidden="true"><use href="/assets/icons.svg#icon-email" /></svg>
+          {{ EMAIL }}
+        </a>
+      </address>
+    </div>
   </aside>
 </template>
 
@@ -215,7 +231,8 @@ onUnmounted(() => {
   position: fixed;
   inset: 0;
   z-index: var(--z-backdrop);
-  background: oklch(0.2 0.03 150 / 0.5);
+  background: oklch(0.18 0.03 152 / 0.45);
+  backdrop-filter: blur(3px);
   opacity: 0;
   visibility: hidden;
   transition: opacity var(--dur) var(--ease-out-quart), visibility var(--dur);
@@ -229,50 +246,113 @@ onUnmounted(() => {
   z-index: var(--z-modal);
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
-  width: min(86vw, 360px);
+  gap: var(--space-5);
+  width: min(88vw, 380px);
   height: 100dvh;
-  padding: var(--space-6) var(--space-5) var(--space-8);
+  padding: var(--space-5);
   background: var(--surface);
-  box-shadow: var(--shadow-2);
-  transform: translateX(100%);
-  transition: transform var(--dur) var(--ease-out-expo);
+  border-top-left-radius: var(--radius-lg);
+  border-bottom-left-radius: var(--radius-lg);
+  box-shadow: -24px 0 60px oklch(0.2 0.04 152 / 0.25);
+  transform: translateX(105%);
+  transition: transform var(--dur-slow) var(--ease-out-expo);
   overflow-y: auto;
 }
 .drawer.open { transform: translateX(0); }
+
+.drawer__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.drawer__logo { height: 30px; width: auto; display: block; }
 .drawer__close {
-  align-self: flex-end;
   display: grid;
   place-items: center;
   width: 44px;
   height: 44px;
-  border: none;
-  background: var(--surface-sunk);
+  border: 1px solid var(--line);
+  background: var(--surface);
   border-radius: var(--radius-full);
   color: var(--brand-ink);
   cursor: pointer;
+  transition: background var(--dur) var(--ease-out-quart);
 }
+.drawer__close:hover { background: var(--surface-sunk); }
 .drawer__close svg { fill: currentColor; }
 .drawer__close:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
 
-.drawer__links { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.drawer__nav { display: flex; flex-direction: column; gap: 2px; }
 .drawer__link {
-  display: block;
-  padding: var(--space-3) 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
   font-family: var(--font-display);
-  font-size: var(--text-lg);
+  font-size: var(--text-xl);
   font-weight: 600;
   color: var(--brand-ink);
   text-decoration: none;
-  border-bottom: 1px solid var(--line);
+  /* staggered reveal once the drawer opens */
+  opacity: 0;
+  transform: translateX(16px);
+  transition: opacity var(--dur) var(--ease-out-quart),
+    transform var(--dur) var(--ease-out-quart),
+    background var(--dur) var(--ease-out-quart),
+    color var(--dur) var(--ease-out-quart);
 }
-.drawer__link:hover { color: var(--brand); }
+.drawer.open .drawer__link {
+  opacity: 1;
+  transform: none;
+  transition-delay: calc(var(--i) * 45ms + 120ms);
+}
+.drawer__link:hover {
+  background: color-mix(in oklch, var(--brand) 9%, transparent);
+  color: var(--brand);
+}
+.drawer__chevron {
+  flex: none;
+  color: var(--accent);
+  transition: transform var(--dur) var(--ease-out-quart);
+}
+.drawer__link:hover .drawer__chevron { transform: translateX(4px); }
 
-.drawer__contacts { display: flex; flex-direction: column; gap: var(--space-3); margin-top: auto; font-style: normal; }
+.drawer__foot {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+.drawer__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  border-radius: var(--radius-full);
+  background: var(--accent);
+  color: var(--on-accent);
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: var(--shadow-1);
+  transition: filter var(--dur) var(--ease-out-quart);
+}
+.drawer__cta:hover { filter: brightness(1.05); }
+.drawer__cta:focus-visible { outline: 3px solid var(--brand); outline-offset: 2px; }
+
+.drawer__contacts {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  background: var(--surface-sunk);
+  font-style: normal;
+}
 .drawer__contacts a {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-2);
+  gap: var(--space-3);
   color: var(--ink);
   text-decoration: none;
   font-size: var(--text-sm);
@@ -353,6 +433,9 @@ onUnmounted(() => {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .navbar, .burger span, .drawer, .drawer-backdrop, .navbar__link { transition: none; }
+  .navbar, .burger span, .drawer, .drawer-backdrop, .navbar__link,
+  .drawer__link, .drawer__chevron, .drawer__cta, .drawer__close { transition: none; }
+  /* never gate link visibility on a transition that won't fire */
+  .drawer__link { opacity: 1; transform: none; }
 }
 </style>
