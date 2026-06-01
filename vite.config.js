@@ -4,10 +4,11 @@ import vuetify from 'vite-plugin-vuetify'
 import prerender from '@prerenderer/rollup-plugin'
 
 export default defineConfig(async () => {
-  // On Vercel the build image lacks the system shared libraries (libnspr4.so,
-  // etc.) that Puppeteer's bundled Chrome needs. Use @sparticuz/chromium, a
-  // self-contained Chromium built for serverless/Lambda, and point Puppeteer
-  // at it. Locally we fall back to Puppeteer's own Chrome.
+  // Hosted build images (Vercel, Netlify, etc.) often lack the system shared
+  // libraries (libnspr4.so, etc.) that Puppeteer's bundled Chrome needs. Use
+  // @sparticuz/chromium, a self-contained Chromium for serverless, and point
+  // Puppeteer at it. Locally we fall back to Puppeteer's own Chrome.
+  const isHostedBuild = Boolean(process.env.VERCEL || process.env.NETLIFY)
   let launchOptions = {
     args: [
       '--no-sandbox',
@@ -15,7 +16,7 @@ export default defineConfig(async () => {
       '--disable-dev-shm-usage',
     ],
   }
-  if (process.env.VERCEL) {
+  if (isHostedBuild) {
     const { default: chromium } = await import('@sparticuz/chromium')
     launchOptions = {
       args: [...chromium.args, '--disable-dev-shm-usage'],
