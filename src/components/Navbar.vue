@@ -571,7 +571,10 @@ onUnmounted(() => {
 }
 
 /* ── Desktop ───────────────────────────────────────────────── */
-@media (min-width: 1000px) {
+/* 1080px (not 1000): below this the logo + 5 nav links + search + CTA are too
+   cramped to sit on one line, which forced link labels to wrap. The 1000–1080
+   band uses the mobile drawer instead. */
+@media (min-width: 1080px) {
   .topbar__loc-full {
     display: inline;
   }
@@ -588,7 +591,7 @@ onUnmounted(() => {
   .navbar__links {
     display: flex;
     align-items: center;
-    gap: var(--space-6);
+    gap: var(--space-5);
     list-style: none;
     margin: 0;
     padding: 0;
@@ -599,6 +602,7 @@ onUnmounted(() => {
     color: var(--brand-ink);
     text-decoration: none;
     padding: var(--space-2) 0;
+    white-space: nowrap;
     transition: color var(--dur) var(--ease-out-quart);
   }
   .navbar__link::after {
@@ -625,7 +629,7 @@ onUnmounted(() => {
   }
   .navbar__search {
     display: block;
-    width: 210px;
+    width: 180px;
   }
   .navbar__cta {
     display: inline-flex;
