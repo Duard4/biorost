@@ -1,0 +1,15 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  # Puppeteer v25 is ESM-only and @prerenderer/renderer-puppeteer loads it via
+  # require(), which only works on Node >= 22.12 (unflagged require(esm)).
+  NODE_VERSION = "22"
+
+# SPA fallback: the prerendered route folders (/products, /about, ...) are
+# served as static HTML; everything else falls back to the client-side app.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
