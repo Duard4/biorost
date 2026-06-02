@@ -1,8 +1,7 @@
 <!-- src/components/Layout.vue -->
 <template>
     <div>
-        <HeaderComponent />
-        <NavComponent />
+        <Navbar />
         <main>
             <slot></slot>
         </main>
@@ -11,16 +10,14 @@
 </template>
 
 <script>
-import HeaderComponent from './HeaderComponent.vue';
+import Navbar from './Navbar.vue';
 import FooterComponent from './FooterComponent.vue';
-import NavComponent from './NavComponent.vue';
 
 export default {
     name: 'Layout',
     components: {
-        HeaderComponent,
-        FooterComponent,
-        NavComponent
+        Navbar,
+        FooterComponent
     }
 }
 </script>

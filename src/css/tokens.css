@@ -1,0 +1,102 @@
+/**
+ * Design tokens – single source of truth.
+ * Palette: "Field & Lab" – the soil itself is the brand. Deep CLAY/terracotta
+ * carries identity + bands; LIVING GREEN is the action/regeneration colour
+ * (primary CTAs, links); AMBER is a scarce harvest spark (active states,
+ * highlights). Neutrals are a true off-white tinted faintly toward clay, not a
+ * cream. High-contrast ink for outdoor / older-user legibility.
+ */
+:root {
+  /* ── Neutrals (off-white, faint clay warmth – NOT cream) ────── */
+  --bg: oklch(0.985 0.004 60);
+  --surface: oklch(1 0 0);
+  --surface-sunk: oklch(0.965 0.006 55);
+  --line: oklch(0.9 0.008 55);
+  --line-strong: oklch(0.82 0.012 55);
+
+  /* ── Brand: clay / terracotta (the soil) ────────────────────── */
+  --brand: oklch(0.5 0.115 45);
+  --brand-strong: oklch(0.42 0.105 42); /* body-text-safe bands */
+  --brand-deep: oklch(0.34 0.085 42); /* deepest band */
+  --brand-ink: oklch(0.42 0.11 42); /* clay headings on light */
+  --on-brand: oklch(0.97 0.012 70); /* warm white on clay */
+  --brand-wash: oklch(0.95 0.018 50); /* tinted fill behind clay content */
+
+  /* ── Ink ────────────────────────────────────────────────────── */
+  --ink: oklch(0.255 0.018 50); /* ≈9:1 on --bg */
+  --muted: oklch(0.455 0.02 48); /* ≥4.6:1 on --bg */
+
+  /* ── Action: living green (CTAs, links, growth) ─────────────── */
+  --accent: oklch(0.52 0.12 150);
+  --accent-strong: oklch(0.45 0.11 150); /* green bg + white text ≈5:1 */
+  --on-accent: oklch(0.98 0.02 150);
+  --accent-wash: oklch(0.95 0.03 150);
+
+  /* ── Spark: harvest amber (scarce: active state, highlight) ─── */
+  --spark: oklch(0.8 0.13 75);
+  --spark-strong: oklch(0.72 0.13 72);
+  --on-spark: oklch(0.3 0.05 60);
+
+  /* ── Soil: deep earth grounding (footer, deepest surfaces) ──── */
+  --soil: oklch(0.3 0.045 45);
+  --soil-2: oklch(0.36 0.05 42);
+  --on-soil: oklch(0.94 0.012 70);
+
+  /* ── Typography ─────────────────────────────────────────────── */
+  --font-display: "Unbounded", "Onest", system-ui, sans-serif;
+  --font-body: "Onest", system-ui, sans-serif;
+
+  --text-xs: 0.8rem;
+  --text-sm: 0.9375rem;
+  --text-base: 1.0625rem;
+  --text-lg: 1.2rem;
+  --text-xl: clamp(1.35rem, 1.1rem + 1.1vw, 1.6rem);
+  --text-2xl: clamp(1.7rem, 1.3rem + 1.8vw, 2.2rem);
+  --text-3xl: clamp(2.1rem, 1.5rem + 2.8vw, 3.1rem);
+  --text-display: clamp(2.5rem, 1.5rem + 4.4vw, 4rem);
+
+  /* ── Spacing (8px base) ─────────────────────────────────────── */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
+  --section-y: clamp(4rem, 2.5rem + 7vw, 8.5rem);
+
+  /* ── Radii ──────────────────────────────────────────────────── */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 24px;
+  --radius-xl: 36px;
+  --radius-full: 999px;
+
+  /* ── Elevation (warm clay-tinted, soft) ─────────────────────── */
+  --shadow-1:
+    0 1px 2px oklch(0.3 0.05 45 / 0.08), 0 2px 8px oklch(0.3 0.05 45 / 0.06);
+  --shadow-2:
+    0 4px 12px oklch(0.3 0.05 45 / 0.1), 0 12px 32px oklch(0.3 0.05 45 / 0.12);
+  --shadow-3:
+    0 8px 24px oklch(0.28 0.05 45 / 0.14),
+    0 24px 60px oklch(0.28 0.05 45 / 0.16);
+
+  /* ── Motion (ease-out only) ─────────────────────────────────── */
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 160ms;
+  --dur: 240ms;
+  --dur-slow: 420ms;
+
+  /* ── Z-index scale ──────────────────────────────────────────── */
+  --z-base: 0;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-backdrop: 300;
+  --z-modal: 400;
+  --z-toast: 500;
+  --z-tooltip: 600;
+}

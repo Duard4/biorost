@@ -1,72 +1,38 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="uk">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/bio.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Title -->
-    <title>ТМ "Біорост"</title>
+    <!-- Fallback title (overridden + extended by @unhead/vue at runtime / prerender) -->
+    <title>
+      ТМ «Біорост» – Органічні добрива та біопрепарати для аграріїв України
+    </title>
 
-    <!-- SEO Meta Tags -->
-    <meta
-      name="description"
-      content="ТОВ «Органіка України» ТМ «Біорост» пропонує сертифіковані органічні добрива та мікробні препарати для відновлення родючості ґрунту. Підвищуйте врожайність без шкоди екології! Продукція доступна для замовлення в Запоріжжі та по всій Україні."
-    />
-    <meta
-      name="keywords"
-      content="органічні добрива, добрива для ягідників, біопрепарати для аграріїв, покращення ґрунту, ТМ Біорост, дачники, органо-мінеральні добрива, мікробні препарати Україна, агропрепарати для фермерів"
-    />
-    <meta name="robots" content="index, follow" />
+    <!--
+      SEO meta tags, Open Graph, Twitter cards and JSON-LD are managed centrally
+      by src/js/seo.js via @unhead/vue, and baked into static HTML at build time
+      by the prerender step. Do not duplicate them here.
+    -->
 
-    <!-- Preconnect & Fonts -->
+    <!-- Preconnect & Fonts (font-display=swap prevents render-blocking) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Unbounded:wght@600;700;800&display=swap"
       rel="stylesheet"
-    />
-
-    <!-- Normalize & Swiper CSS -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/modern-normalize@2.0.0/modern-normalize.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
     />
     <link
       rel="preload"
       as="image"
-      href="/assets/bg-images/hero.jpg"
+      href="/assets/bg-images/hero.webp"
       fetchpriority="high"
     />
-
-    <!-- JSON-LD Structured Data for SEO -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Біорост",
-        "url": "https://www.biorost.ua",
-        "logo": "/bio.svg",
-        "description": "Біорост - українська компанія з м. Запоріжжя, що спеціалізується на виробництві високоякісних органічних добрив для покращення родючості ґрунту і збільшення врожайності.",
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "telephone": "+380687579303",
-          "contactType": "Customer Service",
-          "areaServed": "UA",
-          "availableLanguage": ["Ukrainian"]
-        }
-      }
-    </script>
   </head>
 
   <body>
     <div id="app"></div>
     <script type="module" src="/src/main.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   </body>
 </html>

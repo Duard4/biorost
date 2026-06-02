@@ -1,54 +1,34 @@
 <!-- src/App.vue -->
 <template>
   <Layout>
-    <HeroSection />
-    <AboutSection />
-    <ProductsSection />
-    <InjMapsSection />
-    <NewsSection />
-    <VacanciesSection />
-    <ContactSection />
+    <router-view v-slot="{ Component }">
+      <transition name="route" mode="out-in">
+        <component :is="Component" />
+      </transition>
+    </router-view>
   </Layout>
 </template>
 
-<script>
+<script setup>
 import Layout from "./components/Layout.vue";
+import { useSiteHead } from "./js/seo";
 
-import { defineAsyncComponent } from "vue";
-
-const HeroSection = defineAsyncComponent(() =>
-  import("./sections/HeroSection.vue")
-);
-const AboutSection = defineAsyncComponent(() =>
-  import("./sections/AboutSection.vue")
-);
-const ProductsSection = defineAsyncComponent(() =>
-  import("./sections/ProductsSection.vue")
-);
-const InjMapsSection = defineAsyncComponent(() =>
-  import("./sections/InjMapsSection.vue")
-);
-const NewsSection = defineAsyncComponent(() =>
-  import("./sections/NewsSection.vue")
-);
-const VacanciesSection = defineAsyncComponent(() =>
-  import("./sections/VacanciesSection.vue")
-);
-const ContactSection = defineAsyncComponent(() =>
-  import("./sections/ContactSection.vue")
-);
-
-export default {
-  name: "App",
-  components: {
-    Layout,
-    HeroSection,
-    AboutSection,
-    ProductsSection,
-    InjMapsSection,
-    NewsSection,
-    VacanciesSection,
-    ContactSection,
-  },
-};
+useSiteHead();
 </script>
+
+<style>
+.route-enter-active,
+.route-leave-active {
+  transition: opacity var(--dur) var(--ease-out-quart);
+}
+.route-enter-from,
+.route-leave-to {
+  opacity: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .route-enter-active,
+  .route-leave-active {
+    transition: none;
+  }
+}
+</style>
