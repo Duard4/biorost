@@ -24,12 +24,6 @@
             <p>69031, м. Запоріжжя, вул. Дослідна станція, 45</p>
           </div>
           <div class="info__item">
-            <span class="info__label">Телефон</span>
-            <a class="info__link hover" :href="`tel:${TEL}`"
-              >+380 68 757 93 03</a
-            >
-          </div>
-          <div class="info__item">
             <span class="info__label">E-mail</span>
             <a class="info__link hover" :href="`mailto:${EMAIL}`">{{
               EMAIL
@@ -165,6 +159,42 @@
         </div>
       </div>
 
+      <!-- Direct phones -->
+      <section class="phones" aria-labelledby="phones-title">
+        <div class="phones__head">
+          <h2 id="phones-title" class="phones__title">
+            Зателефонувати напряму
+          </h2>
+          <p class="phones__lead">
+            Керівник і менеджери-агрономи підкажуть із вибором препаратів,
+            нормами внесення та доставкою по всій Україні.
+          </p>
+        </div>
+        <ul class="phones__list">
+          <li
+            v-for="person in team"
+            :key="person.role + person.name"
+            class="phones__row"
+          >
+            <div class="phones__who">
+              <span class="phones__role">{{ person.role }}</span>
+              <span v-if="person.name" class="phones__name">{{
+                person.name
+              }}</span>
+            </div>
+            <div class="phones__nums">
+              <a
+                v-for="phone in person.phones"
+                :key="phone"
+                class="phones__num hover"
+                :href="`tel:${phone.replace(/\s/g, '')}`"
+                >{{ phone }}</a
+              >
+            </div>
+          </li>
+        </ul>
+      </section>
+
       <div class="map-wrap">
         <h2 class="title map-wrap__title">Ми на карті</h2>
         <iframe
@@ -208,6 +238,38 @@ export default {
   },
   data() {
     return {
+      team: [
+        {
+          role: "Керівник",
+          name: "Пархоменко Дмитро",
+          phones: ["+380 67 610 05 89"],
+        },
+        {
+          role: "Головний технолог",
+          name: "Круглік Денис",
+          phones: ["+380 68 757 93 03"],
+        },
+        {
+          role: "Менеджер",
+          name: "Роман",
+          phones: ["+380 97 737 05 96", "+380 50 520 89 84"],
+        },
+        {
+          role: "Менеджер",
+          name: "Таісія",
+          phones: ["+380 63 972 20 45"],
+        },
+        {
+          role: "Менеджер",
+          name: "Валерій",
+          phones: ["+380 98 837 68 49"],
+        },
+        {
+          role: "Менеджер",
+          name: "Оксана",
+          phones: ["+380 66 472 29 55"],
+        },
+      ],
       form: {
         name: "",
         farm: "",
@@ -397,8 +459,106 @@ export default {
   font-size: var(--text-lg);
   line-height: 1.55;
   color: var(--muted);
-  margin: 0;
+  margin: 0 0 var(--space-6) 0;
   text-wrap: pretty;
+}
+
+/* Direct phones */
+.phones {
+  margin-top: var(--space-12);
+  padding: clamp(1.5rem, 1rem + 2.5vw, 2.75rem);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-1);
+}
+.phones__head {
+  max-width: 56ch;
+  margin-bottom: var(--space-8);
+}
+.phones__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-xl);
+  color: var(--brand-ink);
+  margin: 0 0 var(--space-2);
+  letter-spacing: -0.02em;
+}
+.phones__lead {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.phones__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--line);
+}
+@media (min-width: 768px) {
+  .phones__list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: var(--space-10);
+  }
+  .phones__nums {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+.phones__row {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2);
+  padding-block: var(--space-5);
+  border-bottom: 1px solid var(--line);
+}
+.phones__who {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+.phones__role {
+  font-size: var(--text-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--brand);
+  font-weight: 600;
+}
+.phones__name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--text-lg);
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+.phones__nums {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1) var(--space-5);
+}
+.phones__num {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: var(--text-lg);
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color var(--dur) var(--ease-out-quart);
+}
+.phones__num:hover,
+.phones__num:focus-visible {
+  color: var(--accent-strong);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .phones__num {
+    transition: none;
+  }
 }
 
 .contact__grid {
@@ -411,7 +571,7 @@ export default {
 .info {
   font-style: normal;
   display: grid;
-  gap: var(--space-6);
+  gap: var(--space-4);
 }
 .info__item p {
   margin: 0;
